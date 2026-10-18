@@ -1,4 +1,4 @@
-# ADR — Arbitrages d'architecture (propositions, non décisions CAPS)
+# ADR — Arbitrages d'architecture (propositions, non décisions établissement bancaire)
 
 ## ADR-001 — L'API crée une intention durable
 - **Contexte** : le client peut subir un timeout après requête de paiement.
@@ -9,7 +9,7 @@
 
 ## ADR-002 — MQ transporte les commandes vers le legacy
 - **Contexte** : système bancaire historique et dépendances temporelles.
-- **Décision candidate** : IBM MQ persistent/syncpoint, corrélation, BOQ/DLQ correctement gérées.
+- **Décision candidate** : messagerie MQ persistent/syncpoint, corrélation, BOQ/DLQ correctement gérées.
 - **Conséquences** : gestion d'échéance métier et redélivrance nécessaire.
 - **Alternative** : API synchrone, autre broker ou bus d'entreprise selon le SI réel.
 - **Test** : arrêt consommateur puis reprise sans nouveau paiement.

@@ -2,7 +2,7 @@
 
 **Édition consolidée V1.0 — 18 octobre 2026 — Auteur : Zidane Djamal**
 
-**Statut :** architecture cible proposée, document de référence unifié à instruire en Design Authority. **Il ne décrit pas un SI interne vérifié de CAPS, de BPCE, de Wero, de STET ou de FIS.** Les noms de services, les plateformes, les métriques et les options techniques constituent des propositions. Aucune conception n'est « prête production » tant que les contrats avec le core, les infrastructures de place, les objectifs de service et la preuve de cohérence financière ne sont pas validés.
+**Statut :** architecture cible proposée, document de référence unifié à instruire en Design Authority. **Il ne décrit pas un SI interne vérifié de établissement bancaire, de groupe bancaire, de wallet de paiement, de CSM-A ou de éditeur historique.** Les noms de services, les plateformes, les métriques et les options techniques constituent des propositions. Aucune conception n'est « prête production » tant que les contrats avec le core, les infrastructures de place, les objectifs de service et la preuve de cohérence financière ne sont pas validés.
 
 > **Document canonique unique.** Cette étude fusionne, réconcilie et remplace les deux études de travail consacrées au paiement instantané sur OpenShift (versions de 20 et 11 pages). **Les PDF d'origine ne sont ni copiés ni archivés dans ce dépôt.** Les règles publiques vérifiées en octobre 2026 sont référencées en section 26. Les contraintes internes restent ouvertes (section 25).
 
@@ -18,7 +18,7 @@
 9. Parcours SCT Inst sortant (nominal)
 10. Parcours SCT Inst entrant (nominal)
 11. Contrats d'API, sécurité d'autorisation et idempotence
-12. Intégration core / IBM MQ / Kafka / ACL / Outbox
+12. Intégration core / messagerie MQ / Kafka / ACL / Outbox
 13. Saga, transactions locales et point d'irréversibilité
 14. Fraude, sanctions, VoP, contrôle de provision et liquidité
 15. Routage multi-rails et messages ISO 20022
@@ -47,7 +47,7 @@ Concevoir un système 24/7 de traitement des **SEPA Instant Credit Transfers (SC
 - **Processus critique** : orchestration durable compacte ; accès à l'autorité de compte et aux contrôles obligatoires avec délais bornés.
 - **Core bancaire existant** : **seule autorité** pour réservation, débit/crédit, visibilité financière et preuves de transaction. La plateforme n'entretient pas de « solde disponible alternatif » servant à débiter sur simple synchronisation asynchrone.
 - **Connecteur rail** : choix admissible d'un seul parcours d'exécution, création et suivi des échanges ISO 20022, conservation des références.
-- **Messaging** : IBM MQ **si** requis par les connecteurs/standards existants ; Kafka **si** les besoins de diffusion/rejeu/volumétrie le justifient. Ne pas imposer systématiquement les deux.
+- **Messaging** : messagerie MQ **si** requis par les connecteurs/standards existants ; Kafka **si** les besoins de diffusion/rejeu/volumétrie le justifient. Ne pas imposer systématiquement les deux.
 - **Outbox + consommateurs idempotents + réconciliation** : tolérer les redélivrances sans réexécuter une transaction financière.
 - **Infrastructure** : OpenShift HA avec plusieurs zones de défaillance ; deuxième cluster/site pour continuité si le BIA l'exige. L'actif-actif applicatif n'implique **pas** une écriture simultanée financière sur la même partition.
 - **Actif-actif contrôlé** : propriétaire d'écriture unique par domaine/partition, bail et fencing, bascule conditionnée par la visibilité des données reconnues durables, preuve de la situation des paiements en vol. **RPO 0 pour une perte de site** n'est **pas acquis** si la réplication inter-sites est asynchrone.
@@ -61,14 +61,14 @@ Concevoir un système 24/7 de traitement des **SEPA Instant Credit Transfers (SC
 6. Les exigences de délai SCT Inst priment sur un design de retry asynchrone pouvant prolonger le traitement sans borne.
 
 ### Décision proposée à la Design Authority
-**Architecture hybride prudente, orientée invariants, avec source financière unique et intégration progressives.** Le choix « développer un nouveau moteur » contre « conserver/moderniser le progiciel existant » reste **ouvert** jusqu'à confirmation des capacités et du support éditeur. Une éventuelle solution FIS OPF/BIP doit être traitée comme produit à évaluer, pas comme architecture supposée ni comme composant à réécrire.
+**Architecture hybride prudente, orientée invariants, avec source financière unique et intégration progressives.** Le choix « développer un nouveau moteur » contre « conserver/moderniser le progiciel existant » reste **ouvert** jusqu'à confirmation des capacités et du support éditeur. Une éventuelle solution éditeur historique OPF/moteur de paiement historique doit être traitée comme produit à évaluer, pas comme architecture supposée ni comme composant à réécrire.
 
 ---
 
 ## 2. Périmètre, acteurs et responsabilités
 
 ### Périmètre fonctionnel
-- SCT Inst sortant **et** entrant ; initiation depuis canal bancaire, partenaire PISP autorisé, entreprise ou scénario Wero **si un contrat réel le requiert**.
+- SCT Inst sortant **et** entrant ; initiation depuis canal bancaire, partenaire PISP autorisé, entreprise ou scénario wallet de paiement **si un contrat réel le requiert**.
 - VoP (IBAN/nom) **avant l'autorisation** du payeur et restitution du résultat.
 - Authentification forte et consentement/autorisation selon les parcours et textes applicables.
 - Règles de limite/plafond, anti-fraude, règles de sanctions, conformité et eligibility.
@@ -157,7 +157,7 @@ flowchart TB
   CSM["CSM / TIPS / autres rails sous contrats"]
   DB[("DB transactionnelle ACID : ordres, journal, Inbox, Outbox")]
   OUT["Relais Outbox / messaging bridge"]
-  MQ["IBM MQ si l'existant l'exige"]
+  MQ["messagerie MQ si l'existant l'exige"]
   KAFKA["Kafka si diffusion/rejeu justifiés"]
   NOTIF["Notifications / Canaux"]
   ANA["Reporting, audit, supervision"]
@@ -221,7 +221,7 @@ La présence de MQ et Kafka n'est **pas** une exigence d'office : documenter le 
 | Notification / Reporting | Canal client et exploitation analytique | Consommateurs indépendants |
 | VoP | Consultation et présentation **avant autorisation** | Capacité canal/PSP indépendante |
 
-Une option existante FIS OPF ou autre moteur de paiement peut **déjà fournir** l'orchestration, ISO 20022, états, persistance et règles. Ne pas développer un moteur concurrent avant un **fit-gap éditeur** et une matrice de support OpenShift/configuration.
+Une option existante éditeur historique OPF ou autre moteur de paiement peut **déjà fournir** l'orchestration, ISO 20022, états, persistance et règles. Ne pas développer un moteur concurrent avant un **fit-gap éditeur** et une matrice de support OpenShift/configuration.
 
 **SLO de conception :** optimiser nombre de transitions persistées, appels série/parallèles et latence p99 sous charge. Éviter l'« orchestration via 12 microservices » imposée sans preuve.
 
@@ -419,7 +419,7 @@ Tests obligatoires : crédit accompli/ACK perdu, compte bloqué ou fermé, pod t
 
 ## 11. Contrats d'API, identité et idempotence
 
-### API illustrative — *pas* un contrat CAPS
+### API illustrative — *pas* un contrat établissement bancaire
 ~~~http
 POST /api/v1/instant-payments
 Authorization: Bearer <token>
@@ -479,7 +479,7 @@ sequenceDiagram
   participant S as Service de paiement
   participant D as DB ACID
   participant P as Publisher
-  participant B as IBM MQ ou Kafka
+  participant B as messagerie MQ ou Kafka
   participant C as Consumer
   S->>D: BEGIN
   S->>D: UPDATE payment + INSERT Outbox
@@ -493,7 +493,7 @@ sequenceDiagram
 ~~~
 L'Outbox ne garantit pas à elle seule une livraison **exactly-once** ; son relais peut republier. Kafka garantit l'ordre **dans une partition**, pas entre toutes les partitions ; utiliser une clé stable selon le besoin d'ordre, protéger PII et envisager les changements de partitionnement. Ne pas faire d'un topic Kafka le seul support de preuve d'un paiement.
 
-### IBM MQ : quand le choisir
+### messagerie MQ : quand le choisir
 Contrats imposant une queue avec legacy, messages persistants, \`syncpoint\`, request/reply asynchrone, reprise contrôlée, backout queue applicative et dead-letter queue de transport. **Un message ancien doit être relu avec sa deadline et son état, jamais exécuté comme neuf.** Les redélivrances sont normales lors de crash avant ACK.
 
 ### Kafka : quand le choisir
@@ -506,7 +506,7 @@ Traduction API/JSON ↔ COBOL/CICS/MQ ou format propriétaire, y compris **séma
 Contract tests, versionnement, erreurs, montants en unité minimale, champ source, chiffrement, audit.
 
 ### Décision d'intégration
-**Privilégier l'intégration existante compatible**. Ajouter IBM MQ **et** Kafka uniquement si les exigences transport de commandes **et** diffusion/rejeu justifient deux socles distincts. Tenir un registre de flux décrivant source, cible, protocole, identité, schéma, timeout, SLA et comportement en panne.
+**Privilégier l'intégration existante compatible**. Ajouter messagerie MQ **et** Kafka uniquement si les exigences transport de commandes **et** diffusion/rejeu justifient deux socles distincts. Tenir un registre de flux décrivant source, cible, protocole, identité, schéma, timeout, SLA et comportement en panne.
 
 ---
 
@@ -566,7 +566,7 @@ Suivre positions, seuils et disponibilité par rail/entité ; en TIPS, les compt
 ## 15. Routage multi-rails et ISO 20022
 
 ### Options
-STET / TIPS / RT1 sont des **pistes d'intégration conditionnées** par les contrats PSP/CSM, la participation, joignabilité et connectivité. Leur présence chez CAPS/BPCE **n'est pas affirmée**. Le schéma SCT Inst et les profils du rail régissent la construction des messages.
+CSM-A / TIPS / RT1 sont des **pistes d'intégration conditionnées** par les contrats PSP/CSM, la participation, joignabilité et connectivité. Leur présence chez établissement bancaire/groupe bancaire **n'est pas affirmée**. Le schéma SCT Inst et les profils du rail régissent la construction des messages.
 
 ### Messages à étudier
 | ISO 20022 (famille) | Usage courant / précaution |
@@ -580,7 +580,7 @@ STET / TIPS / RT1 sont des **pistes d'intégration conditionnées** par les cont
 Les versions XML, obligations de signature, champs, codes statut et acheminement doivent être établis sur les **Implementation Guidelines de la version exacte** et les règles CSM/banque.
 
 ### Bascule de rail : principe de prudence
-**Ne jamais** relancer un paiement vers TIPS parce que STET n'a pas répondu. Préconditions minimales :
+**Ne jamais** relancer un paiement vers TIPS parce que CSM-A n'a pas répondu. Préconditions minimales :
 1. Preuve que la commande **n'a pas été exécutée** (ou protocole de bascule garantissant unicité de bout en bout).
 2. Même identité métier et corrélation traçable du changement de tentative.
 3. Rails et bénéficiaire joignables ; capacité/liquidité; accords CSM compatibles.
@@ -640,7 +640,7 @@ flowchart TB
 **Aucune promesse** de « 3 zones par site » sans démonstration des domaines de panne indépendants et analyse du quorum. La capacité survivante doit supporter le trafic pendant une panne de zone et, si exigé, de site.
 
 ### HA des données
-- PostgreSQL HA (opérateur qualifié) **ou** Oracle/SQL distribué selon standards, performance et support. Démontrer quorum, latence d'ACK, RPO/RTO et procédure split-brain.
+- PostgreSQL HA (opérateur qualifié) **ou** SGBD relationnel/SQL distribué selon standards, performance et support. Démontrer quorum, latence d'ACK, RPO/RTO et procédure split-brain.
 - MQ HA selon produit/édition et topologie ; stockage fiable et consommateurs idempotents.
 - Kafka HA si justifié : réplication et \`min.insync.replicas\`, traitement des interruptions et quotas ; MirrorMaker/asynchrone **ne reproduit pas un commit financier synchrone**.
 - Copies/backup indépendants, récupération de corruption logique, restauration testée et clé de chiffrement accessible pendant PRA.
@@ -707,7 +707,7 @@ Deux clusters accessibles par GSLB, avec bases répliquées en asynchrone, peuve
 La somme de moyennes n'est pas un p99 bout en bout : mesurer **distributions corrélées, rafales, contention, GC, I/O, TLS, WAN, invalidation cache, retry et failover**. Ne pas laisser un timeout de 2 s + 3 retries dépasser la deadline.
 
 ### Hypothèses de volumétrie à valider
-Scénario purement illustratif : \`TPS moyen = 300\`, \`TPS crête = 1 500\`, marge à étudier selon BIA. **Ce ne sont pas des données CAPS ou BPCE**. Little : \`concurrence ≈ débit × durée\` ; à 1 500 TPS et 2 s, environ 3 000 transactions simultanées **en moyenne pendant cette durée**, avant marge et queues. Mesurer débit maximum par core et rail, IOPS/commit, queues depth, consumer lag, CPU/GC/pools, max connections et capacité mono-site.
+Scénario purement illustratif : \`TPS moyen = 300\`, \`TPS crête = 1 500\`, marge à étudier selon BIA. **Ce ne sont pas des données établissement bancaire ou groupe bancaire**. Little : \`concurrence ≈ débit × durée\` ; à 1 500 TPS et 2 s, environ 3 000 transactions simultanées **en moyenne pendant cette durée**, avant marge et queues. Mesurer débit maximum par core et rail, IOPS/commit, queues depth, consumer lag, CPU/GC/pools, max connections et capacité mono-site.
 
 ### SLOs proposés comme exigences à négocier
 | Indicateur | Principe |
@@ -787,7 +787,7 @@ flowchart TB
 ## 21. Livraison, migration progressive et retour arrière
 
 ### Strangler Fig plutôt que big bang
-1. **AS-IS prouvé** : répertorier moteur existant, comptes, identité, réseau, CSM, contrats d'éditeurs, dépendances, interfaces et états. Ne pas inférer la topologie BPCE/BIP/FIS à partir de sources publiques.
+1. **AS-IS prouvé** : répertorier moteur existant, comptes, identité, réseau, CSM, contrats d'éditeurs, dépendances, interfaces et états. Ne pas inférer la topologie groupe bancaire/moteur de paiement historique/éditeur historique à partir de sources publiques.
 2. **Fit-gap / buy vs build** : conserver le moteur et moderniser l'intégration si supportable ; conteneuriser seulement avec certification et support explicites, ou développer capacités manquantes si ROI/risk approuvés.
 3. **Socle** : OpenShift, identité, réseau, GitOps, certificats, secrets, DB/MQ/Kafka uniquement selon arbitrages.
 4. **Simulateur / tests contrats** : core sandbox, schémas ISO, retours de rail, duplications, outbox et timing.
@@ -830,7 +830,7 @@ Le rollback d'une image OpenShift **ne** corrige **pas** un mouvement bancaire i
 | P19 | Partition inter-site (split-brain) | Jamais deux écrivains sur une partition | ownerEpoch + core |
 | P20 | Retard réplication inter-site après commit | Réadmission différée si données incomplètes | Journaux de commit |
 | P21 | Corruption logique répliquée | Sauvegarde indépendante + restauration contrôlée | PITR restore |
-| P22 | Rail STET indisponible après envoi incertain | Aucun basculement aveugle vers TIPS | Query status |
+| P22 | Rail CSM-A indisponible après envoi incertain | Aucun basculement aveugle vers TIPS | Query status |
 | P23 | Certificat TLS expiré sous charge | Échec contrôlé et alerte + rotation | PKI/SRE |
 | P24 | Montée à charge crête + panne de zone | Respect admission et stabilité ; aucune duplication | Perf/Chaos |
 | P25 | Nouvelle version de contrat ISO incompatible | Refus/quarantaine sans mouvement | Contract tests |
@@ -882,7 +882,7 @@ Le rollback d'une image OpenShift **ne** corrige **pas** un mouvement bancaire i
 | ADR-09 | Statuts paiement / compte / investigation distincts | Etat binaire SUCCESS/FAILED écarté |
 | ADR-10 | Deadline réglementaire propagée | Retry au-delà deadline proscrit |
 | ADR-11 | Retours post-commit + reporting découplé | Ne pas coupler notification au settlement |
-| ADR-12 | Buy vs Build/FIS ouvert jusqu'au fit-gap | Aucune réécriture imposée avant audit/support |
+| ADR-12 | Buy vs Build/éditeur historique ouvert jusqu'au fit-gap | Aucune réécriture imposée avant audit/support |
 | ADR-13 | VoP avant autorisation, avec preuve | Pas de VoP insérée tardivement sous T0 sans analyse |
 | ADR-14 | Capacité/latences basées sur charge réelle | TPS et p99 illustratifs non contractuels |
 
@@ -915,14 +915,14 @@ Runbook par alerte, rotations d'astreinte, ownership par domaine, revues d'écar
 |---|---|---|
 | Métier | Quel(s) PSP, entités, canaux, flows et rails sont concernés ? | Process map et responsabilités PSP/CSM |
 | Core | Qui garantit réservation, débit/crédit, idempotence, statut ? | Contrat/API, tests, écritures probantes |
-| Existant | Quels composants BIP/FIS/PARME/ABS et interfaces sont réels ? | Inventaire AS-IS, schémas et versions |
-| Buy vs Build | Peut-on exploiter FIS OPF/legacy sur OpenShift avec support ? | Matrice éditeur certifiée + licences |
+| Existant | Quels composants moteur de paiement historique/éditeur historique/chaîne d’intégration historique/adaptateur historique et interfaces sont réels ? | Inventaire AS-IS, schémas et versions |
+| Buy vs Build | Peut-on exploiter éditeur historique OPF/legacy sur OpenShift avec support ? | Matrice éditeur certifiée + licences |
 | Volume | TPS moyen/pointe, burst, montants, messages en vol ? | Mesures de production anonymisées |
 | Latence | Temps de réponse core/VoP/fraude/rail p99, extrêmes ? | Traces distribuées et campagnes de charge |
 | Réglementaire | Pratiques d'application 5/7/9/10 s et cas exceptionnels ? | Validation juridique/PSP et CSM |
 | Données | Quelle autorité d'écriture, granularité de partition et failover ? | Design transactionnel + fencing tests |
 | DR | Distance/latence intersite, réplication, quorum, RTO/RPO par périmètre ? | BIA + PRA preuve |
-| Routing | Participation/joignabilité/lien et exclusivité inter-rails ? | Contrats STET/TIPS/RT1 + test |
+| Routing | Participation/joignabilité/lien et exclusivité inter-rails ? | Contrats CSM-A/TIPS/RT1 + test |
 | Intégration | MQ ou Kafka requis ? Quelles versions et schémas ? | Inventaire, support, coûts et modèles de panne |
 | Sécurité | PKI, HSM, IAM, habilitations objets, séparation des fonctions ? | Dossier sécurité validé |
 | Exploitation | 24/7, supervision, investigation et correction comptable ? | RACI, runbooks et preuve d'exercice |
@@ -932,7 +932,7 @@ Runbook par alerte, rotations d'astreinte, ownership par domaine, revues d'écar
 ### Classification de maturité
 - **Établi** : principes généraux et textes EPC/UE/BCE cités.
 - **Proposé** : composants Java/OpenShift, choix de brokers, RTO/RPO, budgets et découpage ; soumis à arbitrage.
-- **Non validé** : architecture et produits internes des organisations mentionnées, support FIS, contrats des rails, volumes réels, cohérence multisite en production.
+- **Non validé** : architecture et produits internes des organisations mentionnées, support éditeur historique, contrats des rails, volumes réels, cohérence multisite en production.
 
 **Critère de clôture architecture :** dossier HLD+LLD approuvé, ADR signées, contrats testés, invariants prouvés, performances et PRA exercés, conformité d'exécution validée, support éditeur confirmé et exploitation financière prête.
 
@@ -953,7 +953,7 @@ Runbook par alerte, rotations d'astreinte, ownership par domaine, revues d'écar
 8. Transactional Outbox : https://microservices.io/patterns/data/transactional-outbox.html
 9. Idempotent Consumer : https://microservices.io/patterns/communication-style/idempotent-consumer.html
 10. Saga : https://microservices.io/patterns/data/saga.html
-11. Anti-Corruption Layer : https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer
+11. Anti-Corruption Layer : [référence DDD à sélectionner]
 12. Resilience4j : https://resilience4j.readme.io/docs/circuitbreaker
 13. OWASP API Security Top 10 : https://owasp.org/API-Security/editions/2023/en/0x11-t10/
 14. OpenID Connect : https://openid.net/specs/openid-connect-core-1_0.html

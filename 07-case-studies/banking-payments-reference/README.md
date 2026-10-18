@@ -1,6 +1,6 @@
 # Cas d'étude — Architecture bancaire de paiement bout en bout
 
-> **Simulation de conception, pas architecture CAPS.** Aucun produit (MQ, Kafka, PostgreSQL, OpenShift) n'est affirmé déployé chez CAPS. Montants, comptes, noms des files et services sont fictifs.
+> **Simulation de conception, pas architecture établissement bancaire.** Aucun produit (MQ, Kafka, PostgreSQL, OpenShift) n'est affirmé déployé chez établissement bancaire. Montants, comptes, noms des files et services sont fictifs.
 
 ## Objectif
 Concevoir un virement de **500 EUR** initié par application bancaire, accepté dans un canal API, contrôlé, transmis à un cœur bancaire historique et suivi jusqu'au résultat autoritatif, sans doublons après crash/retry. Démontrer comment les **10 patterns** coopèrent sans confondre commande, message, événement, ordre accepté et règlement définitif.
@@ -18,7 +18,7 @@ flowchart TB
   CTRL["Contrôles métier / antifraude"]
   ACL["Anti-Corruption Layer + MQ adapter"]
   RELAY["Relais Outbox"]
-  MQ["IBM MQ PAYMENT.REQUEST / RESPONSE"]
+  MQ["messagerie MQ PAYMENT.REQUEST / RESPONSE"]
   CORE["Cœur bancaire, autorité financière"]
   CLEAR["Infrastructure de paiement / règlement"]
   KAFKA["Kafka payments.status.v1"]
@@ -52,7 +52,7 @@ Les flèches sont **logiques** ; notamment, la publication des commandes au brok
 | PostgreSQL | État de suivi, réservation Saga si sous ce domaine, Outbox | Devenir un second grand livre bancaire |
 | Saga | Coordination durable et transitions | Annuler un règlement irrévocable par « rollback » |
 | ACL | Traductions de données et sémantiques | Convertir « accepté » en « exécuté » |
-| IBM MQ | Transport durable de commandes/réponses | Garantir la sémantique exactly-once externe |
+| messagerie MQ | Transport durable de commandes/réponses | Garantir la sémantique exactly-once externe |
 | Cœur bancaire | Effet financier autoritatif | Exécuter une commande expirée sans vérification |
 | Kafka | Journal d'événements dérivés | Devenir l'unique preuve de règlement |
 | Notification | Informer, avec retries propres | Relancer l'ordre de paiement |

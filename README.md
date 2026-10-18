@@ -4,13 +4,13 @@
 
 Référentiel d'architecture en français : principes, responsabilités, critères de choix, scénarios d'échec, diagrammes, contrats, sécurité, observabilité et exercices. Chaque pattern est expliqué à travers un fil conducteur : **un virement bancaire de 500 €**.
 
-> **Périmètre et confidentialité.** Les cas « CAPS » (Crédit Agricole Payment Services) sont des **illustrations fictives** inspirées de besoins génériques d'architecture applicative. Ils ne décrivent ni l'architecture interne, ni les produits effectivement déployés, ni les règles de gestion particulières de CAPS. Les valeurs, noms de files, APIs, formats de messages et seuils sont des exemples à valider.
+> **Périmètre et confidentialité.** Les cas « établissement bancaire » (établissement bancaire réel) sont des **illustrations fictives** inspirées de besoins génériques d'architecture applicative. Ils ne décrivent ni l'architecture interne, ni les produits effectivement déployés, ni les règles de gestion particulières de établissement bancaire. Les valeurs, noms de files, APIs, formats de messages et seuils sont des exemples à valider.
 
 ## Étude d'architecture de référence — document unique
 
 **[Paiements instantanés SEPA / OpenShift — Architecture consolidée V1.0](07-case-studies/instant-payments-openshift/ARCHITECTURE_DE_REFERENCE.md)**
 
-Document canonique complet : 26 sections, architecture solution et technique, flux entrants/sortants, VoP, ISO 20022, core bancaire, Java/OpenShift, MQ/Kafka, Saga/Outbox, API, cohérence financière, actif-actif et fencing, PRA, conformité SCT Inst, tests d'incidents, arbitrages et critères de qualification. **Une seule étude publiée ; les deux PDF de travail ne figurent pas dans ce dépôt.** Les technologies et configurations sont des propositions pédagogiques à valider, sans prétention de décrire le SI interne de CAPS ou BPCE.
+Document canonique complet : 26 sections, architecture solution et technique, flux entrants/sortants, VoP, ISO 20022, core bancaire, Java/OpenShift, MQ/Kafka, Saga/Outbox, API, cohérence financière, actif-actif et fencing, PRA, conformité SCT Inst, tests d'incidents, arbitrages et critères de qualification. **Une seule étude publiée ; les deux PDF de travail ne figurent pas dans ce dépôt.** Les technologies et configurations sont des propositions pédagogiques à valider, sans prétention de décrire le SI interne de établissement bancaire ou groupe bancaire.
 
 ## Parcours : 10 patterns d'intégration et de résilience
 
@@ -51,7 +51,7 @@ Document canonique complet : 26 sections, architecture solution et technique, fl
 
 ## Technologies d'illustration
 
-Java / Spring Boot, OpenShift / Kubernetes, PostgreSQL, IBM MQ, Apache Kafka, OAuth 2.0 / OIDC, mTLS, Resilience4j, OpenTelemetry, Prometheus, GitOps / Argo CD. Leur utilisation dans ce dépôt **n'affirme pas** qu'elles sont exploitées chez un client particulier.
+Java / Spring Boot, OpenShift / Kubernetes, PostgreSQL, messagerie MQ, Apache Kafka, OAuth 2.0 / OIDC, mTLS, Resilience4j, OpenTelemetry, Prometheus, GitOps / Argo CD. Leur utilisation dans ce dépôt **n'affirme pas** qu'elles sont exploitées chez un client particulier.
 
 ## Statut
 

@@ -11,7 +11,7 @@ sequenceDiagram
   participant DB as PostgreSQL + Outbox
   participant S as Saga
   participant R as Outbox Relay
-  participant MQ as IBM MQ
+  participant MQ as messagerie MQ
   participant L as Core Banking + Rail
   participant K as Kafka
   participant N as Notification
@@ -83,7 +83,7 @@ sequenceDiagram
 ~~~mermaid
 sequenceDiagram
   participant O as Relais Outbox
-  participant MQ as IBM MQ
+  participant MQ as messagerie MQ
   participant C as Cœur bancaire
   O->>MQ: Commande VIR-001, deadlineUtc
   Note over MQ: Service indisponible, message attend
