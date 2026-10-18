@@ -78,7 +78,7 @@ Voir : 04 EDA, 05 Event Streaming, 10 Idempotency.
 flowchart TB
     A["Ordre : ExecutePayment"] --> Q["Queue de travail"]
     Q --> W1["Consommateur 1"]
-    Q -. "ou, par concurrence" .-> W2["Consommateur 2"]
+    Q -.->|ou, par concurrence| W2["Consommateur 2"]
     B["Fait : PaymentSettled"] --> T["Topic d'événements"]
     T --> S1["Abonnement comptabilité"]
     T --> S2["Abonnement notifications"]

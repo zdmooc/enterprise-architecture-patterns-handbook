@@ -68,7 +68,7 @@ Sources : Documentation du middleware MQ (lien éditeur volontairement omis), Do
 ~~~mermaid
 flowchart LR
     P["Producteur : ordres VIR-001/002/003"] --> Q["Queue durable<br/>VIR-001 | VIR-002 | VIR-003"]
-    Q -. "Consommateur arrêté" .-> X["Service de traitement : indisponible"]
+    Q -.->|Consommateur arrêté| X["Service de traitement : indisponible"]
     Q -->|"Après redémarrage"| R["Reprise contrôlée"]
     R --> D["Déduplication + échéance"]
     D --> CORE["Exécution autoritative si admissible"]

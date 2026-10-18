@@ -83,7 +83,7 @@ flowchart LR
     C --> D["Timeout : borner l'attente"]
     D --> E["Dépendance bancaire"]
     C -->|"OPEN"| F["Réponse contrôlée, sans statut financier inventé"]
-    D -. "Échec transitoire + retry permis" .-> R["Retry borné / backoff / jitter"]
+    D -.->|Échec transitoire + retry permis| R["Retry borné / backoff / jitter"]
     R --> C
 ~~~
 Les retries ne doivent pas multiplier les tentatives au point de dépasser la deadline réglementaire ni créer une nouvelle intention de virement.

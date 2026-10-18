@@ -113,7 +113,7 @@ flowchart LR
     A["Réservation réversible"] --> B["Envoi du virement"]
     B --> C["Règlement final et irrévocable"]
     C --> N["Notification"]
-    C -. "Pas de rollback Saga" .-> X["Retour / rappel = nouvelle procédure"]
+    C -.->|Pas de rollback Saga| X["Retour / rappel = nouvelle procédure"]
 ~~~
 Une notification échouée après règlement doit être **reprise**, mais le virement réglé ne doit **pas** être annulé pour cette seule raison.
 

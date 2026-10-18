@@ -79,7 +79,7 @@ flowchart TB
     D --> E["Réponse fictive A01 : reçu pour traitement"]
     E --> B
     B --> F["Statut interne ACCEPTED_FOR_PROCESSING"]
-    B -. "Interdit" .-> X["Ne pas annoncer SETTLED sans preuve"]
+    B -.->|Interdit| X["Ne pas annoncer SETTLED sans preuve"]
 ~~~
 La traduction protège le **sens** des états. Le code \`A01\` est **inventé pour la démonstration** ; il ne vient d'aucun système réel.
 
