@@ -4,7 +4,7 @@
 Un événement « paiement réglé » intéresse la notification, le reporting, la supervision et éventuellement des projections indépendantes. Un appel synchrone direct à chaque application multiplie les dépendances : le service émetteur ne doit pas avoir besoin que tous les abonnés soient disponibles.
 
 ## Solution
-Un **publisher** publie un événement sur un **topic** ; chaque abonnement indépendant reçoit les événements correspondant à son intérêt. Pub/Sub est un **mécanisme de distribution**, pas à lui seul toute une architecture EDA. IBM MQ topics et Apache Kafka permettent des usages pub/sub mais n'ont pas exactement les mêmes mécanismes de rétention, offsets et groupes.
+Un **publisher** publie un événement sur un **topic** ; chaque abonnement indépendant reçoit les événements correspondant à son intérêt. Pub/Sub est un **mécanisme de distribution**, pas à lui seul toute une architecture EDA. messagerie MQ topics et Apache Kafka permettent des usages pub/sub mais n'ont pas exactement les mêmes mécanismes de rétention, offsets et groupes.
 
 ~~~mermaid
 flowchart TB

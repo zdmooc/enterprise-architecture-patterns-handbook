@@ -1,7 +1,7 @@
 # 07 — Adapter / Anti-Corruption Layer (ACL)
 
 ## Problème
-Un nouveau service Java/OpenShift doit coopérer avec un système historique CICS/COBOL, IBM MQ ou Java/JEE. Les formats et **significations métier** ne sont pas identiques. Une conversion technique ne suffit pas : les codes « A01 = ordre accepté » et « règlement confirmé » ne décrivent pas le même état.
+Un nouveau service Java/OpenShift doit coopérer avec un système historique CICS/COBOL, messagerie MQ ou Java/JEE. Les formats et **significations métier** ne sont pas identiques. Une conversion technique ne suffit pas : les codes « A01 = ordre accepté » et « règlement confirmé » ne décrivent pas le même état.
 
 ## Différence fondamentale
 - **Adapter** : traduit interfaces techniques (REST/JSON ↔ MQ, SOAP, fichier, COBOL copybook), codecs, unités, formats.
@@ -15,7 +15,7 @@ flowchart TB
   P["Port métier PaymentExecutionPort"]
   ACL["ACL : PaymentExecutionTranslator"]
   A["MQ Adapter : sérialisation, corrélation"]
-  Q["IBM MQ REQUEST/RESPONSE"]
+  Q["messagerie MQ REQUEST/RESPONSE"]
   C["COBOL / CICS legacy"]
   J --> P --> ACL --> A --> Q --> C
   C -.-> Q
@@ -29,7 +29,7 @@ Modèle Java : {paymentId:"VIR-001", amountMinor:50000, currency:"EUR"}
 Modèle legacy fictif : REF=VIR-001 ; MONT_CENT=0000050000 ; DEVISE=EUR
 Code retour A01 = ACCEPTED_FOR_PROCESSING ; E90 = REJECTED
 ~~~
-Ce sont **des conventions inventées**, à ne jamais attribuer à CAPS ou à un produit IBM.
+Ce sont **des conventions inventées**, à ne jamais attribuer à établissement bancaire ou à un produit éditeur MQ.
 
 ## Responsabilités du composant
 1. Normaliser identifiants, unités monétaires, fuseaux, caractères, champs obligatoires.
@@ -63,4 +63,4 @@ ACL recommandée si modèles métier indépendants, remplacement progressif, for
 ## Entretien
 **Q : pourquoi ne pas faire connaître les codes COBOL aux microservices ?** R : cela crée un couplage fort et reporte la complexité de migration partout. **Q : Adapter = ACL ?** Non, l'ACL porte la traduction sémantique et la protection du modèle.
 
-Sources : [Microsoft Architecture Center — ACL](https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer), Eric Evans, *Domain-Driven Design* (référence conceptuelle).
+Sources : Référence conceptuelle : Anti-Corruption Layer (DDD), Eric Evans, *Domain-Driven Design* (référence conceptuelle).

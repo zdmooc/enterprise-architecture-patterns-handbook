@@ -1,7 +1,7 @@
 # 01 — Request/Response : échanges synchrones
 
 ## Problème et intention
-Un consommateur doit obtenir immédiatement une information ou une décision : consultation de statut de virement, vérification d'un droit, validation de données. Le modèle **Request/Response** corrèle une requête et sa réponse. Il n'est pas synonyme de REST : HTTP, gRPC, SOAP et IBM MQ request/reply peuvent le réaliser. Une API HTTP peut également lancer un traitement **asynchrone** et retourner 202 Accepted.
+Un consommateur doit obtenir immédiatement une information ou une décision : consultation de statut de virement, vérification d'un droit, validation de données. Le modèle **Request/Response** corrèle une requête et sa réponse. Il n'est pas synonyme de REST : HTTP, gRPC, SOAP et messagerie MQ request/reply peuvent le réaliser. Une API HTTP peut également lancer un traitement **asynchrone** et retourner 202 Accepted.
 
 ## Fonctionnement
 ~~~mermaid

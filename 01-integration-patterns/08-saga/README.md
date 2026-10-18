@@ -61,7 +61,7 @@ sequenceDiagram
 Le schéma SCT Inst et le cadre UE imposent un parcours rapide et une deadline métier ; la Saga ne doit pas insérer des délais arbitraires. Si l'ordre atteint le délai sans confirmation, suivre les obligations de remise à disposition/notification et la gestion de confirmations tardives du rulebook applicable. Distinguer le temps de traitement technique du temps réglementaire. Source EPC : [SCT Inst Rulebook](https://www.europeanpaymentscouncil.eu/what-we-do/epc-payment-schemes/sepa-instant-credit-transfer-sct-inst/sepa-instant-credit-transfer).
 
 ## Choix de plateforme
-Java/Spring + état PostgreSQL + Outbox + IBM MQ en option ; ou moteur de workflow durable. Le langage et le broker n'apportent pas intrinsèquement la cohérence financière ; la preuve vient des invariants, états, erreurs et tests.
+Java/Spring + état PostgreSQL + Outbox + messagerie MQ en option ; ou moteur de workflow durable. Le langage et le broker n'apportent pas intrinsèquement la cohérence financière ; la preuve vient des invariants, états, erreurs et tests.
 
 ## Checklist et entretien
 - Qui est propriétaire de l'état Saga ?

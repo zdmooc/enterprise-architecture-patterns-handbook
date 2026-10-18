@@ -1,7 +1,7 @@
 # 04 — Event-Driven Architecture (EDA)
 
 ## Définition : un style architectural, pas un broker
-Une **EDA** organise les applications autour de faits significatifs (« PaymentRequested », « FundsReserved », « PaymentSettled »). Un service réagit à un fait métier et produit à son tour une décision, un état ou un nouvel événement. **Pub/Sub** est l'un de ses mécanismes de distribution ; Kafka ou IBM MQ sont des choix d'infrastructure et non la définition de l'EDA.
+Une **EDA** organise les applications autour de faits significatifs (« PaymentRequested », « FundsReserved », « PaymentSettled »). Un service réagit à un fait métier et produit à son tour une décision, un état ou un nouvel événement. **Pub/Sub** est l'un de ses mécanismes de distribution ; Kafka ou messagerie MQ sont des choix d'infrastructure et non la définition de l'EDA.
 
 ## Exemple bancaire fictif : virement de 500 €
 ~~~mermaid

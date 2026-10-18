@@ -33,8 +33,8 @@ L'idempotence du producteur Kafka, ses transactions et l'exactly-once processing
 - Configurer réplication, paramètres de durabilité/ACK, disponibilité, stockage et rétention ; tester perte de broker.
 - Contrôler producer errors, under-replicated partitions, disk, ISR, consumer lag, rebalance, délais end-to-end.
 
-## Kafka vs IBM MQ
-| Critère | Kafka | IBM MQ |
+## Kafka vs messagerie MQ
+| Critère | Kafka | messagerie MQ |
 |---|---|---|
 | Modèle mis en valeur | Journal d'événements partitionné, plusieurs groupes | Files de travail, commandes et request/reply |
 | Après consommation | Conserve selon rétention | Message généralement retiré après commit GET |

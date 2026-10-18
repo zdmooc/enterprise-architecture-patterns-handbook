@@ -15,7 +15,7 @@ stateDiagram-v2
 
 **CLOSED** : appels autorisés et mesurés. **OPEN** : appels bloqués rapidement. **HALF_OPEN** : seulement un petit nombre d'appels pilotes. « Closed » ne signifie pas erreur !
 
-## Exemple de configuration à discuter, pas valeur normative CAPS
+## Exemple de configuration à discuter, pas valeur normative établissement bancaire
 - fenêtre glissante : 20 appels ; minimum : 20 ;
 - seuil d'échecs : 50 % ; attente OPEN : 30 s ;
 - essais HALF_OPEN : 3 ; comptage des exceptions/slow calls à préciser.

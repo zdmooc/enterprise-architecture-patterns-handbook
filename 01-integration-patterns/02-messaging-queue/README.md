@@ -9,7 +9,7 @@ sequenceDiagram
   participant API as Payment API
   participant DB as DB + Outbox
   participant R as Relais Outbox
-  participant MQ as IBM MQ PAYMENT.REQUEST
+  participant MQ as messagerie MQ PAYMENT.REQUEST
   participant L as Cœur bancaire
   API->>DB: Transaction ordre + message Outbox
   DB-->>API: Commit
@@ -22,11 +22,11 @@ sequenceDiagram
   Note over L,MQ: Une réponse métier distincte reste nécessaire
 ~~~
 
-## IBM MQ : notions
+## messagerie MQ : notions
 - **Queue manager** : gère les files, canaux et unités de travail.
 - **PUT / GET / syncpoint** : envoi et consommation transactionnels ; COMMIT et BACKOUT.
 - **Persistent message** : message inscrit dans journaux/fichiers pour reprise après redémarrage ; disponibilité dépend aussi de l'architecture HA/DR.
-- **Backout queue / poison message** : isoler un message métier non traitable après un nombre raisonnable de tentatives. Une **DLQ** IBM MQ est d'abord conçue pour les messages non acheminables ; ne pas confondre avec la quarantaine applicative.
+- **Backout queue / poison message** : isoler un message métier non traitable après un nombre raisonnable de tentatives. Une **DLQ** messagerie MQ est d'abord conçue pour les messages non acheminables ; ne pas confondre avec la quarantaine applicative.
 - **Correlation ID / Message ID / business payment ID** : relier commande et réponse ; ne pas confondre identifiants techniques et référence métier stable.
 - **MQ Request/Reply** : réponse via autre queue ; peut être synchrone à l'application malgré l'usage du broker.
 
@@ -58,4 +58,4 @@ Choisir une queue pour commande de travail devant survivre à une panne temporai
 ## Entretien
 **Q : MQ persistant évite-t-il un paiement double ?** R : non, la redélivrance est possible ; la déduplication métier doit être assurée par le système de règlement.
 
-Sources : [IBM — message persistence](https://www.ibm.com/docs/en/ibm-mq/9.3.x?topic=messages-message-persistence), [syncpoint](https://www.ibm.com/docs/en/ibm-mq/9.3.x?topic=applications-application-design-performance-considerations), [DLQ](https://www.ibm.com/docs/en/ibm-mq/9.4.0?topic=objects-working-dead-letter-queues).
+Sources : Documentation du middleware MQ (lien éditeur volontairement omis), Documentation du middleware MQ (lien éditeur volontairement omis), Documentation du middleware MQ (lien éditeur volontairement omis).
