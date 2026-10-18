@@ -1,6 +1,16 @@
-# Atlas des schémas illustratifs — Intégration bancaire et architectures IA
+# Atlas des schémas illustratifs — Intégration, IA et OpenShift
 
 **Objet :** retrouver rapidement tous les schémas Mermaid éditables. Les exemples reposent sur un virement fictif de **500 €** ; les acteurs sont génériques (canal, passerelle, cœur bancaire, CSM, service de notification). **Aucun schéma ne présente une architecture d'entreprise réelle.**
+
+## Nouveau : 30 patterns Docker / Kubernetes / OpenShift
+
+- [Les 30 fiches illustrées](../09-containerization-kubernetes-openshift-patterns/README.md) : **60 diagrammes Mermaid**.
+- [AS-IS et architecture Java/JEE cible](../09-containerization-kubernetes-openshift-patterns/09-case-study-java-jee-openshift/README.md) : **2 diagrammes**.
+- [5 diagrammes de séquence](../09-containerization-kubernetes-openshift-patterns/09-case-study-java-jee-openshift/sequences.md).
+- [Playbook Strangler de migration](../09-containerization-kubernetes-openshift-patterns/09-case-study-java-jee-openshift/migration-playbook.md) : **1 diagramme**.
+- [Matrice de décision](../09-containerization-kubernetes-openshift-patterns/DECISION_MATRIX.md) : **1 diagramme**.
+
+Cela ajoute **69 diagrammes** aux 89 déjà présents, pour un total attendu de **158 schémas Mermaid**.
 
 ## Nouveau : architecture IA
 

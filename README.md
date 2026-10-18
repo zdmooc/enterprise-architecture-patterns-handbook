@@ -1,10 +1,18 @@
 # Enterprise Architecture Patterns Handbook
 
-**De la théorie aux architectures d'intégration, bancaires, IA générative, agentique et Cloud Native (Kubernetes / OpenShift).**
+**55 patterns : intégration, paiements, IA, Docker/OCI, Kubernetes, OpenShift et Cloud Native.**
 
 Référentiel d'architecture en français : principes, responsabilités, critères de choix, scénarios d'échec, diagrammes, contrats, sécurité, observabilité et exercices. Les patterns d'intégration utilisent un **virement fictif de 500 €** ; les patterns IA utilisent un **assistant documentaire et des investigations fictives**, sans outil financier opérationnel.
 
 > **Périmètre et confidentialité.** Tous les cas bancaires sont des **illustrations fictives**. Aucun établissement, fournisseur ou client réel n'est identifié ; aucune architecture interne ou configuration de production n'est revendiquée. Les valeurs, noms de files, APIs, formats de messages et seuils sont des exemples à valider.
+
+## Nouveau : 30 patterns Docker / Kubernetes / OpenShift
+
+**[Accéder aux 30 fiches de conteneurisation et de plateforme](09-containerization-kubernetes-openshift-patterns/README.md)** : 60 diagrammes Mermaid, exemples Dockerfile/YAML, sécurité OpenShift, scénarios de panne et questions d'entretien.
+
+- [Étude complète de migration Java/JEE sur OpenShift](09-containerization-kubernetes-openshift-patterns/09-case-study-java-jee-openshift/README.md).
+- [Cinq séquences de migration et de reprise](09-containerization-kubernetes-openshift-patterns/09-case-study-java-jee-openshift/sequences.md), [playbook WAR/EAR](09-containerization-kubernetes-openshift-patterns/09-case-study-java-jee-openshift/migration-playbook.md) et [30 tests d'architecture](09-containerization-kubernetes-openshift-patterns/09-case-study-java-jee-openshift/failure-tests.md).
+- [Laboratoire Java / Docker / Kustomize / OpenShift](labs/java-openshift-modernization/README.md), avec Dockerfile, YAML sécurisés et 15 tests statiques.
 
 ## Nouveau : 15 patterns d'architecture IA
 
@@ -82,7 +90,7 @@ Java / Spring Boot, OpenShift / Kubernetes, PostgreSQL, messagerie MQ, Apache Ka
 
 ## Statut
 
-**V1 — référentiel pédagogique de 25 patterns, avec deux architectures de référence (paiements et IA).** Les exemples doivent être affinés par des tests, des SLO, des contraintes réglementaires et un dossier d'architecture avant tout usage en production.
+**V2 — référentiel pédagogique de 55 patterns, avec trois architectures de référence (paiements, IA et migration Java/JEE vers OpenShift).** Les exemples doivent être affinés par des tests, des SLO, des contraintes réglementaires et un dossier d'architecture avant tout usage en production.
 
 **Copyright © 2026 Zidane Djamal.** Aucun octroi de licence de réutilisation n'est implicite. Les références externes appartiennent à leurs éditeurs respectifs.
 
