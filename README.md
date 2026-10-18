@@ -52,3 +52,8 @@ Java / Spring Boot, OpenShift / Kubernetes, PostgreSQL, IBM MQ, Apache Kafka, OA
 **V1 — référentiel pédagogique et conception de référence.** Les exemples doivent être affinés par des tests, des SLO, des contraintes réglementaires et un dossier d'architecture avant tout usage en production.
 
 **Copyright © 2026 Zidane Djamal.** Aucun octroi de licence de réutilisation n'est implicite. Les références externes appartiennent à leurs éditeurs respectifs.
+
+## Lab exécutable
+
+- [Catalogue des 10 travaux pratiques](labs/README.md)
+- [Simulation testée d'idempotence et d'Outbox (Python/SQLite)](labs/idempotency/README.md) — quatre tests automatisés (dont appels concurrents).
