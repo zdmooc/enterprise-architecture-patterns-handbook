@@ -55,3 +55,45 @@ Les deux savent transporter des messages et diffuser de l'information ; le choix
 Pourquoi partitionner par paymentId ? Préserver l'ordre par paiement. Que signifie le lag ? Un retard de lecture et pas une preuve d'échec financier. Que faire si un topic n'a plus l'historique nécessaire ? Reconstituer depuis la source autoritative / snapshot validé.
 
 Sources : [Kafka — partitionnement](https://kafka.apache.org/40/design/protocol/), [Kafka — offset tracking](https://kafka.apache.org/40/implementation/distribution/).
+
+---
+
+## Illustrations complémentaires — partitions, offsets et analyse de flux
+
+### Le topic conserve les événements
+~~~mermaid
+flowchart TB
+    P["Producteur paiements"] --> T["Topic : payments.status.v1"]
+    T --> K0["Partition 0 : offset 100 → 101 → 102"]
+    T --> K1["Partition 1 : offset 77 → 78 → 79"]
+    K0 --> F["Groupe détection fraude"]
+    K1 --> F
+    K0 --> R["Groupe reporting"]
+    K1 --> R
+    F --> LF["Offset mémorisé par groupe fraude"]
+    R --> LR["Offset mémorisé par groupe reporting"]
+~~~
+Les offsets sont **par partition**, la lecture peut être à des vitesses différentes et le même flux reste disponible tant qu'il est retenu. Le compteur global 100,101,... d'une partition n'est pas un ordre entre partitions.
+
+### Exemple de fenêtre d'analyse : 5 transactions / 20 secondes
+| Heure | Ville fictive de l'opération | Montant |
+|---|---|---:|
+| 10:00:01 | Ville A | 50 € |
+| 10:00:04 | Ville A | 75 € |
+| 10:00:08 | Ville A | 100 € |
+| 10:00:13 | Ville B | 800 € |
+| 10:00:20 | Ville B | 1 200 € |
+
+**Fenêtre de 30 secondes :** cinq mouvements, **2 225 €**, deux lieux. Le moteur peut créer une **alerte à vérifier**, et non conclure automatiquement à une fraude.
+
+### Détection en continu, résultat explicable
+~~~mermaid
+flowchart LR
+    K["Journal Kafka : transactions"] --> W["Fenêtre temporelle 30 s"]
+    W --> AGG["Agrégat : 5 opérations / 2 lieux / 2 225 EUR"]
+    AGG --> RULE{"Seuils de suspicion atteints ?"}
+    RULE -->|Oui| ALERT["Alerte à instruire"]
+    RULE -->|Non| PASS["Flux normal"]
+~~~
+**Pour interdire une transaction avant autorisation**, une chaîne antifraude en temps réel avec un budget de latence strict doit être intégrée au parcours critique. Le streaming post-règlement ne suffit pas.
+

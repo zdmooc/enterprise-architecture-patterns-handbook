@@ -72,3 +72,48 @@ Java/Spring + état PostgreSQL + Outbox + messagerie MQ en option ; ou moteur de
 - **Q : quand préférer orchestration ?** Processus multi-étapes réglementé nécessitant audit et coordination des compensations.
 
 Référence : [microservices.io — Saga](https://microservices.io/patterns/data/saga.html).
+
+---
+
+## Illustrations complémentaires — deux Saga et compensation bancaire
+
+### Saga orchestrée : le coordinateur choisit chaque étape
+~~~mermaid
+sequenceDiagram
+    participant S as Orchestrateur durable
+    participant F as Service fonds
+    participant R as Service risque
+    participant P as Connecteur de paiement
+    S->>F: Réserver 500 EUR
+    F-->>S: Réservation R-001 confirmée
+    S->>R: Contrôle antifraude
+    R-->>S: Refus
+    S->>F: Libérer R-001, même référence
+    F-->>S: Libération confirmée
+    S->>S: État REJECTED après preuves
+    Note over P: Aucun ordre transmis au rail
+~~~
+
+### Saga chorégraphiée : événements déclenchent les réactions
+~~~mermaid
+flowchart TB
+    F["Fonds"] -->|"FundsReserved"| T["Broker d'événements"]
+    T --> R["Risque"]
+    R -->|"RiskApproved"| T
+    T --> P["Exécution"]
+    P -->|"PaymentSettled"| T
+    T --> N["Notification"]
+    R -->|"RiskRejected"| X["Réaction de compensation Fonds"]
+~~~
+L'absence de coordinateur central ne dispense pas d'avoir une **vision cohérente et traçable** du parcours, de la deadline et des compensations.
+
+### Point pivot irréversible
+~~~mermaid
+flowchart LR
+    A["Réservation réversible"] --> B["Envoi du virement"]
+    B --> C["Règlement final et irrévocable"]
+    C --> N["Notification"]
+    C -. "Pas de rollback Saga" .-> X["Retour / rappel = nouvelle procédure"]
+~~~
+Une notification échouée après règlement doit être **reprise**, mais le virement réglé ne doit **pas** être annulé pour cette seule raison.
+

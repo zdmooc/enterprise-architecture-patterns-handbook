@@ -57,3 +57,37 @@ N'utiliser ni pour erreurs métier normales, ni comme remplacement de l'idempote
 **Q : est-ce un mécanisme de file d'attente ?** Non. **Q : HALF_OPEN = retour automatique à la normale ?** Non, tests limités. **Q : différence avec Bulkhead ?** Bulkhead isole les ressources concurrentes ; Circuit Breaker refuse les appels selon une politique de santé.
 
 Référence : [Resilience4j Circuit Breaker](https://resilience4j.readme.io/docs/circuitbreaker).
+
+---
+
+## Illustrations complémentaires — simulation des états et saturation
+
+### 20 appels : seuil d'ouverture illustratif
+~~~mermaid
+flowchart TB
+    C["CLOSED : 20 appels observés"]
+    C --> K{"Erreurs ?"}
+    K -->|"2 / 20 = 10 %"| STAY["Rester CLOSED"]
+    K -->|"12 / 20 = 60 %"| O["OPEN : appels refusés rapidement"]
+    O -->|"Après 30 secondes"| H["HALF_OPEN : 3 appels de test"]
+    H -->|"Tests réussis"| C
+    H -->|"Échecs"| O
+~~~
+Paramètres purement pédagogiques (fenêtre 20, taux 50 %, OPEN 30 s, HALF_OPEN 3). Les erreurs **métier** normales (plafond dépassé, solde insuffisant) ne doivent pas être traitées comme des **pannes techniques** du service.
+
+### Timeout, Retry, Circuit Breaker et Bulkhead
+~~~mermaid
+flowchart LR
+    A["Service appelant"] --> B["Bulkhead : isoler la concurrence"]
+    B --> C["Circuit Breaker : autoriser ou refuser"]
+    C --> D["Timeout : borner l'attente"]
+    D --> E["Dépendance bancaire"]
+    C -->|"OPEN"| F["Réponse contrôlée, sans statut financier inventé"]
+    D -. "Échec transitoire + retry permis" .-> R["Retry borné / backoff / jitter"]
+    R --> C
+~~~
+Les retries ne doivent pas multiplier les tentatives au point de dépasser la deadline réglementaire ni créer une nouvelle intention de virement.
+
+### Repli
+Pour \`GET statut\`, renvoyer « statut momentanément indisponible ». Pour \`POST paiement\`, ne pas renvoyer « rejeté » alors que la commande a peut-être déjà été exécutée.
+

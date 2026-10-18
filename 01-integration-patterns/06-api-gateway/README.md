@@ -68,3 +68,36 @@ Catalogue, contrats OpenAPI, exposition/consommateurs, politiques, versions, dé
 - Quels contrôles protègent un POST de paiement contre répétition ? Clé d'idempotence et unicité dans le système métier, pas seulement quota Gateway.
 
 Sources : [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html), [OWASP API Security Top 10](https://api-security.owasp.org/editions/2023/en/0x11-t10/).
+
+---
+
+## Illustrations complémentaires — sécurité et gouvernance des API
+
+### Identité, accès technique et décision métier
+~~~mermaid
+flowchart TB
+    U["Canal bancaire"] --> IDP["Fournisseur d'identité : OAuth2 / OIDC"]
+    IDP --> U
+    U -->|"HTTPS + token"| G["API Gateway"]
+    G -->|"Valider JWT/audience/scopes"| R["Route OpenShift"]
+    R --> A["Service Paiements Java"]
+    A --> Z{"Client autorisé sur ce compte et ce bénéficiaire ?"}
+    Z -->|Oui| P["Contrôles de paiement / SCA applicable"]
+    Z -->|Non| DENY["Refus sans effet financier"]
+    P --> CORE["Core bancaire"]
+~~~
+**Identification** ≠ **droit d'appeler une API** ≠ **autorisation d'effectuer ce virement précis**. La Gateway ne valide pas le solde ou le consentement métier à elle seule.
+
+### Management versus Gateway
+~~~mermaid
+flowchart LR
+    M["API Management : catalogue, version, portail, politiques"] -->|"Déploie la politique"| G["API Gateway runtime"]
+    C["Consommateurs autorisés"] -->|"Requêtes"| G
+    G -->|"Routage + contrôle"| B["Services API"]
+    G -->|"Métriques"| M
+~~~
+Les technologies peuvent être intégrées dans un même produit, mais restent des **responsabilités différentes**.
+
+### Réponses à distinguer
+\`401\` identité invalide, \`403\` droit refusé, \`429\` quota dépassé, \`504\` service amont trop lent : **aucune de ces réponses ne démontre que le paiement lui-même a été exécuté ou rejeté**.
+

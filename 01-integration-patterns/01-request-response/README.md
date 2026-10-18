@@ -65,3 +65,43 @@ Préférer Queue/Event-Driven quand le traitement dépasse le budget de réponse
 **Q : timeout = transaction annulée ?** R : non, le serveur peut avoir exécuté l'action ; il faut réconcilier.
 
 **À relier :** 06 API Gateway, 09 Circuit Breaker, 10 Retry/Timeout/Idempotency.
+
+---
+
+## Illustrations complémentaires — le virement fictif de 500 €
+
+### Consultation synchrone du statut
+~~~mermaid
+sequenceDiagram
+    actor C as Client mobile
+    participant G as Passerelle API
+    participant S as Service de paiement
+    participant D as Stockage de statut
+    C->>G: GET /payments/VIR-001
+    G->>S: Identité et droits validés
+    S->>D: Lire état connu
+    D-->>S: SETTLED avec preuve
+    S-->>G: HTTP 200 + état métier
+    G-->>C: Afficher « virement réglé »
+~~~
+**Lecture :** seul le statut métier provenant de la bonne source peut être annoncé au client, pas simplement le code HTTP.
+
+### Timeout d'une création, résultat inconnu
+~~~mermaid
+sequenceDiagram
+    actor C as Client mobile
+    participant A as API Paiements
+    participant K as Coeur bancaire
+    C->>A: POST /payments + clé PAY-001
+    A->>K: Demande de traitement VIR-001
+    K->>K: Exécute ou accepte la commande
+    K--xA: Réponse perdue
+    A-->>C: Délai dépassé : statut inconnu
+    C->>A: Même demande, même clé PAY-001
+    A-->>C: Même paymentId VIR-001, à vérifier
+~~~
+**Erreur à éviter :** interpréter le timeout comme un rejet définitif, ou générer un second ordre.
+
+### Mini-exercice
+Pour une consultation de statut de 500 €, une réponse lente peut conduire à « statut indisponible ». Pour un **POST d'exécution**, la réponse lente exige **idempotence et réconciliation**. Le point clé n'est pas seulement la synchronisation : c'est la nature **avec ou sans effet de bord** de l'opération.
+

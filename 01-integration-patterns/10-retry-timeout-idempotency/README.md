@@ -86,3 +86,60 @@ Tracer duplicate_suppressed_count, payment_outcome_unknown, stale_command_reject
 **Q : exactly-once Kafka garantit-il exactement un débit bancaire ?** Non, garantie Kafka à périmètre délimité. **Q : timeout = échec financier ?** Non. **Q : pourquoi conserver la même clé ?** Elle identifie l'intention durable et empêche une deuxième création.
 
 Sources : [Transactional Outbox](https://microservices.io/patterns/data/transactional-outbox.html), [Idempotent Consumer](https://microservices.io/patterns/communication-style/idempotent-consumer.html), [EPC SCT Inst](https://www.europeanpaymentscouncil.eu/what-we-do/epc-payment-schemes/sepa-instant-credit-transfer-sct-inst/sepa-instant-credit-transfer).
+
+---
+
+## Illustrations complémentaires — doubles requêtes et scénario de panne
+
+### Deux appels, une seule intention
+~~~mermaid
+flowchart TB
+    A["POST 500 EUR, clé PAY-001"] --> D{"Clé déjà connue dans DB ACID ?"}
+    B["Retry POST 500 EUR, même PAY-001"] --> D
+    D -->|"Non, insertion atomique"| ONE["Créer VIR-001 + Outbox une seule fois"]
+    D -->|"Oui + même empreinte"| OLD["Retrouver VIR-001 / son statut"]
+    D -->|"Oui + paramètres différents"| FAIL["Refuser conflit, aucun nouvel ordre"]
+    ONE --> K["Core : exécution via référence financière stable"]
+    OLD --> K
+    K --> CHECK["Un seul effet autoritatif"]
+~~~
+
+### Le paiement a réussi, mais la réponse a été perdue
+~~~mermaid
+sequenceDiagram
+    actor U as Client
+    participant A as Payment API
+    participant D as Stockage d'idempotence
+    participant K as Core bancaire
+    U->>A: POST 500 EUR + clé PAY-001
+    A->>D: VIR-001 enregistré
+    A->>K: Execute(VIR-001)
+    K->>K: Un seul mouvement comptable
+    K--xA: Réponse perdue
+    A-->>U: TIMEOUT / état non confirmé
+    U->>A: Retry avec PAY-001
+    A->>D: Retrouver VIR-001
+    A->>K: QueryStatus(VIR-001)
+    K-->>A: SETTLED avec preuve
+    A-->>U: Statut réel, aucune seconde exécution
+~~~
+
+### Retry borné (exemple technique, hors chemin de règlement irréversible)
+~~~mermaid
+flowchart LR
+    A["Appel T0"] -->|"Attente 200 ms + jitter"| R1["Retry 1"]
+    R1 -->|"Attente 500 ms + jitter"| R2["Retry 2"]
+    R2 -->|"Attente 1100 ms + jitter"| R3["Retry 3 ou abandon"]
+~~~
+Le budget exact doit intégrer les deadlines ; la même clé et la même référence métier sont **obligatoires** si une répétition de commande est permise.
+
+### Les six incidents à tester
+| Incident | Réaction sûre |
+|---|---|
+| Panne avant commit | Relecture de la clé, pas de supposition |
+| Panne après commit avant MQ | Reprise Outbox |
+| Broker redélivre | Idempotent Consumer |
+| Réponse core perdue | UNKNOWN puis QueryStatus |
+| Deux Pods reçoivent même clé | Unicité transactionnelle |
+| Événement tardif / transaction expirée | Comparer deadline et preuve avant toute action |
+

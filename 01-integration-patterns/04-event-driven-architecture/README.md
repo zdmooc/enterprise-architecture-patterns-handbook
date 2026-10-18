@@ -65,3 +65,37 @@ Identifier propriétaire de chaque événement, matrice producteur/consommateur,
 **EDA vs Pub/Sub ?** EDA = organisation des réactions autour de faits ; Pub/Sub = diffusion. **EDA = Event Sourcing ?** Non : Event Sourcing reconstruit l'état depuis le journal des événements ; ce n'est pas une exigence EDA. **Le broker fait-il respecter le cycle de vie financier ?** Non : la logique métier et la réconciliation appartiennent à l'application et au système autoritatif.
 
 Liens : 03 Pub/Sub, 05 Event Streaming, 08 Saga, 10 Idempotency.
+
+---
+
+## Illustrations complémentaires — une architecture réactive aux faits métier
+
+### La chaîne du virement et les branches indépendantes
+~~~mermaid
+flowchart TD
+    A["PaymentRequested"] --> B["Contrôles obligatoires"]
+    B -->|"Validé"| C["PaymentAuthorized"]
+    B -->|"Refusé"| R["PaymentRejected"]
+    C --> D["Gestion des fonds"]
+    D --> E["FundsReserved"]
+    E --> F["Soumission et confirmation de règlement"]
+    F --> G["PaymentSettled"]
+    G --> N["Notification"]
+    G --> S["Supervision"]
+    G --> L["Projection analytique"]
+~~~
+Chaque bloc réagit à un **fait publié** selon un contrat. En pratique, la Saga peut orchestrer les commandes critiques ; les branches de notification restent indépendantes.
+
+### Différence d'intention : événement et commande
+~~~mermaid
+flowchart LR
+    O["Saga"] -->|"Commande : ReserveFunds"| F["Service Fonds"]
+    F -->|"Fait : FundsReserved"| T["Bus événementiel"]
+    T --> S["Saga : étape suivante"]
+    T --> A["Audit métier"]
+~~~
+Un événement ne doit pas être traité comme une commande déguisée : le producteur annonce ce qui **a eu lieu** ; le consommateur reste responsable de sa réaction.
+
+### Point de vigilance
+Si \`PaymentSettled\` arrive deux fois, le service de notification évite deux envois non souhaités par déduplication ; si \`PaymentRejected\` arrive **après** \`PaymentSettled\`, la machine à états refuse une régression sans preuve de correction.
+

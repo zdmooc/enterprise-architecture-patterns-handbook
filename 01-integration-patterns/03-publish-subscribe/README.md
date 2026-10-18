@@ -68,3 +68,42 @@ Diffuser des événements déjà confirmés à des fonctions optionnelles et aut
 - **Q : Pub/Sub = EDA ?** Non ; Pub/Sub décrit la diffusion, EDA décrit l'organisation du système.
 
 Voir : 04 EDA, 05 Event Streaming, 10 Idempotency.
+
+---
+
+## Illustrations complémentaires — queue contre publication-abonnement
+
+### Comparaison de topologie
+~~~mermaid
+flowchart TB
+    A["Ordre : ExecutePayment"] --> Q["Queue de travail"]
+    Q --> W1["Consommateur 1"]
+    Q -. "ou, par concurrence" .-> W2["Consommateur 2"]
+    B["Fait : PaymentSettled"] --> T["Topic d'événements"]
+    T --> S1["Abonnement comptabilité"]
+    T --> S2["Abonnement notifications"]
+    T --> S3["Abonnement supervision"]
+~~~
+**Queue :** un traitement logique par message dans le groupe de workers concurrents. **Pub/Sub :** trois abonnements indépendants au fait « virement réglé ». La livraison réelle peut être répétée selon le broker.
+
+### La notification est en panne
+~~~mermaid
+sequenceDiagram
+    participant P as Émetteur
+    participant T as Topic
+    participant C as Comptabilité
+    participant N as Notifications
+    participant S as Supervision
+    P->>T: PaymentSettled(VIR-001, 500 EUR)
+    T->>C: Event PaymentSettled
+    C-->>T: Traité
+    T-xN: Indisponible
+    T->>S: Event PaymentSettled
+    S-->>T: Traité
+    Note over N: Rattrapage selon abonnement et rétention
+~~~
+La comptabilité et la supervision ne doivent pas être bloquées par l'indisponibilité du consommateur de notifications. Le service émetteur ne fait pas trois appels synchrones.
+
+### Contrat de fait
+\`PaymentSettled\` = « règlement attesté ». \`ExecutePayment\` = « commande à réaliser ». Les publier sur un même topic sans distinction rend l'architecture confuse et dangereuse.
+

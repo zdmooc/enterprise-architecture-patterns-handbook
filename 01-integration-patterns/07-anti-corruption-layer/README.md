@@ -64,3 +64,38 @@ ACL recommandée si modèles métier indépendants, remplacement progressif, for
 **Q : pourquoi ne pas faire connaître les codes COBOL aux microservices ?** R : cela crée un couplage fort et reporte la complexité de migration partout. **Q : Adapter = ACL ?** Non, l'ACL porte la traduction sémantique et la protection du modèle.
 
 Sources : Référence conceptuelle : Anti-Corruption Layer (DDD), Eric Evans, *Domain-Driven Design* (référence conceptuelle).
+
+---
+
+## Illustrations complémentaires — modèle moderne et système historique
+
+### Conversion technique puis protection sémantique
+~~~mermaid
+flowchart TB
+    A["Java : {paymentId: VIR-001, amountMinor: 50000, currency: EUR}"]
+    A --> B["Anti-Corruption Layer : invariant et statut métier"]
+    B --> C["Adapter : JSON vers format historique"]
+    C --> D["CORE : REF=VIR-001 ; MONT-CENT=50000 ; DEVISE=EUR"]
+    D --> E["Réponse fictive A01 : reçu pour traitement"]
+    E --> B
+    B --> F["Statut interne ACCEPTED_FOR_PROCESSING"]
+    B -. "Interdit" .-> X["Ne pas annoncer SETTLED sans preuve"]
+~~~
+La traduction protège le **sens** des états. Le code \`A01\` est **inventé pour la démonstration** ; il ne vient d'aucun système réel.
+
+### Modernisation progressive (Strangler Fig)
+~~~mermaid
+flowchart LR
+    C["Canaux"] --> F["Façade stable / ACL"]
+    F --> H["Traitement historique conservé"]
+    F --> N["Capacité Java modernisée sur OpenShift"]
+    N --> B["Core bancaire non remplacé"]
+~~~
+Commencer par conserver les fonctions existantes, extraire une capacité contrôlée, mesurer, puis retirer l'ancienne capacité **uniquement après validation**.
+
+### Variantes d'adaptation
+- **REST → SOAP** : changement de protocole, validation du contrat XML.
+- **REST → queue MQ** : transport asynchrone, corrélation et statuts.
+- **Java → format fixe de type COBOL** : conversion centimes/unités/caractères.
+- **Ancien code « reçu » → métier « accepté pour traitement »** : vraie responsabilité ACL, pas simple sérialisation.
+

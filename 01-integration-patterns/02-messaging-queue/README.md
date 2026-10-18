@@ -59,3 +59,39 @@ Choisir une queue pour commande de travail devant survivre à une panne temporai
 **Q : MQ persistant évite-t-il un paiement double ?** R : non, la redélivrance est possible ; la déduplication métier doit être assurée par le système de règlement.
 
 Sources : Documentation du middleware MQ (lien éditeur volontairement omis), Documentation du middleware MQ (lien éditeur volontairement omis), Documentation du middleware MQ (lien éditeur volontairement omis).
+
+---
+
+## Illustrations complémentaires — files, pannes et reprise
+
+### Un consommateur indisponible
+~~~mermaid
+flowchart LR
+    P["Producteur : ordres VIR-001/002/003"] --> Q["Queue durable<br/>VIR-001 | VIR-002 | VIR-003"]
+    Q -. "Consommateur arrêté" .-> X["Service de traitement : indisponible"]
+    Q -->|"Après redémarrage"| R["Reprise contrôlée"]
+    R --> D["Déduplication + échéance"]
+    D --> CORE["Exécution autoritative si admissible"]
+~~~
+**Lecture :** les messages attendent dans la file durable. Ils ne sont **pas automatiquement exécutés par le broker**. Leur ancienneté doit être surveillée ; un virement instantané arrivé après la deadline nécessite une décision conforme au scheme.
+
+### Redélivrance après panne
+~~~mermaid
+sequenceDiagram
+    participant Q as Queue MQ
+    participant C as Consommateur
+    participant K as Coeur bancaire
+    Q->>C: ExecutePayment(VIR-001)
+    C->>K: Execute avec référence VIR-001
+    K-->>C: Mouvement financier unique
+    Note over C: Crash avant ACK à la queue
+    Q->>C: Redélivrance du même message
+    C->>K: Vérifier référence VIR-001
+    K-->>C: Déjà exécuté, même preuve
+    C-->>Q: ACK définitif de consommation
+~~~
+**Différence critique :** ACK transport, ACK de prise en charge et confirmation de règlement représentent trois faits différents.
+
+### Critères d'acceptation
+Tester l'arrêt du consommateur pendant 10 minutes (cas de flux **non instantané**) et l'arrêt pendant l'échéance SCT Inst (cas **instantané**). Dans le second cas, le message ne doit pas simplement être exécuté 10 minutes plus tard.
+
