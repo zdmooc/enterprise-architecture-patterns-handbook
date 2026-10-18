@@ -74,3 +74,7 @@ flowchart TB
 7. La légende distingue-t-elle l'exemple de la réalité de production ?
 
 Tous les schémas sont **du texte Mermaid source versionnable** ; ils sont modifiables et rendus par les clients compatibles Markdown Mermaid.
+
+## Extension — illustrations d'architecture IA
+
+Le référentiel IA possède ses propres schémas et scénarios : **[15 patterns IA et 30 diagrammes de fiches](../08-ai-architecture-patterns/README.md)**, plus l'[étude de plateforme Kubernetes/OpenShift](../08-ai-architecture-patterns/reference-ai-platform-openshift/README.md) et les [séquences illustrées](../08-ai-architecture-patterns/reference-ai-platform-openshift/sequences.md). Les sources sont directement dans les Markdown en Mermaid et restent éditables.

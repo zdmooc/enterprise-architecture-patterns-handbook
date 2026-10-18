@@ -20,3 +20,9 @@ Cette liste donne, pour chaque pattern, le banc d'essai minimal et la **preuve**
 - Les résultats des tests doivent inclure date, environnement, version, commande, état avant/après et conclusion.
 - Un exercice Java/OpenShift qui couvre l'exécution bancaire doit se faire contre un **simulateur**, jamais sur un compte ou un système réel.
 - Les modes d'échec à couvrir sont détaillés dans [la matrice](../07-case-studies/banking-payments-reference/failure-matrix.md).
+
+## Nouveau laboratoire — architectures IA
+
+- **[RAG ACL + Tool Gateway + validation humaine (Python standard library)](ai-rag-guardrails/README.md)** : démonstrateur local fictif, sans réseau ni LLM, avec tests de confidentialité tenant/rôle, prompt injection comme donnée, outils en lecture seule, approbation immuable et action simulée idempotente.
+- Commande : `python -m unittest discover -s labs/ai-rag-guardrails -v` depuis la racine du dépôt.
+- Ce laboratoire n'est **pas** un banc de preuve de sécurité en production ; le store de décision et les approvals sont en mémoire.

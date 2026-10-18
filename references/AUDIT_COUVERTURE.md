@@ -41,3 +41,7 @@
 - Références techniques conservées sous leurs noms de **produit/standard ou protocole**, lorsque pertinentes (Java, OpenShift, Kafka, MQ, SCT Inst, OAuth2, OIDC, ISO 20022, TIPS), sans attribution à un client ou éditeur nommé.
 - Les adresses de sources officielles EPC / BCE / réglementation UE ne sont pas des noms de sociétés clientes ou d'éditeurs.
 - Les exemples n'utilisent pas de données bancaires réelles ; identifiants et montants sont fictifs.
+
+## Extension 2026-10-18 — couverture des architectures IA
+
+Le périmètre ci-dessus concerne **les dix patterns d'intégration**. Une famille indépendante de **15 patterns IA** est ajoutée : [index AI](../08-ai-architecture-patterns/README.md), [architecture de référence OpenShift](../08-ai-architecture-patterns/reference-ai-platform-openshift/README.md), [séquences](../08-ai-architecture-patterns/reference-ai-platform-openshift/sequences.md), [risques/tests](../08-ai-architecture-patterns/reference-ai-platform-openshift/risks-and-tests.md) et [laboratoire Python](../labs/ai-rag-guardrails/README.md). Documentation et tests définis **ne constituent pas** une validation de production.
