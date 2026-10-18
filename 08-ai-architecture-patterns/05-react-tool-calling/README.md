@@ -1,95 +1,95 @@
-# 05 — ReAct / Tool Calling — agent à outils
+# 05 — ReAct / Tool Calling
 
-> **Catégorie : IA agentique.** Fiche pédagogique d'architecture IA. Les composants, documents, utilisateurs, budgets et scénarios sont fictifs ; aucune entreprise ou plateforme réelle n'est décrite. Ce pattern est une décision d'architecture **à justifier**, pas une garantie automatique.
+> **Famille :** IA agentique · **Statut :** pattern d'architecture pédagogique · **Exemples fictifs et anonymisés**, aucun SI ou acteur d'entreprise réel revendiqué.
 
-## 1. Intention et problème traité
+## 1. Définition et problème
 
-Une demande complexe exige l'accès à des outils externes. Le modèle doit choisir l'outil, interpréter son résultat puis continuer, tout en restant sous une enveloppe d'autorisations explicites.
+Boucle structurée où un agent choisit une action/outillage, observe un résultat contrôlé, puis produit une réponse. ReAct est une stratégie d'interleaving raisonnement/actions, tandis que **Tool Calling** est une interface structurée d'invocation d'outils ; les deux ne sont pas synonymes.
 
-**Cas fil conducteur :** Un assistant d'exploitation répond « quels workloads sont en échec dans mon cluster de laboratoire ? » en utilisant une API de supervision **lecture seule**, jamais une commande de suppression.
+**Besoin métier :** Un modèle ne peut pas connaître en direct le statut d'un dossier. Il doit interroger un service autorisé plutôt qu'inventer le résultat. Mais un agent avec outils d'écriture peut produire des effets métier dangereux.
 
-## 2. Décision d'architecture
+## 2. Architecture et flux
 
-Orchestrer une boucle limitée observation → décision → appel d'outil autorisé → validation de résultat → réponse. ReAct décrit un raisonnement/agir par étapes; Tool Calling est un mécanisme d'invocation structurée. Ils ne sont pas strictement synonymes.
-
-### Schéma d'architecture (Mermaid, éditable)
-
-```mermaid
+~~~mermaid
 flowchart TB
- U["Demande utilisateur"] --> ORCH["Agent / orchestrateur borné"]
- ORCH --> PLAN["Choix d'action autorisée"]
- PLAN --> ENFORCE["Policy Enforcement Point"]
- ENFORCE -->|"ALLOW"| TOOL["Outil lecture seule"]
- ENFORCE -->|"DENY"| BLOCK["Refus + audit"]
- TOOL --> CHECK["Sortie structurée validée"]
- CHECK --> ORCH
- ORCH -->|Budget ou objectif atteint| OUT["Réponse avec provenance"]
-```
+ U["Question : statut du dossier fictif D-001"] --> L["Agent LLM"]
+ L --> DEC{"Besoin d'information actualisée ?"}
+ DEC -->|Oui| POL["Politique outils autorisés"]
+ POL --> READ["Tool: get_case_status (lecture seule)"]
+ READ --> OBS["Observation non fiable / structurée"]
+ OBS --> L
+ DEC -->|Non| ANSWER["Réponse"]
+ L --> ANSWER
+ POL -.-> BLOCK["Outil de modification refusé sans approbation"]
+~~~
 
-**À retenir :** Le LLM **propose** une action; seul un exécuteur doté de politiques décide si elle est réellement permise.
+### Étapes de traitement
 
-## 3. Fonctionnement de bout en bout
+1. Recevoir objectif et identité ; séparer instruction du demandeur et documents/outils moins fiables.
+2. Lister les outils autorisés à cet utilisateur et à ce contexte (allowlist, schémas d'arguments).
+3. Choisir et valider l'appel avec contrôle déterministe des droits et des paramètres.
+4. Exécuter l'outil via médiateur sécurisé, avec timeout et journaux d'audit.
+5. Interpréter la **réponse comme donnée**, jamais comme instruction permettant une nouvelle permission.
+6. Limiter nombre d'itérations et budget, gérer erreurs et demander validation humaine avant effets sensibles.
 
-1. Rédiger un catalogue d'outils autorisés avec schémas d'entrée/sortie, scope et impact.
-2. Donner au modèle une liste filtrée en fonction des habilitations réelles, jamais des credentials généraux.
-3. Faire valider les paramètres par le code applicatif, hors du prompt.
-4. Imposer limite d'étapes, budget tokens, timeout global et gestion des erreurs.
-5. Traiter les réponses d'outil comme données non fiables, appliquer sanitization et contrôles de schéma.
-6. Pour toute action sensible, exiger approbation humaine liée à l'action concrète avant l'exécution.
+## 3. Diagramme de séquence illustratif
 
-## 4. Exemple de contrat / politique
+~~~mermaid
+sequenceDiagram
+ actor U as Utilisateur
+ participant A as Agent
+ participant P as Policy Engine
+ participant T as Outil lecture
+ U->>A: Quel est le statut du dossier D-001 ?
+ A->>P: Autoriser get_case_status(D-001) ?
+ P-->>A: Lecture autorisée
+ A->>T: get_case_status(D-001)
+ T-->>A: {"status":"PENDING_REVIEW"}
+ A-->>U: Statut = PENDING_REVIEW, provenance outil
+~~~
 
-```json
-{
-  "requestId": "req-fictif-001",
-  "tenantId": "tenant-demo",
-  "actorRole": "reader",
-  "dataClassification": "internal",
-  "task": "react-tool-calling",
-  "policyVersion": "p1",
-  "timeoutMs": 2500,
-  "maxCostUnits": 10,
-  "auditCorrelationId": "audit-001"
-}
-```
+**Scénario :** L'agent consulte un dossier fictif par une API en lecture seule. Il ne peut **ni approuver** une demande ni **émettre** un paiement ; ces outils ne figurent pas dans son jeu de permissions. Une demande d'action sensible passe par HITL.
 
-Ce document est une **enveloppe illustrative**, pas un schéma JSON canonique de la technologie ni un jeu de seuils recommandés. Les politiques de sécurité, latence et budget sont versionnées et appliquées dans le code, pas seulement décrites au modèle.
+## 4. Décisions à prendre en Design Authority
 
-## 5. Alternatives et choix
+- Outils typés avec schémas validés et sous-ensemble de permissions par utilisateur.
+- Compte de service restreint, contrôle d'accès côté API, pas seulement dans le prompt.
+- Budget max étapes, temps, tokens, coût ; compensation pour actions réversibles.
+- Traçabilité appels/retours expurgés et liaison à traceId/decisionId.
+- Protection contre prompt injection indirecte dans résultats d'outils (texte retourné est non fiable).
 
-Workflow déterministe lorsque les étapes sont connues; simple RAG pour consultation documentaire; Plan–Executor pour plans structurés de longue durée.
+## 5. Scénarios de panne et parades
 
-## 6. Compromis et limites
+| Échec / attaque | Comportement attendu |
+|---|---|
+| Agent appelle un outil non autorisé | Policy engine rejette, API métier vérifie la permission. |
+| Boucle infinie d'outils | Budget d'itérations et timeout global. |
+| Réponse API contient instruction malveillante | Traiter contenu comme donnée ; pas de changement de règles. |
+| Action répétée après timeout | Idempotency-key, interrogation statut, suspension si outcome inconnu. |
 
-Coûts de tokens par itération, boucles, dérives d'objectif, observabilité des outils, autorisation dynamique.
+## 6. Tests d'acceptation
 
-### Sécurité, données et garde-fous
+1. Agent ne peut invoquer un outil absent de l'allowlist.
+2. Résultat d'outil contenant « ignore les règles » ne déclenche aucune nouvelle action.
+3. Timeout ne provoque pas de deuxième mutation.
+4. Budget max tool calls est strictement appliqué.
 
-Injection de prompt dans la sortie outil, outils sur-privilégiés, SSRF et exfiltration; limiter l'egress, sandboxer et filtrer les arguments.
+**Critère transversal :** chaque décision sensible est explicable, les identités et autorisations sont contrôlées par code, et les exemples n'exécutent aucune opération bancaire réelle.
 
-## 7. Scénarios de panne et tests d'acceptation
+## 7. Compromis, limites et sélection
 
-- **T05-1 :** Une sortie outil malveillante ne donne pas de privilège supplémentaire.
-- **T05-2 :** Appel hors scope rejeté par le moteur de politiques, indépendamment du modèle.
-- **T05-3 :** Boucle bornée après N étapes ou délai total.
-- **T05-4 :** Outil indisponible : réponse partielle fidèle plutôt qu'action inventée.
+Utile pour collecte ou investigation assistée ; jamais un moyen de contourner autorisations ou procédures métier.
 
-**Observabilité et critères de qualité :** tool-call-success, tool-policy-deny, task-completion, taux d'hallucination d'action, étapes/requête, coût et p95.
+À mesurer sur un jeu de référence : **qualité métier, confidentialité, latence p95/p99, coût par demande, robustesse aux attaques et taux d'abstention**. Documenter configuration, modèle, version, corpus et politique.
 
-## 8. Revue d'architecture et entretien
+## 8. Question d'entretien
 
-**Q1 — Pourquoi utiliser ce pattern ?** Une demande complexe exige l'accès à des outils externes. Le modèle doit choisir l'outil, interpréter son résultat puis continuer, tout en restant sous une enveloppe d'autorisations explicites.
+**Question :** Une instruction dans le résultat d'un outil peut-elle autoriser une mutation ?
 
-**Q2 — Quel est le risque principal en production ?** Injection de prompt dans la sortie outil, outils sur-privilégiés, SSRF et exfiltration; limiter l'egress, sandboxer et filtrer les arguments.
+**Réponse :** Non, seule une politique applicative et une éventuelle approbation humaine le peuvent.
 
-**Q3 — Comment prouver que le choix est acceptable ?** Préparer un jeu d'évaluation représentatif, des tests négatifs, des contrôles d'accès et un budget p95/p99/cout; rejouer les scénarios T05 avant déploiement.
+## 9. Mise en œuvre et approfondissement
 
-**Q4 — Est-il obligatoire sur Kubernetes/OpenShift ?** Non. Le pattern est indépendant de l'orchestrateur : Kubernetes/OpenShift héberge ses composants, mais n'apporte pas magiquement la bonne sémantique métier ou la sécurité des décisions IA.
-
-## 9. Relations avec les autres fiches
-
-- [06-planner-executor](../06-planner-executor/README.md)
-- [09-guardrails](../09-guardrails/README.md)
-- [10-human-in-the-loop](../10-human-in-the-loop/README.md)
-
-**Complément :** [Cas d'étude IA de bout en bout](../case-study-ai-platform-openShift/README.md) et [Décisions et contrôles d'architecture](../references/decision-matrix.md).
+- Plateforme de référence : API sécurisée, orchestration Java ou Python sur Kubernetes/OpenShift, logs et métriques structurés ; aucun produit commercial imposé.
+- [Architecture IA de bout en bout](../reference-ai-platform-openshift/README.md) · [Matrice de sélection](../PATTERNS_DECISION_MATRIX.md) · [Sources techniques](../REFERENCES.md).
+- Les mécanismes de sécurité doivent être vérifiés indépendamment des réponses du LLM ; aucun prompt ne remplace AuthZ ou la validation d'un outil.

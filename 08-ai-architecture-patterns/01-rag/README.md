@@ -1,95 +1,97 @@
-# 01 — Retrieval-Augmented Generation (RAG)
+# 01 — RAG (Retrieval-Augmented Generation)
 
-> **Catégorie : IA générative.** Fiche pédagogique d'architecture IA. Les composants, documents, utilisateurs, budgets et scénarios sont fictifs ; aucune entreprise ou plateforme réelle n'est décrite. Ce pattern est une décision d'architecture **à justifier**, pas une garantie automatique.
+> **Famille :** IA générative · **Statut :** pattern d'architecture pédagogique · **Exemples fictifs et anonymisés**, aucun SI ou acteur d'entreprise réel revendiqué.
 
-## 1. Intention et problème traité
+## 1. Définition et problème
 
-Un LLM seul ne connaît pas forcément les documents internes ni leurs versions récentes ; ses réponses peuvent être fausses ou non justifiées. Fournir un contexte autorisé, traçable et daté au moment de la requête.
+Le RAG associe une recherche documentaire contrôlée à la génération d'une réponse par un modèle de langage. Il fournit du contexte externe au modèle sans modifier ses poids. Il n'établit pas par lui-même la véracité de la réponse.
 
-**Cas fil conducteur :** Un architecte interroge un corpus fictif de politiques d'exploitation des clusters pour répondre à « quelle est la procédure de bascule ? » sans donner au modèle accès à l'ensemble du référentiel.
+**Besoin métier :** Un assistant doit expliquer une procédure opérationnelle à partir de documents internes versionnés. Le modèle seul peut inventer une règle, utiliser une version périmée ou répondre hors du périmètre autorisé.
 
-## 2. Décision d'architecture
+## 2. Architecture et flux
 
-Séparer ingestion documentaire, calcul des embeddings, recherche autorisée et génération. Le modèle reçoit seulement des passages pertinents, filtrés selon les droits de l'utilisateur. Les citations renvoient à des sources dont le contenu est effectivement disponible.
+~~~mermaid
+flowchart TB
+ U["Employé autorisé"] --> AUTH["Authentification + ACL documentaire"]
+ AUTH --> Q["Recherche documentaire"]
+ DOC["Procédures génériques validées"] --> ING["Ingestion + chunks + métadonnées"]
+ ING --> IDX[("Index lexical / vectoriel")]
+ Q --> IDX
+ IDX --> FIL["Re-filtrage ACL + fraîcheur"]
+ FIL --> CTX["Contexte cité + règles de sortie"]
+ CTX --> LLM["LLM : synthèse"]
+ LLM --> VER["Vérification de l'ancrage"]
+ VER --> OUT["Réponse + références ou abstention"]
+~~~
 
-### Schéma d'architecture (Mermaid, éditable)
+### Étapes de traitement
 
-```mermaid
-flowchart LR
- U["Question et identité"] --> F["Filtrage tenant / ACL"]
- F --> E["Embedding question"]
- E --> V[("Index documentaire autorisé")]
- V --> R["Top-k passages + références"]
- R --> P["Prompt contextualisé"]
- P --> L["Modèle génératif"]
- L --> C["Réponse avec citations / abstention"]
-```
+1. Ingestion documentaire : version, source, propriétaire, classification, date de validité.
+2. Découpage en fragments pertinents et indexation lexicale/vectorielle, avec identité du document et droits.
+3. Vérification de l'identité de l'utilisateur, puis filtrage des documents autorisés AVANT et APRÈS la recherche.
+4. Récupération des fragments pertinents ; contrôle de fraîcheur, de qualité et de nombre de passages.
+5. Construction d'un contexte limité, clairement séparé des instructions fiables ; génération d'une réponse qui cite ses passages.
+6. Validation du fait que chaque affirmation matérielle est étayée ; si aucune preuve suffisante, répondre « information introuvable ». 
 
-**À retenir :** RAG est un **pattern de grounding**, pas une garantie intrinsèque de vérité.
+## 3. Diagramme de séquence illustratif
 
-## 3. Fonctionnement de bout en bout
+~~~mermaid
+sequenceDiagram
+ actor U as Utilisateur
+ participant A as Assistant
+ participant I as Index documentaire
+ participant M as Modèle
+ U->>A: Quelle est la procédure d'investigation d'un paiement non confirmé ?
+ A->>I: Recherche ACL + version
+ I-->>A: Extraits autorisés P-04 §2, P-09 §1
+ A->>M: Question + extraits délimités
+ M-->>A: Projet de synthèse et citations
+ A->>A: Contrôle citations et droits
+ A-->>U: Synthèse référencée ; pas d'ordre financier
+~~~
 
-1. Ingestion: extraire les textes, préserver métadonnées de provenance, classification et versions.
-2. Segmenter les documents avec chevauchement limité et tables reliant passage, document, version, utilisateur autorisé et date d'indexation.
-3. Indexer et versionner embeddings; traiter suppressions et changements de droits.
-4. À la requête, établir l'identité puis appliquer les ACL en amont de toute récupération et à l'assemblage du contexte.
-5. Récupérer des passages, mesurer la pertinence, assembler un prompt qui marque les sources comme non fiables.
-6. Générer une réponse, afficher citations vérifiables et « information non trouvée » lorsqu'aucune preuve suffisante n'existe.
+**Scénario :** Demande fictive : « Un virement instantané n'a pas reçu sa confirmation ; quelle procédure consulter ? » Le RAG retrouve une procédure d'investigation P-04 et une instruction de rapprochement P-09. Il explique les vérifications à effectuer, mais **n'interroge pas automatiquement les comptes** et **n'affirme pas que le paiement est rejeté**.
 
-## 4. Exemple de contrat / politique
+## 4. Décisions à prendre en Design Authority
 
-```json
-{
-  "requestId": "req-fictif-001",
-  "tenantId": "tenant-demo",
-  "actorRole": "reader",
-  "dataClassification": "internal",
-  "task": "rag",
-  "policyVersion": "p1",
-  "timeoutMs": 2500,
-  "maxCostUnits": 10,
-  "auditCorrelationId": "audit-001"
-}
-```
+- Choisir recherche lexicale, vectorielle ou hybride selon langues, vocabulaire bancaire et corpus.
+- Définir le modèle de droits à la granularité document/section ; le chunk ne doit pas hériter de droits plus larges.
+- Choisir stratégie de chunking, overlap, mise à jour et suppression des index ; conserver la chaîne de provenance.
+- Limiter nombre de passages et tokens ; pas de prompt contenant des données personnelles sans base légale/contrôles.
+- Mesurer retrieval recall@k, précision/citations correctes, taux d'abstention justifié, latence et coût.
 
-Ce document est une **enveloppe illustrative**, pas un schéma JSON canonique de la technologie ni un jeu de seuils recommandés. Les politiques de sécurité, latence et budget sont versionnées et appliquées dans le code, pas seulement décrites au modèle.
+## 5. Scénarios de panne et parades
 
-## 5. Alternatives et choix
+| Échec / attaque | Comportement attendu |
+|---|---|
+| Injection dans une procédure indexée | Traiter le document comme donnée non fiable, jamais comme instruction prioritaire. |
+| Document retiré mais toujours indexé | Synchroniser ACL, version et suppression ; test de révocation. |
+| Aucune source pertinente | Répondre « je ne trouve pas de source » plutôt que deviner. |
+| Citation valide mais conclusion inventée | Vérifier que le passage soutient réellement la phrase générée. |
 
-Sans RAG : recherche classique si seule l'extraction d'extraits est requise. Fine-tuning : adapte comportements ou compétences, mais ne remplace pas la récupération de documents à jour. Agentic RAG : utile lorsque plusieurs recherches et outils sont justifiés, au prix d'une latence et d'un risque supérieurs.
+## 6. Tests d'acceptation
 
-## 6. Compromis et limites
+1. Utilisateur A ne reçoit jamais un fragment réservé à B.
+2. Une phrase de type « ignore les règles » incluse dans un document n'exécute aucun outil.
+3. Un document supprimé n'apparaît plus dans les réponses.
+4. Question sans preuve déclenche abstention plutôt qu'affirmation.
 
-Qualité du parsing, chunks, ACL et index; données obsolètes; coût embeddings et recherche; exactitude des citations; latence de top-k et taille du contexte.
+**Critère transversal :** chaque décision sensible est explicable, les identités et autorisations sont contrôlées par code, et les exemples n'exécutent aucune opération bancaire réelle.
 
-### Sécurité, données et garde-fous
+## 7. Compromis, limites et sélection
 
-Contenus récupérés non fiables : ne jamais traiter leurs instructions comme de nouvelles politiques système. Prévenir les fuites inter-tenants, les injections de prompt, l'index poisoning et les citations inventées.
+À préférer quand l'information change souvent ou que les réponses doivent être sourcées. Ne remplace ni une requête transactionnelle fiable ni une vérité financière autoritative.
 
-## 7. Scénarios de panne et tests d'acceptation
+À mesurer sur un jeu de référence : **qualité métier, confidentialité, latence p95/p99, coût par demande, robustesse aux attaques et taux d'abstention**. Documenter configuration, modèle, version, corpus et politique.
 
-- **T01-1 :** Document autorisé correctement cité; document non autorisé impossible à récupérer.
-- **T01-2 :** Version périmée supprimée de l'index et du cache.
-- **T01-3 :** Question sans preuve : abstention attendue.
-- **T01-4 :** Passage malveillant « ignore tes règles » ignoré en tant qu'instruction.
-- **T01-5 :** Latence p95 du parcours ingestion distincte du parcours de requête.
+## 8. Question d'entretien
 
-**Observabilité et critères de qualité :** grounded-answer-rate, citation-precision, retrieval-recall@k, taux d'abstention, ACL-leakage=0, temps p95/p99 et coût par réponse.
+**Question :** Pourquoi RAG n'est-il pas une garantie contre les hallucinations ?
 
-## 8. Revue d'architecture et entretien
+**Réponse :** Il apporte des sources, mais le modèle peut mal les comprendre, citer une mauvaise version ou extrapoler. Il faut évaluer récupération ET fidélité de génération.
 
-**Q1 — Pourquoi utiliser ce pattern ?** Un LLM seul ne connaît pas forcément les documents internes ni leurs versions récentes ; ses réponses peuvent être fausses ou non justifiées. Fournir un contexte autorisé, traçable et daté au moment de la requête.
+## 9. Mise en œuvre et approfondissement
 
-**Q2 — Quel est le risque principal en production ?** Contenus récupérés non fiables : ne jamais traiter leurs instructions comme de nouvelles politiques système. Prévenir les fuites inter-tenants, les injections de prompt, l'index poisoning et les citations inventées.
-
-**Q3 — Comment prouver que le choix est acceptable ?** Préparer un jeu d'évaluation représentatif, des tests négatifs, des contrôles d'accès et un budget p95/p99/cout; rejouer les scénarios T01 avant déploiement.
-
-**Q4 — Est-il obligatoire sur Kubernetes/OpenShift ?** Non. Le pattern est indépendant de l'orchestrateur : Kubernetes/OpenShift héberge ses composants, mais n'apporte pas magiquement la bonne sémantique métier ou la sécurité des décisions IA.
-
-## 9. Relations avec les autres fiches
-
-- [02-advanced-rag](../02-advanced-rag/README.md)
-- [09-guardrails](../09-guardrails/README.md)
-- [14-continuous-evaluation](../14-continuous-evaluation/README.md)
-
-**Complément :** [Cas d'étude IA de bout en bout](../case-study-ai-platform-openShift/README.md) et [Décisions et contrôles d'architecture](../references/decision-matrix.md).
+- Plateforme de référence : API sécurisée, orchestration Java ou Python sur Kubernetes/OpenShift, logs et métriques structurés ; aucun produit commercial imposé.
+- [Architecture IA de bout en bout](../reference-ai-platform-openshift/README.md) · [Matrice de sélection](../PATTERNS_DECISION_MATRIX.md) · [Sources techniques](../REFERENCES.md).
+- Les mécanismes de sécurité doivent être vérifiés indépendamment des réponses du LLM ; aucun prompt ne remplace AuthZ ou la validation d'un outil.

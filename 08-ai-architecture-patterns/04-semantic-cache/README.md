@@ -1,95 +1,96 @@
-# 04 — Semantic Cache — réponses réutilisables
+# 04 — Semantic Cache
 
-> **Catégorie : IA générative.** Fiche pédagogique d'architecture IA. Les composants, documents, utilisateurs, budgets et scénarios sont fictifs ; aucune entreprise ou plateforme réelle n'est décrite. Ce pattern est une décision d'architecture **à justifier**, pas une garantie automatique.
+> **Famille :** IA générative · **Statut :** pattern d'architecture pédagogique · **Exemples fictifs et anonymisés**, aucun SI ou acteur d'entreprise réel revendiqué.
 
-## 1. Intention et problème traité
+## 1. Définition et problème
 
-Des demandes presque identiques génèrent des coûts d'inférence et des délais élevés. Mais un cache approximatif non isolé peut renvoyer des informations sensibles, obsolètes ou erronées.
+Cache des réponses récupérées à partir d'une proximité sémantique plutôt que d'une stricte égalité de chaîne. Sa réutilisation exige une identité de contexte, des permissions et des versions compatibles.
 
-**Cas fil conducteur :** Deux questions reformulées sur une procédure publique peuvent partager une réponse validée, mais deux utilisateurs aux habilitations différentes ne doivent jamais partager un résultat protégé.
+**Besoin métier :** Des milliers de questions proches sur une FAQ publique font refaire des inférences coûteuses ; un cache naïf peut toutefois divulguer à l'utilisateur B une réponse créée pour A.
 
-## 2. Décision d'architecture
+## 2. Architecture et flux
 
-Utiliser un cache **scopé** (tenant, classe de données, autorisations, version corpus/prompt/modèle et politique), avec seuil de similarité calibré, TTL et invalidation explicite.
-
-### Schéma d'architecture (Mermaid, éditable)
-
-```mermaid
+~~~mermaid
 flowchart TB
- Q["Question"] --> AUTH["Identité + ACL + contexte de version"]
- AUTH --> SIG["Empreinte de périmètre + embedding"]
- SIG --> HIT{"Cache autorisé et pertinent ?"}
- HIT -->|Oui| RET["Réponse et provenance revérifiées"]
- HIT -->|Non| GEN["Retrieval + génération"]
- GEN --> VAL["Validation sources / sécurité"]
- VAL --> CACHE["Cache tenant-scope + TTL"]
- CACHE --> RET
-```
+ Q["Question + identité + version docs"] --> A{"Type de demande cachable ?"}
+ A -->|Non| R["RAG/LLM normal"]
+ A -->|Oui| C["Recherche de voisins sémantiques"]
+ C --> ACL{"Permissions, versions, TTL concordent ?"}
+ ACL -->|Oui| HIT["Réponse validée du cache"]
+ ACL -->|Non| R
+ R --> VALID["Valider résultat"]
+ VALID --> STORE["Mise en cache si admissible"]
+~~~
 
-**À retenir :** Le Semantic Cache est **une optimisation facultative**, jamais une source autoritative.
+### Étapes de traitement
 
-## 3. Fonctionnement de bout en bout
+1. Qualifier l'opération : ne mettre en cache que les réponses admissibles et non actionnelles.
+2. Construire une clé englobant tenant, scopes, classification, collection documentaire/version, modèle/prompt/version et langue.
+3. Rechercher candidats sémantiquement voisins avec seuil calibré.
+4. Vérifier compatibilité stricte des droits et de la base documentaire AVANT lecture du résultat.
+5. Appliquer durée de vie, invalidation par nouvelle procédure, et contrôle des résultats sensibles.
+6. Sur miss, effectuer RAG/inférence ; après validation, stocker l'entrée avec métadonnées.
 
-1. Séparer cache de réponses publiques et cache limité par classe de données/tenant.
-2. Construire une clé composée de scope, versions de prompt, corpus, règles et modèle.
-3. Faire une recherche de similarité avec seuil adapté aux mauvaises correspondances sémantiques.
-4. Sur hit, revérifier la validité des sources et les droits de l'utilisateur.
-5. N'enregistrer que les réponses dont l'usage en cache est autorisé, avec TTL, métriques et invalidation sur retrait de documents.
-6. Exclure les actions transactionnelles, réponses personnelles ou sensibles tant que les garanties ne sont pas démontrées.
+## 3. Diagramme de séquence illustratif
 
-## 4. Exemple de contrat / politique
+~~~mermaid
+sequenceDiagram
+ participant U as Utilisateur
+ participant C as Cache sémantique
+ participant M as RAG / Modèle
+ U->>C: « Que signifie un statut de paiement inconnu ? »
+ C->>C: ACL + version + voisinage
+ alt Hit sûr
+ C-->>U: Explication standard datée
+ else Miss / ACL incompatible
+ C->>M: Inférence documentée
+ M-->>C: Réponse validée
+ C-->>U: Réponse fraîche
+ end
+~~~
 
-```json
-{
-  "requestId": "req-fictif-001",
-  "tenantId": "tenant-demo",
-  "actorRole": "reader",
-  "dataClassification": "internal",
-  "task": "semantic-cache",
-  "policyVersion": "p1",
-  "timeoutMs": 2500,
-  "maxCostUnits": 10,
-  "auditCorrelationId": "audit-001"
-}
-```
+**Scénario :** Une FAQ **publique** sur le sens d'un timeout peut être cachée. En revanche, une question « quel est l'état de MON virement ? » ne doit pas servir une réponse semantiquement voisine correspondant à un autre ordre ou un autre client.
 
-Ce document est une **enveloppe illustrative**, pas un schéma JSON canonique de la technologie ni un jeu de seuils recommandés. Les politiques de sécurité, latence et budget sont versionnées et appliquées dans le code, pas seulement décrites au modèle.
+## 4. Décisions à prendre en Design Authority
 
-## 5. Alternatives et choix
+- Définir explicitement types cachables, scopes, versions de documents et clé d'isolation.
+- Découpler cache public de données sensibles / personnelles ; TTL par criticité.
+- Définir mesure de similarité et seuil avec faux hits et miss rates.
+- Déclencher invalidation lors du changement de procédures et du registre de modèles.
+- Mesurer hit rate valide, latence, coût économisé, taux d'erreur et fuite inter-tenant (cible 0).
 
-Cache exact par clé pour requêtes paramétrées; CDN uniquement pour ressources statiques; aucun cache pour décisions financières dynamiques.
+## 5. Scénarios de panne et parades
 
-## 6. Compromis et limites
+| Échec / attaque | Comportement attendu |
+|---|---|
+| Collision entre clients | Partitionner par habilitation et contexte ; sinon ne pas cacher. |
+| Réponse périmée | Version du corpus/TTL et invalidation événementielle. |
+| Similarité change le sens | Seuil conservateur + réponse réservée à FAQ stable. |
+| Donnée sensible dans cache partagé | Bloquer l'écriture et tracer la politique. |
 
-Taux de hit, faux positifs sémantiques, TTL, coût de la recherche dans le cache, invalidations complexes.
+## 6. Tests d'acceptation
 
-### Sécurité, données et garde-fous
+1. Questions similaires de deux tenants ne partagent pas une réponse confidentielle.
+2. Après changement de procédure, ancien cache invalidé.
+3. Une requête sur paiement individuel ignore Semantic Cache.
+4. Évaluer faux hits pour questions « accepté » versus « réglé ».
 
-Cache cross-tenant = risque de fuite critique; filtrage par habilitation, anti-poisoning, purge complète après retrait des droits, pas d'informations personnelles en clair.
+**Critère transversal :** chaque décision sensible est explicable, les identités et autorisations sont contrôlées par code, et les exemples n'exécutent aucune opération bancaire réelle.
 
-## 7. Scénarios de panne et tests d'acceptation
+## 7. Compromis, limites et sélection
 
-- **T04-1 :** Mêmes mots avec montants différents : cache miss.
-- **T04-2 :** Même question autre tenant : cache miss.
-- **T04-3 :** Document révoqué : entrée invalidée.
-- **T04-4 :** Réponse obsolète : TTL/revalidation force une mise à jour.
+Bénéfice en FAQ répétitive ; dangereux sans politique d'isolation. Cache de réponse générative ≠ cache de statut financier autoritatif.
 
-**Observabilité et critères de qualité :** cache-hit-rate, wrong-hit-rate (objectif proche de 0), p95 gagné, coût économisé, stale-answer-rate et test fuite inter-tenant.
+À mesurer sur un jeu de référence : **qualité métier, confidentialité, latence p95/p99, coût par demande, robustesse aux attaques et taux d'abstention**. Documenter configuration, modèle, version, corpus et politique.
 
-## 8. Revue d'architecture et entretien
+## 8. Question d'entretien
 
-**Q1 — Pourquoi utiliser ce pattern ?** Des demandes presque identiques génèrent des coûts d'inférence et des délais élevés. Mais un cache approximatif non isolé peut renvoyer des informations sensibles, obsolètes ou erronées.
+**Question :** Peut-on cacher le statut personnel d'un paiement par similarité ?
 
-**Q2 — Quel est le risque principal en production ?** Cache cross-tenant = risque de fuite critique; filtrage par habilitation, anti-poisoning, purge complète après retrait des droits, pas d'informations personnelles en clair.
+**Réponse :** Non comme réponse partagée ; c'est une donnée transactionnelle spécifique et soumise à des permissions et à la fraîcheur.
 
-**Q3 — Comment prouver que le choix est acceptable ?** Préparer un jeu d'évaluation représentatif, des tests négatifs, des contrôles d'accès et un budget p95/p99/cout; rejouer les scénarios T04 avant déploiement.
+## 9. Mise en œuvre et approfondissement
 
-**Q4 — Est-il obligatoire sur Kubernetes/OpenShift ?** Non. Le pattern est indépendant de l'orchestrateur : Kubernetes/OpenShift héberge ses composants, mais n'apporte pas magiquement la bonne sémantique métier ou la sécurité des décisions IA.
-
-## 9. Relations avec les autres fiches
-
-- [01-rag](../01-rag/README.md)
-- [09-guardrails](../09-guardrails/README.md)
-- [14-continuous-evaluation](../14-continuous-evaluation/README.md)
-
-**Complément :** [Cas d'étude IA de bout en bout](../case-study-ai-platform-openShift/README.md) et [Décisions et contrôles d'architecture](../references/decision-matrix.md).
+- Plateforme de référence : API sécurisée, orchestration Java ou Python sur Kubernetes/OpenShift, logs et métriques structurés ; aucun produit commercial imposé.
+- [Architecture IA de bout en bout](../reference-ai-platform-openshift/README.md) · [Matrice de sélection](../PATTERNS_DECISION_MATRIX.md) · [Sources techniques](../REFERENCES.md).
+- Les mécanismes de sécurité doivent être vérifiés indépendamment des réponses du LLM ; aucun prompt ne remplace AuthZ ou la validation d'un outil.

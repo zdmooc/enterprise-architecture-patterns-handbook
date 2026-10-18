@@ -1,96 +1,94 @@
-# 02 — Advanced RAG — hybride, reranking, filtres
+# 02 — Advanced RAG : hybrid retrieval, reranking et contextualisation
 
-> **Catégorie : IA générative.** Fiche pédagogique d'architecture IA. Les composants, documents, utilisateurs, budgets et scénarios sont fictifs ; aucune entreprise ou plateforme réelle n'est décrite. Ce pattern est une décision d'architecture **à justifier**, pas une garantie automatique.
+> **Famille :** IA générative · **Statut :** pattern d'architecture pédagogique · **Exemples fictifs et anonymisés**, aucun SI ou acteur d'entreprise réel revendiqué.
 
-## 1. Intention et problème traité
+## 1. Définition et problème
 
-Une simple recherche vectorielle peut manquer un identifiant exact, un numéro de procédure ou un libellé rare ; elle peut remonter des passages sémantiquement proches mais non pertinents.
+Ensemble de raffinements RAG : recherche hybride lexicale/sémantique, filtres de métadonnées, expansion ou décomposition des requêtes, reranking, contextualisation et parfois récupération multi-sauts.
 
-**Cas fil conducteur :** Une procédure fictive nommée « PROC-OPS-017 » n'est pas retrouvée en recherche dense seule, mais la recherche lexicale exacte la trouve.
+**Besoin métier :** Une requête comme « que faire après un timeout de règlement ? » emploie un vocabulaire différent de la procédure « absence de confirmation » ; une recherche naïve manque des sources pertinentes.
 
-## 2. Décision d'architecture
+## 2. Architecture et flux
 
-Combiner recherche sémantique et lexicale, filtres de sécurité et de fraîcheur, reranking, diversification, seuil de confiance et citations contrôlées. Mesurer le gain plutôt que multiplier les étapes systématiquement.
-
-### Schéma d'architecture (Mermaid, éditable)
-
-```mermaid
+~~~mermaid
 flowchart TB
- Q["Question + identité"] --> AUTH["Filtre ACL / périmètre"]
- AUTH --> S["Recherche vectorielle"]
- AUTH --> K["Recherche lexicale / BM25"]
- S --> MERGE["Fusion de rangs"]
- K --> MERGE
- MERGE --> RR["Reranker"]
- RR --> FILT["Fraîcheur / diversité / seuil"]
- FILT --> CTX["Contexte vérifié + citations"]
- CTX --> L["LLM / abstention"]
-```
+ Q["Question métier"] --> SEC["Droits + filtres documentaires"]
+ SEC --> L["Recherche lexicale BM25"]
+ SEC --> V["Recherche vectorielle"]
+ L --> MERGE["Fusion des candidats autorisés"]
+ V --> MERGE
+ MERGE --> RE["Reranking + contrôle de fraîcheur"]
+ RE --> C["Context packing"]
+ C --> G["LLM + citations"]
+ G --> CHECK["Contrôle fidélité / abstention"]
+~~~
 
-**À retenir :** Advanced RAG est une **composition de techniques de retrieval** : son intérêt dépend d'un écart de qualité mesuré.
+### Étapes de traitement
 
-## 3. Fonctionnement de bout en bout
+1. Analyser l'intention ; extraire type de processus et version des règles sans changer silencieusement la question.
+2. Appliquer les ACL et filtres de validité à l'espace documentaire.
+3. Interroger en parallèle index lexical et index vectoriel ; fusionner les candidats sans exposer de document interdit.
+4. Reranker les candidats selon leur pertinence à la question et leur autorité documentaire.
+5. Assembler contexte limité et dédupliquer fragments voisins.
+6. Générer avec citations ; vérifier support des affirmations et abstention en cas de preuve insuffisante.
 
-1. Normaliser et classer la requête; préserver termes exacts, sigles et identifiants.
-2. Appliquer les droits et les filtres documentaires *avant* la récupération et revalider l'accès avant restitution.
-3. Exécuter lexical et vectoriel en parallèle avec budgets de latence distincts.
-4. Fusionner les candidats, puis reranker uniquement un ensemble borné.
-5. Diversifier les passages d'une même version et refuser les anciennes versions contradictoires si la fraîcheur prime.
-6. Évaluer groundedness et pertinence sur un jeu de questions métier annoté.
+## 3. Diagramme de séquence illustratif
 
-## 4. Exemple de contrat / politique
+~~~mermaid
+sequenceDiagram
+ participant U as Analyste
+ participant R as Recherche hybride
+ participant K as Reranker
+ participant L as Modèle
+ U->>R: « timeout du règlement »
+ R->>R: Termes + variantes métier contrôlées
+ R-->>K: Procédure « confirmation absente » et règles associées
+ K-->>L: Top passages autorisés et actuels
+ L-->>U: Réponse documentée, limites explicites
+~~~
 
-```json
-{
-  "requestId": "req-fictif-001",
-  "tenantId": "tenant-demo",
-  "actorRole": "reader",
-  "dataClassification": "internal",
-  "task": "advanced-rag",
-  "policyVersion": "p1",
-  "timeoutMs": 2500,
-  "maxCostUnits": 10,
-  "auditCorrelationId": "audit-001"
-}
-```
+**Scénario :** Deux procédures fictives utilisent « attente de retour » et « confirmation manquante ». Le retrieval hybride les retrouve toutes deux ; le reranker classe d'abord la version en vigueur et écarte une note de test obsolète.
 
-Ce document est une **enveloppe illustrative**, pas un schéma JSON canonique de la technologie ni un jeu de seuils recommandés. Les politiques de sécurité, latence et budget sont versionnées et appliquées dans le code, pas seulement décrites au modèle.
+## 4. Décisions à prendre en Design Authority
 
-## 5. Alternatives et choix
+- Mesurer l'amélioration par rapport à un RAG de base avant de multiplier les composants.
+- Fusionner les résultats en conservant provenance, scores comparables et filtrage de sécurité.
+- Reranking sur candidats autorisés uniquement : pas de divulgation dans traces/modèles externes.
+- Définir top-k initial, top-n final, latence p95, qualité multilingue et tolérance aux acronymes.
+- Versionner prompts de reformulation et modèle de reranking ; tester le déplacement du sens métier.
 
-Recherche lexicale seule pour codes exacts; vectoriel seul si corpus simple; RAG hiérarchique pour longues procédures; recherche fédérée seulement si la gouvernance et les latences le permettent.
+## 5. Scénarios de panne et parades
 
-## 6. Compromis et limites
+| Échec / attaque | Comportement attendu |
+|---|---|
+| Reformulation erronée | Conserver question originale et évaluer sur requêtes bancaires difficiles. |
+| Reranking onéreux/lent | Limiter candidats, mesurer p95 et proposer mode simplifié. |
+| Version périmée mieux notée | Prioriser validité métier avant score sémantique. |
+| Document interdit fusionné | Filtrage ACL systématique à tous les stades. |
 
-Coût de reranking, latence, drift des embeddings, erreurs d'identification des versions, dimensionnement de la recherche hybride.
+## 6. Tests d'acceptation
 
-### Sécurité, données et garde-fous
+1. Question technique abrégée trouve la procédure correcte.
+2. La version retirée ne gagne pas face à une version active.
+3. L'augmentation du top-k n'expose pas de données interdites.
+4. Comparaison mesurée basic RAG vs hybrid+rerank sur jeu de référence.
 
-Filtrage avant rerank et citation; isolation tenant/domaine; effacement des index; aucune recherche globale avant contrôle d'autorisation.
+**Critère transversal :** chaque décision sensible est explicable, les identités et autorisations sont contrôlées par code, et les exemples n'exécutent aucune opération bancaire réelle.
 
-## 7. Scénarios de panne et tests d'acceptation
+## 7. Compromis, limites et sélection
 
-- **T02-1 :** Question par identifiant exact et question par paraphrase.
-- **T02-2 :** Corpus avec deux versions dont une obsolète.
-- **T02-3 :** Documents avec ACL contradictoires: aucun passage interdit.
-- **T02-4 :** Reranker indisponible: parcours dégradé contrôlé et mesuré.
+Complexité et latence supplémentaires ; adopter seulement si les gains de rappel/fidélité sont démontrés.
 
-**Observabilité et critères de qualité :** Recall@k, MRR, nDCG, précision citations, taux de documents obsolètes, coût reranking et p95 par étape.
+À mesurer sur un jeu de référence : **qualité métier, confidentialité, latence p95/p99, coût par demande, robustesse aux attaques et taux d'abstention**. Documenter configuration, modèle, version, corpus et politique.
 
-## 8. Revue d'architecture et entretien
+## 8. Question d'entretien
 
-**Q1 — Pourquoi utiliser ce pattern ?** Une simple recherche vectorielle peut manquer un identifiant exact, un numéro de procédure ou un libellé rare ; elle peut remonter des passages sémantiquement proches mais non pertinents.
+**Question :** Pourquoi le meilleur score vectoriel ne garantit-il pas le bon document ?
 
-**Q2 — Quel est le risque principal en production ?** Filtrage avant rerank et citation; isolation tenant/domaine; effacement des index; aucune recherche globale avant contrôle d'autorisation.
+**Réponse :** La proximité sémantique ne code pas les habilitations, la date de validité ni la hiérarchie des sources.
 
-**Q3 — Comment prouver que le choix est acceptable ?** Préparer un jeu d'évaluation représentatif, des tests négatifs, des contrôles d'accès et un budget p95/p99/cout; rejouer les scénarios T02 avant déploiement.
+## 9. Mise en œuvre et approfondissement
 
-**Q4 — Est-il obligatoire sur Kubernetes/OpenShift ?** Non. Le pattern est indépendant de l'orchestrateur : Kubernetes/OpenShift héberge ses composants, mais n'apporte pas magiquement la bonne sémantique métier ou la sécurité des décisions IA.
-
-## 9. Relations avec les autres fiches
-
-- [01-rag](../01-rag/README.md)
-- [04-semantic-cache](../04-semantic-cache/README.md)
-- [14-continuous-evaluation](../14-continuous-evaluation/README.md)
-
-**Complément :** [Cas d'étude IA de bout en bout](../case-study-ai-platform-openShift/README.md) et [Décisions et contrôles d'architecture](../references/decision-matrix.md).
+- Plateforme de référence : API sécurisée, orchestration Java ou Python sur Kubernetes/OpenShift, logs et métriques structurés ; aucun produit commercial imposé.
+- [Architecture IA de bout en bout](../reference-ai-platform-openshift/README.md) · [Matrice de sélection](../PATTERNS_DECISION_MATRIX.md) · [Sources techniques](../REFERENCES.md).
+- Les mécanismes de sécurité doivent être vérifiés indépendamment des réponses du LLM ; aucun prompt ne remplace AuthZ ou la validation d'un outil.

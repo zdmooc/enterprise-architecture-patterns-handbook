@@ -1,97 +1,94 @@
-# 03 — Model Router — sélection sous contraintes
+# 03 — Model Router
 
-> **Catégorie : IA générative.** Fiche pédagogique d'architecture IA. Les composants, documents, utilisateurs, budgets et scénarios sont fictifs ; aucune entreprise ou plateforme réelle n'est décrite. Ce pattern est une décision d'architecture **à justifier**, pas une garantie automatique.
+> **Famille :** IA générative · **Statut :** pattern d'architecture pédagogique · **Exemples fictifs et anonymisés**, aucun SI ou acteur d'entreprise réel revendiqué.
 
-## 1. Intention et problème traité
+## 1. Définition et problème
 
-Un modèle unique est parfois trop coûteux ou trop lent pour toutes les demandes, mais une sélection aléatoire entre modèles compromet qualité et gouvernance.
+Un composant de politique dirige une requête vers le modèle admissible selon complexité, capacité, latence, coût, confidentialité, région de traitement et disponibilité. Il diffère du routage vers un Pod d'un même modèle.
 
-**Cas fil conducteur :** Une requête simple de classification de ticket peut utiliser un petit modèle local ; une analyse documentaire longue exige un modèle plus performant, si les données y sont autorisées.
+**Besoin métier :** Une extraction structurée de deux lignes n'exige pas nécessairement le même modèle qu'une synthèse approfondie de longues procédures, et certaines données ne doivent pas quitter un périmètre d'exécution.
 
-## 2. Décision d'architecture
+## 2. Architecture et flux
 
-Router selon classe de données, tâche, budget, qualité validée, région, capacité et disponibilité. L'ordre est : politique de sécurité **avant** optimisation du coût.
-
-### Schéma d'architecture (Mermaid, éditable)
-
-```mermaid
+~~~mermaid
 flowchart TB
- Q["Requête"] --> CLASS["Classification : sensibilité, tâche, SLO"]
- CLASS --> POL{"Modèles autorisés ?"}
- POL -->|Non| STOP["Refus contrôlé"]
- POL -->|Oui| ROUTE["Routeur déterministe par politique"]
- ROUTE --> S["Petit modèle local"]
- ROUTE --> L["Grand modèle autorisé"]
- ROUTE --> X["Modèle spécialisé"]
- S --> V["Validation de sortie"]
- L --> V
- X --> V
-```
+ IN["Requête et classification"] --> POLICY{"Politique de données"}
+ POLICY -->|"Confidentiel"| LOCAL["Modèle local approuvé"]
+ POLICY -->|"Données publiques"| SCORE["Score : qualité, latence, coût"]
+ SCORE --> SIMPLE["Petit modèle"]
+ SCORE --> COMPLEX["Modèle large"]
+ LOCAL --> G["Sortie vérifiée"]
+ SIMPLE --> G
+ COMPLEX --> G
+~~~
 
-**À retenir :** Le Model Router arbitre **qualité, coût, latence et gouvernance**, sans réécrire les règles d'autorisation.
+### Étapes de traitement
 
-## 3. Fonctionnement de bout en bout
+1. Classifier demande (lecture documentaire, extraction, code, assistance métier) et sensibilité sans confier la seule sécurité au classifieur LLM.
+2. Appliquer politique de résidence, confidentialité, autorisations et famille de modèles approuvés.
+3. Comparer budget tokens, taille de contexte, qualité attendue, SLO et coûts.
+4. Sélectionner le modèle puis le servir via une interface versionnée.
+5. Contrôler réponse, usage tokens, durée, taux d'erreur et motif du routage.
+6. Sur erreur, basculer seulement vers une cible **également autorisée** selon Model Fallback.
 
-1. Définir catalogue versionné de modèles avec régions, licences, catégories de données, capacités et coût.
-2. Classifier la requête sans envoyer les données hors de leur périmètre.
-3. Éliminer tous les modèles non autorisés par confidentialité ou réglementation.
-4. Calculer un choix explicable sur score qualité, latence estimée, saturation, taille de contexte et prix.
-5. Associer un modelVersion et policyVersion à chaque trace et éviter les changements silencieux de comportement.
-6. Mesurer les erreurs de routage, gérer fallback compatible et faire canary avant changement de règles.
+## 3. Diagramme de séquence illustratif
 
-## 4. Exemple de contrat / politique
+~~~mermaid
+sequenceDiagram
+ actor U as Collaborateur
+ participant R as Routeur de modèles
+ participant P as Moteur de politique
+ participant M as Model Serving local
+ U->>R: Classer un document interne
+ R->>P: Classe de données, tâche, budget
+ P-->>R: Local uniquement, modèle compact v3
+ R->>M: Infer(version=v3)
+ M-->>R: Résultat JSON
+ R-->>U: Résultat + trace de routage
+~~~
 
-```json
-{
-  "requestId": "req-fictif-001",
-  "tenantId": "tenant-demo",
-  "actorRole": "reader",
-  "dataClassification": "internal",
-  "task": "model-router",
-  "policyVersion": "p1",
-  "timeoutMs": 2500,
-  "maxCostUnits": 10,
-  "auditCorrelationId": "audit-001"
-}
-```
+**Scénario :** Extraction fictive d'un code d'incident dans un document interne : modèle local compact. Analyse approfondie de documents publics : modèle plus puissant autorisé si coût et latence le permettent. Les règles de confidentialité passent avant l'optimisation de prix.
 
-Ce document est une **enveloppe illustrative**, pas un schéma JSON canonique de la technologie ni un jeu de seuils recommandés. Les politiques de sécurité, latence et budget sont versionnées et appliquées dans le code, pas seulement décrites au modèle.
+## 4. Décisions à prendre en Design Authority
 
-## 5. Alternatives et choix
+- Routing déterministe par politique pour cas à fort risque ; routeur ML en option évaluée.
+- Registre de modèles approuvés avec version, capacités, licences, région, type de données.
+- Budget maximal coût/tokens et latence, dimensionnement et prévention de surconsommation.
+- Politique de failover : ne jamais échanger la confidentialité contre la disponibilité.
+- Mesures : exactitude par classe de tâche, routing accuracy, coûts et changement de comportement par version.
 
-Un seul modèle si faible volume; routage fixe par produit/tenant; routeur fondé sur classification légère ou seuils déterministes plutôt que second LLM.
+## 5. Scénarios de panne et parades
 
-## 6. Compromis et limites
+| Échec / attaque | Comportement attendu |
+|---|---|
+| Classification erronée de données sensibles | Politique de classification en amont, choix local en cas de doute. |
+| Modèle bon marché trop faible | Évaluation sur jeu de tests par catégorie et escalade contrôlée. |
+| Fallback vers une région interdite | Allowlist de destinations par classe de données. |
+| Variabilité des résultats selon routage | Traçabilité modèle/version et suite de tests de régression. |
 
-Complexité d'exploitation, tests combinatoires, hétérogénéité des outputs, versionning et monitoring multi-modèles.
+## 6. Tests d'acceptation
 
-### Sécurité, données et garde-fous
+1. Requête confidentielle ne sort pas du périmètre autorisé.
+2. Faible complexité route vers modèle approuvé compact.
+3. Modèle indisponible avec aucune alternative autorisée : réponse indisponible, pas fuite.
+4. Changement de version produit un compte-rendu de régression.
 
-Jamais de bascule vers un modèle situé hors du périmètre autorisé. L'optimisation économique ne doit pas provoquer d'exfiltration de données ou contourner une politique.
+**Critère transversal :** chaque décision sensible est explicable, les identités et autorisations sont contrôlées par code, et les exemples n'exécutent aucune opération bancaire réelle.
 
-## 7. Scénarios de panne et tests d'acceptation
+## 7. Compromis, limites et sélection
 
-- **T03-1 :** Donnée confidentielle toujours routée vers environnement conforme.
-- **T03-2 :** Modèle choisi indisponible : fallback même niveau de politique.
-- **T03-3 :** Classe simple routée au petit modèle seulement si qualité évaluée.
-- **T03-4 :** Traçabilité du choix et des versions.
+À privilégier avec plusieurs modèles et une politique de données mature ; inutile pour une plateforme mono-modèle sans besoin d'optimisation.
 
-**Observabilité et critères de qualité :** routing-policy-violations=0, accuracy/quality par classe, coût moyen/1k requêtes, p95, saturation GPU, taux de fallback.
+À mesurer sur un jeu de référence : **qualité métier, confidentialité, latence p95/p99, coût par demande, robustesse aux attaques et taux d'abstention**. Documenter configuration, modèle, version, corpus et politique.
 
-## 8. Revue d'architecture et entretien
+## 8. Question d'entretien
 
-**Q1 — Pourquoi utiliser ce pattern ?** Un modèle unique est parfois trop coûteux ou trop lent pour toutes les demandes, mais une sélection aléatoire entre modèles compromet qualité et gouvernance.
+**Question :** Quelle est la première règle d'un routeur de modèles ?
 
-**Q2 — Quel est le risque principal en production ?** Jamais de bascule vers un modèle situé hors du périmètre autorisé. L'optimisation économique ne doit pas provoquer d'exfiltration de données ou contourner une politique.
+**Réponse :** Respecter les contraintes de sécurité, d'autorisation et de localisation, avant coût et performance.
 
-**Q3 — Comment prouver que le choix est acceptable ?** Préparer un jeu d'évaluation représentatif, des tests négatifs, des contrôles d'accès et un budget p95/p99/cout; rejouer les scénarios T03 avant déploiement.
+## 9. Mise en œuvre et approfondissement
 
-**Q4 — Est-il obligatoire sur Kubernetes/OpenShift ?** Non. Le pattern est indépendant de l'orchestrateur : Kubernetes/OpenShift héberge ses composants, mais n'apporte pas magiquement la bonne sémantique métier ou la sécurité des décisions IA.
-
-## 9. Relations avec les autres fiches
-
-- [13-model-fallback](../13-model-fallback/README.md)
-- [11-ai-gateway](../11-ai-gateway/README.md)
-- [14-continuous-evaluation](../14-continuous-evaluation/README.md)
-
-**Complément :** [Cas d'étude IA de bout en bout](../case-study-ai-platform-openShift/README.md) et [Décisions et contrôles d'architecture](../references/decision-matrix.md).
+- Plateforme de référence : API sécurisée, orchestration Java ou Python sur Kubernetes/OpenShift, logs et métriques structurés ; aucun produit commercial imposé.
+- [Architecture IA de bout en bout](../reference-ai-platform-openshift/README.md) · [Matrice de sélection](../PATTERNS_DECISION_MATRIX.md) · [Sources techniques](../REFERENCES.md).
+- Les mécanismes de sécurité doivent être vérifiés indépendamment des réponses du LLM ; aucun prompt ne remplace AuthZ ou la validation d'un outil.
