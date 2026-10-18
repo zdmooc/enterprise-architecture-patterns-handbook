@@ -6,6 +6,12 @@ Référentiel d'architecture en français : principes, responsabilités, critèr
 
 > **Périmètre et confidentialité.** Les cas « CAPS » (Crédit Agricole Payment Services) sont des **illustrations fictives** inspirées de besoins génériques d'architecture applicative. Ils ne décrivent ni l'architecture interne, ni les produits effectivement déployés, ni les règles de gestion particulières de CAPS. Les valeurs, noms de files, APIs, formats de messages et seuils sont des exemples à valider.
 
+## Étude d'architecture de référence — document unique
+
+**[Paiements instantanés SEPA / OpenShift — Architecture consolidée V1.0](07-case-studies/instant-payments-openshift/ARCHITECTURE_DE_REFERENCE.md)**
+
+Document canonique complet : 26 sections, architecture solution et technique, flux entrants/sortants, VoP, ISO 20022, core bancaire, Java/OpenShift, MQ/Kafka, Saga/Outbox, API, cohérence financière, actif-actif et fencing, PRA, conformité SCT Inst, tests d'incidents, arbitrages et critères de qualification. **Une seule étude publiée ; les deux PDF de travail ne figurent pas dans ce dépôt.** Les technologies et configurations sont des propositions pédagogiques à valider, sans prétention de décrire le SI interne de CAPS ou BPCE.
+
 ## Parcours : 10 patterns d'intégration et de résilience
 
 | # | Pattern | Question de l'architecte |
@@ -23,7 +29,7 @@ Référentiel d'architecture en français : principes, responsabilités, critèr
 
 ## Mettre tous les patterns ensemble
 
-- [Architecture de référence : paiements bancaires](07-case-studies/banking-payments-reference/README.md)
+- [Atelier pédagogique générique — flux bancaires](07-case-studies/banking-payments-reference/README.md)
 - [Séquence de bout en bout et scénarios d'échec](07-case-studies/banking-payments-reference/sequences.md)
 - [Matrice de choix des patterns](references/decision-matrix.md)
 - [Glossaire](references/glossary.md)
