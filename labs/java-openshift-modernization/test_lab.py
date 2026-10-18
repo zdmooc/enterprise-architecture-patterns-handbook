@@ -67,10 +67,12 @@ class ManifestTest(unittest.TestCase):
 
     def test_default_deny_and_explicit_ingress(self):
         netpol = resources("networkpolicy.yaml")
-        self.assertEqual(len(netpol), 2)
+        self.assertEqual(len(netpol), 3)
         self.assertEqual(set(netpol[0]["spec"]["policyTypes"]), {"Ingress", "Egress"})
         self.assertEqual(netpol[0]["spec"]["podSelector"], {})
         self.assertIn("ingress", netpol[1]["spec"])
+        self.assertEqual(netpol[2]["metadata"]["name"], "allow-demo-client-egress")
+        self.assertIn("egress", netpol[2]["spec"])
 
     def test_config_is_external_to_image(self):
         env = self.container["env"]

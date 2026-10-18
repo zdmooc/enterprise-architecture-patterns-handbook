@@ -57,7 +57,7 @@ kubectl -n java-modernization-demo get deploy,pod,svc,pdb,networkpolicy
 kubectl -n java-modernization-demo port-forward svc/java-modernization-demo 8080:8080
 ~~~
 
-**Attention au réseau :** les NetworkPolicies default-deny sont incluses et autorisent uniquement les Pods portant \`role: demo-client\` dans ce namespace et (sur OpenShift) le namespace ingress selon label standard. Un test client applicatif dans Kubernetes doit respecter cette étiquette. Le port-forward est un chemin administratif et **ne prouve pas** le contrôle des NetworkPolicies. Un cluster kind mono-nœud ne valide pas la HA.
+**Attention au réseau :** les NetworkPolicies default-deny sont incluses. Elles autorisent les Pods \`role: demo-client\` à sortir vers l'application sur TCP/8080 et les résolveurs DNS des namespaces usuels ; l'Ingress côté application permet ces clients et les routeurs du namespace OpenShift ingress. Vérifier les labels et adapter la politique de DNS au CNI cible. Un test client applicatif dans Kubernetes doit respecter cette étiquette. Le port-forward est un chemin administratif et **ne prouve pas** le contrôle des NetworkPolicies. Un cluster kind mono-nœud ne valide pas la HA.
 
 ## Option D — OpenShift
 

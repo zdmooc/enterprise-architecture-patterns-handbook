@@ -26,4 +26,33 @@ spec:
       ports:
         - protocol: TCP
           port: 8080
-# Testez et complétez les autorisations ingress/egress réellement nécessaires.
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-demo-client-egress
+spec:
+  podSelector:
+    matchLabels:
+      role: demo-client
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: java-modernization-demo
+      ports:
+        - protocol: TCP
+          port: 8080
+    - to:
+        - namespaceSelector:
+            matchExpressions:
+              - key: kubernetes.io/metadata.name
+                operator: In
+                values: [kube-system, openshift-dns]
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+# DNS doit être validé dans le CNI cible ; ne pas élargir l'egress en production.
