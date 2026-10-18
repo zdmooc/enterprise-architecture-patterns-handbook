@@ -2,7 +2,7 @@
 
 **30 patterns de conteneurisation, conception de Pods, exploitation Kubernetes, sécurité OpenShift, déploiement GitOps et modernisation Java/JEE**, chacun avec deux schémas Mermaid, scénario concret, YAML/Dockerfile illustratif, modes de panne, tests et critères de revue.
 
-> **Anonymisation :** toutes les applications, entreprises, éditeurs historiques et établissements présentés sont fictifs. Les noms Docker, Kubernetes, OpenShift, Java, Kafka, etc. sont des **noms de technologies/standards**, pas des références à une entreprise cliente. Les URLs de registry en \`example.invalid\` sont volontairement non fonctionnelles. Les détails de support et versions sont à vérifier sur l'installation réelle.
+> **Anonymisation :** toutes les applications, entreprises, éditeurs historiques et établissements présentés sont fictifs. Les noms Docker, Kubernetes, OpenShift, Java, Kafka, etc. sont des **noms de technologies/standards**, pas des références à une entreprise cliente. Les URLs de registry en `example.invalid` sont volontairement non fonctionnelles. Les détails de support et versions sont à vérifier sur l'installation réelle.
 
 ## Parcours des 30 patterns
 

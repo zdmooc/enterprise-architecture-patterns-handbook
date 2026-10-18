@@ -9,7 +9,7 @@
 
 ## Pods, contrôleurs et persistance
 - [Kubernetes — Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
-- [Kubernetes — Sidecar Containers](https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/) : sidecars natifs via \`initContainers\` avec \`restartPolicy: Always\` dans les versions compatibles.
+- [Kubernetes — Sidecar Containers](https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/) : sidecars natifs via `initContainers` avec `restartPolicy: Always` dans les versions compatibles.
 - [Kubernetes — Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).
 - [Kubernetes — StatefulSets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/).
 - [Kubernetes — Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job/).

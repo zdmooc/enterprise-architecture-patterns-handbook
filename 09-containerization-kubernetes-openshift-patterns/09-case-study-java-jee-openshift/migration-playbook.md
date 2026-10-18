@@ -7,7 +7,7 @@ Définir le périmètre : **rehost, replatform, refactor ou re-architect**. Un c
 | Objet | Comment vérifier | Risque |
 |---|---|---|
 | WAR/EAR/EJB | Inventaire de l'archive, manifestes, libs embarquées | APIs et classloading non supportés |
-| Java cible | \`java -version\` et compilation | Compatibilité bytecode / TLS / drivers |
+| Java cible | `java -version` et compilation | Compatibilité bytecode / TLS / drivers |
 | JNDI | Fichiers de config, datasources et factories | Ressource liée au serveur historique |
 | JMS/MQ | Queue, topics, XA, redélivrance, correlation IDs | Effets métier doubles |
 | DB | JDBC, SQL, séquences, batch, migrations | Schéma partagé et transactions |

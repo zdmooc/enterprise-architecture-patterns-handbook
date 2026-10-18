@@ -90,7 +90,7 @@ Cette cible comprend **un petit nombre de capacités démontrées** et plusieurs
 ## 6. Architecture technique des données
 
 - La base durable et le broker doivent avoir **leurs propres exigences HA/backup/retention/reconciliation**.
-- Les ressources \`emptyDir\` servent uniquement aux fichiers transitoires, pas à l'autorité métier.
+- Les ressources `emptyDir` servent uniquement aux fichiers transitoires, pas à l'autorité métier.
 - StatefulSet attribue noms/PVC ordonnés mais n'implémente pas de réplication financière.
 - Pour une migration de DB, utilisez **expand–migrate–contract** ; deux versions applicatives peuvent coexister durant Canary.
 - Un Pod restart après effet financier sans ACK doit être repris avec **la même référence métier**, jamais avec une nouvelle intention.
@@ -99,8 +99,8 @@ Cette cible comprend **un petit nombre de capacités démontrées** et plusieurs
 
 1. SCC restrictive par défaut ; ne pas demander root / hostPath pour une application ordinaire.
 2. Image compatible UID attribué dynamiquement par namespace.
-3. \`runAsNonRoot\`, \`allowPrivilegeEscalation: false\`, \`drop: [ALL]\`, \`seccompProfile: RuntimeDefault\`.
-4. ServiceAccounts propres aux services, RBAC limité et \`automountServiceAccountToken: false\` si API K8s non utilisée.
+3. `runAsNonRoot`, `allowPrivilegeEscalation: false`, `drop: [ALL]`, `seccompProfile: RuntimeDefault`.
+4. ServiceAccounts propres aux services, RBAC limité et `automountServiceAccountToken: false` si API K8s non utilisée.
 5. Policy réseau ingress/egress minimaliste ; exceptions DNS/probe justifiées.
 6. TLS jusqu'à la frontière nécessaire : **Route edge avec backend HTTP** est une démonstration, **Route reencrypt requiert TLS backend**.
 7. Secrets récupérés hors code/Git ; rotation et logs sans fuite.
