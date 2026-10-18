@@ -4,13 +4,20 @@
 
 Référentiel d'architecture en français : principes, responsabilités, critères de choix, scénarios d'échec, diagrammes, contrats, sécurité, observabilité et exercices. Chaque pattern est expliqué à travers un fil conducteur : **un virement bancaire de 500 €**.
 
-> **Périmètre et confidentialité.** Les cas « établissement bancaire » (établissement bancaire réel) sont des **illustrations fictives** inspirées de besoins génériques d'architecture applicative. Ils ne décrivent ni l'architecture interne, ni les produits effectivement déployés, ni les règles de gestion particulières de établissement bancaire. Les valeurs, noms de files, APIs, formats de messages et seuils sont des exemples à valider.
+> **Périmètre et confidentialité.** Tous les cas bancaires sont des **illustrations fictives**. Aucun établissement, fournisseur ou client réel n'est identifié ; aucune architecture interne ou configuration de production n'est revendiquée. Les valeurs, noms de files, APIs, formats de messages et seuils sont des exemples à valider.
 
 ## Étude d'architecture de référence — document unique
 
 **[Paiements instantanés SEPA / OpenShift — Architecture consolidée V1.0](07-case-studies/instant-payments-openshift/ARCHITECTURE_DE_REFERENCE.md)**
 
-Document canonique complet : 26 sections, architecture solution et technique, flux entrants/sortants, VoP, ISO 20022, core bancaire, Java/OpenShift, MQ/Kafka, Saga/Outbox, API, cohérence financière, actif-actif et fencing, PRA, conformité SCT Inst, tests d'incidents, arbitrages et critères de qualification. **Une seule étude publiée ; les deux PDF de travail ne figurent pas dans ce dépôt.** Les technologies et configurations sont des propositions pédagogiques à valider, sans prétention de décrire le SI interne de établissement bancaire ou groupe bancaire.
+Document canonique complet : 26 sections, architecture solution et technique, flux entrants/sortants, VoP, ISO 20022, core bancaire, Java/OpenShift, MQ/Kafka, Saga/Outbox, API, cohérence financière, actif-actif et fencing, PRA, conformité SCT Inst, tests d'incidents, arbitrages et critères de qualification. **Une seule étude publiée ; les deux PDF de travail ne figurent pas dans ce dépôt.** Les technologies et configurations sont des propositions pédagogiques à valider, sans prétendre décrire le SI interne d'un établissement réel.
+
+## Parcours illustré et audit de couverture
+
+- **[Atlas des schémas Mermaid — 10 patterns](diagrams/INDEX_DES_SCHEMAS.md)** : 34 diagrammes dans les dix fiches, navigation par scénario, carte transversale.
+- **[Audit de couverture des notions étudiées](references/AUDIT_COUVERTURE.md)** : correspondance détaillée entre cours, exemples, diagrammes et fichiers.
+- **[10 exercices corrigés et cas transversal](references/EXERCICES_CORRIGES.md)** : auto-évaluation par pattern et panne multisite.
+- Tous les noms d'établissements, de sociétés clientes, de fournisseurs et d'éditeurs sont **neutralisés** dans les documents publiés sur la branche courante.
 
 ## Parcours : 10 patterns d'intégration et de résilience
 

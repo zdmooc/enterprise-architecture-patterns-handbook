@@ -6,10 +6,8 @@
 - [European Payments Council — SCT Inst Rulebook (page officielle)](https://www.europeanpaymentscouncil.eu/what-we-do/epc-payment-schemes/sepa-instant-credit-transfer-sct-inst/sepa-instant-credit-transfer). En octobre 2026 : 2025 Rulebook v1.2, publication 30/09/2026 ; exigences de délai, restauration et notification.
 - [EPC — Customer-to-PSP SCT Inst Implementation Guidelines](https://www.europeanpaymentscouncil.eu/document-library/implementation-guidelines/sepa-instant-credit-transfer-customer-psp-2).
 
-## Messaging, streaming et integration
-- Documentation technique de la messagerie MQ (référence éditeur à compléter).
-- Documentation technique de la messagerie MQ (référence éditeur à compléter).
-- Documentation technique de la messagerie MQ (référence éditeur à compléter).
+## Messaging, streaming et intégration
+- Pour la persistance MQ, les unités de travail, les files de quarantaine et les canaux, utiliser la documentation officielle du **middleware choisi**, à versionner lors du cadrage d'architecture.
 - [Apache Kafka — Partitioning](https://kafka.apache.org/40/design/protocol/).
 - [Apache Kafka — Consumer offset tracking](https://kafka.apache.org/40/implementation/distribution/).
 
@@ -25,4 +23,4 @@
 ## Limites
 - Des pages en ligne peuvent évoluer ; figer la version d'une spécification dans chaque dossier d'architecture client.
 - Les valeurs de timeout, quotas, backoff, coûts, topologie HA, responsabilités légales et technologies effectives sont **des paramètres à mesurer et approuver**, non des postulats.
-- Aucun extrait confidentiel du cahier des charges établissement bancaire ni schéma interne non public n'est publié. Les scénarios sont pédagogiques.
+- Aucun extrait confidentiel d'un cahier des charges client ni schéma interne non public n'est publié. Les scénarios sont pédagogiques.

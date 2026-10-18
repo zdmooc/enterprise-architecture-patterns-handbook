@@ -1,4 +1,4 @@
-# ADR — Arbitrages d'architecture (propositions, non décisions établissement bancaire)
+# ADR — Arbitrages d'architecture (propositions de référence, non décisions d'un établissement réel)
 
 ## ADR-001 — L'API crée une intention durable
 - **Contexte** : le client peut subir un timeout après requête de paiement.

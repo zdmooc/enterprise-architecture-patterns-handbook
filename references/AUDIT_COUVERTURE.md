@@ -38,6 +38,6 @@
 
 - Aucune description d'architecture interne attribuée à une entreprise.
 - Exemples **banque émettrice**, **banque bénéficiaire**, **système historique**, **core**, **CSM-A**, **service Paiements**, **client fictif**.
-- Références techniques conservées sous leurs noms de **produit/standard ou protocole**, lorsque pertinentes (Java, OpenShift, Kafka, MQTT si besoin, MQ, SCT Inst, OAuth2, OIDC, ISO 20022, TIPS), sans attribution à un client ou éditeur nommé.
+- Références techniques conservées sous leurs noms de **produit/standard ou protocole**, lorsque pertinentes (Java, OpenShift, Kafka, MQ, SCT Inst, OAuth2, OIDC, ISO 20022, TIPS), sans attribution à un client ou éditeur nommé.
 - Les adresses de sources officielles EPC / BCE / réglementation UE ne sont pas des noms de sociétés clientes ou d'éditeurs.
 - Les exemples n'utilisent pas de données bancaires réelles ; identifiants et montants sont fictifs.

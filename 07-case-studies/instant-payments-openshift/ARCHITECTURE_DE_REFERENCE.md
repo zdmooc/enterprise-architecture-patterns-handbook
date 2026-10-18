@@ -2,9 +2,9 @@
 
 **Édition consolidée V1.0 — 18 octobre 2026 — Auteur : Zidane Djamal**
 
-**Statut :** architecture cible proposée, document de référence unifié à instruire en Design Authority. **Il ne décrit pas un SI interne vérifié de établissement bancaire, de groupe bancaire, de wallet de paiement, de CSM-A ou de éditeur historique.** Les noms de services, les plateformes, les métriques et les options techniques constituent des propositions. Aucune conception n'est « prête production » tant que les contrats avec le core, les infrastructures de place, les objectifs de service et la preuve de cohérence financière ne sont pas validés.
+**Statut :** architecture cible proposée, document de référence unifié à instruire en Design Authority. **Il ne décrit l'architecture interne d'aucun établissement bancaire, prestataire ou éditeur réel.** Les noms de services, les plateformes, les métriques et les options techniques constituent des propositions. Aucune conception n'est « prête production » tant que les contrats avec le core, les infrastructures de place, les objectifs de service et la preuve de cohérence financière ne sont pas validés.
 
-> **Document canonique unique.** Cette étude fusionne, réconcilie et remplace les deux études de travail consacrées au paiement instantané sur OpenShift (versions de 20 et 11 pages). **Les PDF d'origine ne sont ni copiés ni archivés dans ce dépôt.** Les règles publiques vérifiées en octobre 2026 sont référencées en section 26. Les contraintes internes restent ouvertes (section 25).
+> **Document canonique unique.** Cette architecture autonome constitue la seule étude consolidée du dépôt pour ce cas d'usage. **Aucun PDF de travail n'est copié ou archivé.** Les règles publiques vérifiées en octobre 2026 sont référencées en section 26. Les contraintes internes restent ouvertes (section 25).
 
 ## Table des matières
 1. Synthèse et recommandations
@@ -61,7 +61,7 @@ Concevoir un système 24/7 de traitement des **SEPA Instant Credit Transfers (SC
 6. Les exigences de délai SCT Inst priment sur un design de retry asynchrone pouvant prolonger le traitement sans borne.
 
 ### Décision proposée à la Design Authority
-**Architecture hybride prudente, orientée invariants, avec source financière unique et intégration progressives.** Le choix « développer un nouveau moteur » contre « conserver/moderniser le progiciel existant » reste **ouvert** jusqu'à confirmation des capacités et du support éditeur. Une éventuelle solution éditeur historique OPF/moteur de paiement historique doit être traitée comme produit à évaluer, pas comme architecture supposée ni comme composant à réécrire.
+**Architecture hybride prudente, orientée invariants, avec source financière unique et intégration progressive.** Le choix « développer un nouveau moteur » contre « conserver/moderniser le progiciel existant » reste **ouvert** jusqu'à confirmation des capacités et du support éditeur. Un moteur de paiement existant doit être évalué comme option, pas comme architecture supposée ni comme composant à réécrire.
 
 ---
 
@@ -221,7 +221,7 @@ La présence de MQ et Kafka n'est **pas** une exigence d'office : documenter le 
 | Notification / Reporting | Canal client et exploitation analytique | Consommateurs indépendants |
 | VoP | Consultation et présentation **avant autorisation** | Capacité canal/PSP indépendante |
 
-Une option existante éditeur historique OPF ou autre moteur de paiement peut **déjà fournir** l'orchestration, ISO 20022, états, persistance et règles. Ne pas développer un moteur concurrent avant un **fit-gap éditeur** et une matrice de support OpenShift/configuration.
+Un moteur de paiement existant peut **déjà fournir** l'orchestration, ISO 20022, états, persistance et règles. Ne pas développer un moteur concurrent avant un **fit-gap éditeur** et une matrice de support OpenShift/configuration.
 
 **SLO de conception :** optimiser nombre de transitions persistées, appels série/parallèles et latence p99 sous charge. Éviter l'« orchestration via 12 microservices » imposée sans preuve.
 
@@ -419,7 +419,7 @@ Tests obligatoires : crédit accompli/ACK perdu, compte bloqué ou fermé, pod t
 
 ## 11. Contrats d'API, identité et idempotence
 
-### API illustrative — *pas* un contrat établissement bancaire
+### API illustrative — *pas* un contrat réel de production
 ~~~http
 POST /api/v1/instant-payments
 Authorization: Bearer <token>
@@ -566,7 +566,7 @@ Suivre positions, seuils et disponibilité par rail/entité ; en TIPS, les compt
 ## 15. Routage multi-rails et ISO 20022
 
 ### Options
-CSM-A / TIPS / RT1 sont des **pistes d'intégration conditionnées** par les contrats PSP/CSM, la participation, joignabilité et connectivité. Leur présence chez établissement bancaire/groupe bancaire **n'est pas affirmée**. Le schéma SCT Inst et les profils du rail régissent la construction des messages.
+CSM-A / TIPS / RT1 sont des **pistes d'intégration conditionnées** par les contrats PSP/CSM, la participation, joignabilité et connectivité. Leur utilisation par un établissement réel **n'est pas affirmée**. Le schéma SCT Inst et les profils du rail régissent la construction des messages.
 
 ### Messages à étudier
 | ISO 20022 (famille) | Usage courant / précaution |
@@ -707,7 +707,7 @@ Deux clusters accessibles par GSLB, avec bases répliquées en asynchrone, peuve
 La somme de moyennes n'est pas un p99 bout en bout : mesurer **distributions corrélées, rafales, contention, GC, I/O, TLS, WAN, invalidation cache, retry et failover**. Ne pas laisser un timeout de 2 s + 3 retries dépasser la deadline.
 
 ### Hypothèses de volumétrie à valider
-Scénario purement illustratif : \`TPS moyen = 300\`, \`TPS crête = 1 500\`, marge à étudier selon BIA. **Ce ne sont pas des données établissement bancaire ou groupe bancaire**. Little : \`concurrence ≈ débit × durée\` ; à 1 500 TPS et 2 s, environ 3 000 transactions simultanées **en moyenne pendant cette durée**, avant marge et queues. Mesurer débit maximum par core et rail, IOPS/commit, queues depth, consumer lag, CPU/GC/pools, max connections et capacité mono-site.
+Scénario purement illustratif : \`TPS moyen = 300\`, \`TPS crête = 1 500\`, marge à étudier selon BIA. **Ces chiffres ne décrivent la volumétrie d'aucun établissement réel**. Little : \`concurrence ≈ débit × durée\` ; à 1 500 TPS et 2 s, environ 3 000 transactions simultanées **en moyenne pendant cette durée**, avant marge et queues. Mesurer débit maximum par core et rail, IOPS/commit, queues depth, consumer lag, CPU/GC/pools, max connections et capacité mono-site.
 
 ### SLOs proposés comme exigences à négocier
 | Indicateur | Principe |
@@ -787,7 +787,7 @@ flowchart TB
 ## 21. Livraison, migration progressive et retour arrière
 
 ### Strangler Fig plutôt que big bang
-1. **AS-IS prouvé** : répertorier moteur existant, comptes, identité, réseau, CSM, contrats d'éditeurs, dépendances, interfaces et états. Ne pas inférer la topologie groupe bancaire/moteur de paiement historique/éditeur historique à partir de sources publiques.
+1. **AS-IS prouvé** : répertorier moteur existant, comptes, identité, réseau, CSM, contrats d'éditeurs, dépendances, interfaces et états. Ne pas inférer la topologie d'un SI bancaire particulier à partir de sources publiques.
 2. **Fit-gap / buy vs build** : conserver le moteur et moderniser l'intégration si supportable ; conteneuriser seulement avec certification et support explicites, ou développer capacités manquantes si ROI/risk approuvés.
 3. **Socle** : OpenShift, identité, réseau, GitOps, certificats, secrets, DB/MQ/Kafka uniquement selon arbitrages.
 4. **Simulateur / tests contrats** : core sandbox, schémas ISO, retours de rail, duplications, outbox et timing.
@@ -882,7 +882,7 @@ Le rollback d'une image OpenShift **ne** corrige **pas** un mouvement bancaire i
 | ADR-09 | Statuts paiement / compte / investigation distincts | Etat binaire SUCCESS/FAILED écarté |
 | ADR-10 | Deadline réglementaire propagée | Retry au-delà deadline proscrit |
 | ADR-11 | Retours post-commit + reporting découplé | Ne pas coupler notification au settlement |
-| ADR-12 | Buy vs Build/éditeur historique ouvert jusqu'au fit-gap | Aucune réécriture imposée avant audit/support |
+| ADR-12 | Buy vs Build ouvert jusqu'au fit-gap | Aucune réécriture imposée avant audit/support |
 | ADR-13 | VoP avant autorisation, avec preuve | Pas de VoP insérée tardivement sous T0 sans analyse |
 | ADR-14 | Capacité/latences basées sur charge réelle | TPS et p99 illustratifs non contractuels |
 
@@ -915,8 +915,8 @@ Runbook par alerte, rotations d'astreinte, ownership par domaine, revues d'écar
 |---|---|---|
 | Métier | Quel(s) PSP, entités, canaux, flows et rails sont concernés ? | Process map et responsabilités PSP/CSM |
 | Core | Qui garantit réservation, débit/crédit, idempotence, statut ? | Contrat/API, tests, écritures probantes |
-| Existant | Quels composants moteur de paiement historique/éditeur historique/chaîne d’intégration historique/adaptateur historique et interfaces sont réels ? | Inventaire AS-IS, schémas et versions |
-| Buy vs Build | Peut-on exploiter éditeur historique OPF/legacy sur OpenShift avec support ? | Matrice éditeur certifiée + licences |
+| Existant | Quels moteurs, adaptateurs, chaînes d'intégration et interfaces sont effectivement déployés ? | Inventaire AS-IS, schémas et versions |
+| Buy vs Build | Le moteur de paiement existant dispose-t-il d'un support écrit et validé sur OpenShift ? | Matrice éditeur certifiée + licences |
 | Volume | TPS moyen/pointe, burst, montants, messages en vol ? | Mesures de production anonymisées |
 | Latence | Temps de réponse core/VoP/fraude/rail p99, extrêmes ? | Traces distribuées et campagnes de charge |
 | Réglementaire | Pratiques d'application 5/7/9/10 s et cas exceptionnels ? | Validation juridique/PSP et CSM |
@@ -932,7 +932,7 @@ Runbook par alerte, rotations d'astreinte, ownership par domaine, revues d'écar
 ### Classification de maturité
 - **Établi** : principes généraux et textes EPC/UE/BCE cités.
 - **Proposé** : composants Java/OpenShift, choix de brokers, RTO/RPO, budgets et découpage ; soumis à arbitrage.
-- **Non validé** : architecture et produits internes des organisations mentionnées, support éditeur historique, contrats des rails, volumes réels, cohérence multisite en production.
+- **Non validé** : architecture et produits internes de tout établissement réel, support des moteurs existants, contrats des rails, volumes réels, cohérence multisite en production.
 
 **Critère de clôture architecture :** dossier HLD+LLD approuvé, ADR signées, contrats testés, invariants prouvés, performances et PRA exercés, conformité d'exécution validée, support éditeur confirmé et exploitation financière prête.
 

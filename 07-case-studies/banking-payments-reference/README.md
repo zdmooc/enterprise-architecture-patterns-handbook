@@ -1,6 +1,6 @@
 # Cas d'étude — Architecture bancaire de paiement bout en bout
 
-> **Simulation de conception, pas architecture établissement bancaire.** Aucun produit (MQ, Kafka, PostgreSQL, OpenShift) n'est affirmé déployé chez établissement bancaire. Montants, comptes, noms des files et services sont fictifs.
+> **Simulation de conception, pas description d'un SI bancaire réel.** Aucun produit (MQ, Kafka, PostgreSQL, OpenShift) n'est présenté comme effectivement déployé dans un établissement. Montants, comptes, noms des files et services sont fictifs.
 
 ## Objectif
 Concevoir un virement de **500 EUR** initié par application bancaire, accepté dans un canal API, contrôlé, transmis à un cœur bancaire historique et suivi jusqu'au résultat autoritatif, sans doublons après crash/retry. Démontrer comment les **10 patterns** coopèrent sans confondre commande, message, événement, ordre accepté et règlement définitif.

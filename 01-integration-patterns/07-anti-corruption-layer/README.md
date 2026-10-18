@@ -29,7 +29,7 @@ Modèle Java : {paymentId:"VIR-001", amountMinor:50000, currency:"EUR"}
 Modèle legacy fictif : REF=VIR-001 ; MONT_CENT=0000050000 ; DEVISE=EUR
 Code retour A01 = ACCEPTED_FOR_PROCESSING ; E90 = REJECTED
 ~~~
-Ce sont **des conventions inventées**, à ne jamais attribuer à établissement bancaire ou à un produit éditeur MQ.
+Ce sont **des conventions fictives**, non attribuables à un établissement, un prestataire ou un logiciel réel.
 
 ## Responsabilités du composant
 1. Normaliser identifiants, unités monétaires, fuseaux, caractères, champs obligatoires.

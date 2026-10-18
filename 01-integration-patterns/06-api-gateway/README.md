@@ -59,7 +59,7 @@ HA multi-réplicas, zones de panne, timeouts par saut, quotas pour consommateurs
 | Clé idempotente répétée | Acheminer vers même intention métier |
 
 ## API Management : livrables d'architecture
-Catalogue, contrats OpenAPI, exposition/consommateurs, politiques, versions, dépréciations, portail développeur, tests de sécurité, observabilité et ownership. L'outillage peut être éditeur MQ API Connect, passerelle API, plateforme API, cloud public APIM, etc. : **aucun choix produit établissement bancaire n'est revendiqué**.
+Catalogue, contrats OpenAPI, exposition/consommateurs, politiques, versions, dépréciations, portail développeur, tests de sécurité, observabilité et ownership. L'outillage peut être une suite intégrée d'API Management, une passerelle autonome ou un service managé. **Aucun choix de fournisseur réel n'est revendiqué.**
 
 ## Questions d'entretien / critères
 - OIDC vs OAuth2 vs JWT ? Couche d'identité / cadre d'autorisation / format de jeton.
