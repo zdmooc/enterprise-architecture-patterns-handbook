@@ -1,76 +1,91 @@
-# 13 — Model Fallback — continuité d'inférence
+# 13 — Model Fallback et Graceful Degradation
 
-> Architecture pédagogique et générique. Aucune infrastructure, organisation ni entreprise réelle n'est identifiée. Les exemples de données et seuils sont fictifs.
+> **Famille :** Production / MLOps · **Exemples fictifs, anonymisés, sans attribution à un SI d'entreprise réel**.
 
-## 1. Besoin et contexte
-Lorsqu'un endpoint IA est indisponible ou saturé, proposer une alternative **autorisée et évaluée**, sans compromettre classification des données, qualité minimale ou format de sortie.
+## 1. Définition et besoin
 
-**Exemple concret :** Un modèle de résumé local est indisponible : une version secondaire locale évaluée peut prendre le relais, mais un modèle situé hors du périmètre confidentiel ne peut pas être choisi.
+Basculement contrôlé vers une autre version/modèle ou un mode dégradé lorsque la cible principale est indisponible, sous la contrainte que la cible secondaire respecte **les mêmes politiques d'accès et de résidence** et les exigences de qualité minimales.
 
-## 2. Schéma de composants
+**Problème :** Un modèle d'extraction saturé doit continuer à produire une réponse limitée ou indiquer son indisponibilité sans transmettre des documents confidentiels à une destination non autorisée.
+
+## 2. Architecture logique
+
 ~~~mermaid
 flowchart TB
- U["Requête + classification"] --> P["Politique tenant / données"]
- P --> M1["Modèle primaire autorisé"]
- M1 --> OK{"Réponse conforme avant deadline ?"}
- OK -->|Oui| O["Réponse validée"]
- OK -->|Non| F{"Fallback compatible et autorisé ?"}
- F -->|Oui| M2["Modèle secondaire évalué"]
- M2 --> V["Validation format / qualité / coûts"]
- V --> O
- F -->|Non| X["Échec explicite / abstention"]
+ R["Requête + classe de données"] --> PRI["Modèle principal"]
+ PRI -->|"Réussite"| OUT["Réponse vérifiée"]
+ PRI -->|"Timeout / erreur"| POLICY{"Alternative autorisée et capable ?"}
+ POLICY -->|Oui| SEC["Modèle secondaire validé"]
+ SEC --> OUT
+ POLICY -->|Non| NO["Indisponible / réponse partielle sûre"]
 ~~~
+
+### Déroulement
+
+1. Maintenir une liste de cibles approuvées avec capacités, versions, région et classification des données.
+2. Détecter pannes techniques avec timeout/Circuit Breaker et distinguer erreurs métier/qualité.
+3. Vérifier que le fallback satisfait politique de sécurité, capacité d'outil, contexte et seuil qualité.
+4. Borner retries, temps total et coût avant de sélectionner la cible secondaire.
+5. Si aucune cible compatible, passer à un mode explicitement dégradé ou à l'abstention.
+6. Enregistrer modèle/version réellement utilisés, réponse, cause et effets sur SLO.
 
 ## 3. Diagramme de séquence
+
 ~~~mermaid
 sequenceDiagram
- participant C as Client
- participant G as Gateway
- participant M1 as Modèle principal
- participant M2 as Modèle secondaire
- C->>G: Demande confidentielle
- G->>M1: Inferer sous budget
- M1--xG: 503
- G->>G: Vérifier politique + compatibilité + temps restant
- G->>M2: Inferer, même périmètre autorisé
- M2-->>G: Résultat
- G-->>C: Résultat validé / provenance de version
+ participant A as Application
+ participant R as Routeur
+ participant M1 as Modèle A local
+ participant M2 as Modèle B local approuvé
+ A->>R: Demande classifiée interne
+ R->>M1: Inférence
+ M1--xR: 503 / surcharge
+ R->>R: Budget restant et politique locale
+ R->>M2: Inférence même données, dans zone autorisée
+ M2-->>R: Réponse version B
+ R-->>A: Réponse validée + version réellement utilisée
 ~~~
 
-## 4. Étapes de conception
-1. Établir matrice de compatibilité entre modèles : données autorisées, classe de tâche, qualité, contexte, JSON/schema et région.
-2. Limiter fallback à quelques destinations préautorisées; pas de parcours aléatoire.
-3. Appliquer circuit breaker et timeout sur le primaire, conserver un budget restant pour la tentative.
-4. Sur état ambigu d'une action exécutée via agent, ne pas relancer l'**action** lors du changement de modèle.
-5. Valider réponse du modèle secondaire avec les mêmes guardrails et les mêmes droits.
-6. Journaliser route, motif, version et impact sur le coût/qualité pour audit.
+**Exemple pratique :** Le modèle local d'extraction est arrêté pour maintenance. Un second modèle local autorisé prend le relais avec le même contrat JSON. S'il ne sait pas extraire un champ obligatoire, l'application retourne une erreur explicite au lieu d'inventer une valeur.
 
-## 5. Contrat illustratif
-~~~json
-{"tenantId":"tenant-demo","requestId":"req-13",
- "dataClass":"internal","modelPolicy":"v1",
- "timeoutMs":2500,"maxBudgetUnits":10,"auditCorrelation":"trace-demo"}
-~~~
-L'enveloppe est pédagogique. Les budgets et permissions sont appliqués dans les services déterministes, jamais par confiance envers un prompt ou une sortie probabiliste.
+## 4. Décisions d'architecture
 
-## 6. Erreurs à prévoir et plan de tests
-- **AI-13-T1 :** Modèle secondaire hors politique → refus au lieu de fallback.
-- **AI-13-T2 :** Modèle secondaire renvoie JSON incompatible → rejet.
-- **AI-13-T3 :** Échec du primaire après action outil incertaine → aucune nouvelle exécution sans réconciliation.
-- **AI-13-T4 :** Tempête de retries simultanés → concurrence et nombre de tentatives plafonnés.
+- Liste ordonnée d'alternatives avec preuves qualité et politique d'accès.
+- Chiffrement/transport et non-propagation de données à l'extérieur du périmètre.
+- Distinguer fallback technique, dégradation de qualité et abstention.
+- Préserver compatibilité de schéma API et tests interversions.
+- Traçabilité effective model id, p95, coûts, taux de fallback et erreurs introduites.
 
-**Observabilité et qualité :** fallback-rate, quality-delta, policy violations, p95, error-budget, extra-cost et taux de réussite de reprise.
+## 5. Pannes et protections
 
-## 7. Arbitrages et limites
-Fallback n'est pas haute disponibilité du **même état** : les modèles peuvent diverger de capacités, de contexte et de sorties. Pour décisions sensibles, abstention préférable à une qualité inférieure non validée.
+| Échec | Décision sûre |
+|---|---|
+| Second modèle interdit pour données classifiées | Refus et indisponibilité explicite. |
+| Second modèle change le format JSON | Validation de contrat et adaptation sûre. |
+| Retries multiplient coût et latence | Budget commun, backoff, Circuit Breaker. |
+| Appel initial peut encore traiter malgré timeout | Outils de mutation à idempotence forte ; pas de double action. |
 
-## 8. Questions d'entretien d'architecture
-- **Quel problème est résolu ?** Lorsqu'un endpoint IA est indisponible ou saturé, proposer une alternative **autorisée et évaluée**, sans compromettre classification des données, qualité minimale ou format de sortie.
-- **Pourquoi ne pas ajouter ce composant partout ?** Cela augmente coût et complexité ; justifier un gain mesuré avec un corpus de référence, un SLO et des limites de confidentialité.
-- **Qu'apporte OpenShift ?** Disponibilité des workloads, isolation des namespaces/réseaux, secrets, déploiement contrôlé et métriques; pas de garantie sur l'exactitude des inférences.
-- **Quels tests conditionnent le GO ?** Identité/ACL, tests adversariaux, panne d'inférence, version du modèle, contrôles de coût et retour à un état sûr.
+## 6. Tests et preuves attendues
 
-## 9. Voir aussi
-- [Étude d'architecture IA intégrée](../case-study-ai-platform-openShift/README.md)
-- [Matrice de décision AI](../references/decision-matrix.md)
-- [Évaluation de la sécurité et de la qualité](../references/risks-evaluation.md)
+1. Fallback reste dans allowlist classifiée.
+2. Modèle secondaire incompatible provoque abstention.
+3. Coupure du primaire ne viole pas les budgets.
+4. La version et la cause de fallback sont observables.
+
+**Mesures :** qualité sur jeu de référence, autorisations effectives, latence p95/p99, coût/tokens, reprise et traçabilité du modèle/version.
+
+## 7. Compromis et critères de choix
+
+Augmente disponibilité si modèles compatibles ; peut diminuer qualité et doubler coûts, donc exige des tests spécifiques.
+
+## 8. Question d'entretien
+
+**Question :** Peut-on basculer automatiquement un modèle confidentiel vers n'importe quelle API disponible ?
+
+**Réponse :** Non. Confidentialité, région, permissions et capacité exigée priment sur la continuité de service.
+
+## 9. Application Cloud Native
+
+- Déployer les services d'IA par contrat explicite sur Kubernetes/OpenShift : CPU/GPU si disponible, IAM, séparation des namespaces, réseau, secrets, quota et observabilité.
+- [Plateforme IA de référence](../reference-ai-platform-openshift/README.md) · [Matrice](../PATTERNS_DECISION_MATRIX.md) · [Sources](../REFERENCES.md).
+- La sortie d'un LLM reste une **hypothèse à contrôler** lorsqu'elle détermine des décisions importantes.

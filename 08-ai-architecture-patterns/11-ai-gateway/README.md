@@ -1,76 +1,94 @@
-# 11 — AI Gateway — contrôle des accès aux modèles
+# 11 — AI Gateway : point de contrôle des requêtes de modèles
 
-> Architecture pédagogique et générique. Aucune infrastructure, organisation ni entreprise réelle n'est identifiée. Les exemples de données et seuils sont fictifs.
+> **Famille :** Sécurité / gouvernance · **Exemples fictifs, anonymisés, sans attribution à un SI d'entreprise réel**.
 
-## 1. Besoin et contexte
-Centraliser authentification des consommateurs, limitation de tokens et coûts, routage, observabilité et application des politiques avant l'inférence. L'AI Gateway ne remplace ni les contrôles de contenu ni l'autorisation métier.
+## 1. Définition et besoin
 
-**Exemple concret :** Un assistant documentaire envoie une demande d'inférence. La passerelle refuse un modèle hors périmètre et vérifie le quota du tenant.
+Une AI Gateway applique des politiques transversales aux requêtes et réponses de modèles : identité, routage, quotas, budgets, observation et gouvernance. Elle ne remplace ni l'API Gateway métier ni les autorisations applicatives.
 
-## 2. Schéma de composants
+**Problème :** Des applications internes appellent plusieurs serveurs d'inférence ; sans point de contrôle, la mesure du coût, la classification des données et les quotas divergent entre clients.
+
+## 2. Architecture logique
+
 ~~~mermaid
 flowchart TB
- U["Client IA"] --> IAM["Identité / tenant / scopes"]
- IAM --> G["AI Gateway"]
- G --> P["Politiques données, région, quotas, budget"]
- P --> R["Model Router"]
- R --> L["Serving de modèles autorisés"]
- L --> O["Validation réponse"]
- O --> G
- G --> U
- G --> MET["Audit / tokens / coût / latence"]
+ A["Appli documentaire"] --> G["AI Gateway"]
+ B["Agent spécialisé"] --> G
+ G --> SEC["IAM, classification, quotas, coûts"]
+ SEC --> ROUTE["Model Router"]
+ ROUTE --> LOCAL["Serveur LLM local"]
+ ROUTE --> SECOND["Serveur LLM secondaire approuvé"]
+ G --> OBS["Métriques, traces expurgées"]
+ LOCAL --> OUT["Contrôle et retour"]
+ SECOND --> OUT
 ~~~
+
+### Déroulement
+
+1. Authentifier appelant service et utilisateur final lorsque nécessaire.
+2. Appliquer autorisations et règles de données : modèles/régions autorisées.
+3. Valider tailles, limites de tokens, rate limits, budget financier et contrôle anti-abus.
+4. Sélectionner une cible autorisée via Model Router puis transmettre avec TLS.
+5. Collecter métriques d'inférence et traces expurgées : latence, utilisation, erreurs, coût estimé.
+6. Valider sortie/streaming et erreurs ; renvoyer des statuts contractuels sans fuite.
 
 ## 3. Diagramme de séquence
+
 ~~~mermaid
 sequenceDiagram
- participant C as Client
+ participant A as Appli
  participant G as AI Gateway
- participant P as Policy Engine
- participant M as Modèle autorisé
- C->>G: Inferer + tenant + correlationId
- G->>P: Vérifier classe des données et budget
- P-->>G: ALLOW pour modèle local
- G->>M: Appel avec timeout borné
- M-->>G: Résultat + consommation
- G-->>C: Résultat filtré
- G->>G: Trace coût et version
+ participant P as Moteur de politiques
+ participant M as Service LLM
+ A->>G: Chat completions, contexte classifié
+ G->>P: Token, tenant, modèle, budget
+ P-->>G: Local seulement, max 4000 tokens
+ G->>M: Inférence version v3
+ M-->>G: Réponse + token usage
+ G-->>A: Réponse et identifiant de trace
 ~~~
 
-## 4. Étapes de conception
-1. Fournir une API unique par tenant et versionner les contrats de requêtes/réponses.
-2. Contrôler token et droits d'accès au **modèle**, puis classification et choix de destination conformes.
-3. Limiter débit, tokens entrée/sortie, concurrence et budget monétaire (unité interne si pricing absent).
-4. Routage vers modèles **déjà autorisés**; ne jamais envoyer des données sensibles à un fallback non conforme.
-5. Gestion des timeouts, circuit breakers et backpressure; distinction erreurs d'inférence vs décisions métier.
-6. Enregistrer modelId/modelVersion, promptVersion, policyVersion, latence et quantité de tokens sans journaux de secrets.
+**Exemple pratique :** Un assistant documentaire interne sollicite un modèle local autorisé. Un client de reporting public peut utiliser une seconde cible approuvée. Les quotas et décisions sont enregistrés sans exposer les documents dans les métriques.
 
-## 5. Contrat illustratif
-~~~json
-{"tenantId":"tenant-demo","requestId":"req-11",
- "dataClass":"internal","modelPolicy":"v1",
- "timeoutMs":2500,"maxBudgetUnits":10,"auditCorrelation":"trace-demo"}
-~~~
-L'enveloppe est pédagogique. Les budgets et permissions sont appliqués dans les services déterministes, jamais par confiance envers un prompt ou une sortie probabiliste.
+## 4. Décisions d'architecture
 
-## 6. Erreurs à prévoir et plan de tests
-- **AI-11-T1 :** Un utilisateur non autorisé à un modèle reçoit un refus avant inférence.
-- **AI-11-T2 :** Un quota épuisé bloque les nouveaux appels sans dépassement silencieux.
-- **AI-11-T3 :** Un modèle non conforme n'est jamais sélectionné lors d'une panne.
-- **AI-11-T4 :** Trace corrélée disponible sans données classifiées en clair.
+- Distinguer AI Gateway (trafic modèle) et API Gateway (contrats métier) ; elles peuvent être deux fonctions du même produit.
+- Exposer authentification service-à-service, identité de l'utilisateur, contexte d'autorisation, tenancy.
+- Quota tokens, requêtes simultanées, coût par équipe et prévention d'épuisement de capacité.
+- Support streaming, cancel, timeouts, modèles versionnés et interprétation des erreurs.
+- Politique de données et résidence inférée **avant** toute sortie du périmètre.
 
-**Observabilité et qualité :** limites économiques, taux d'erreurs, p95/p99, débits, qualité par version de modèle, policy-deny et absence de fuite.
+## 5. Pannes et protections
 
-## 7. Arbitrages et limites
-Une API Gateway protège l'entrée générale HTTP ; une AI Gateway ajoute contrôles d'inférence (tokens, coûts, modèles et politiques). Les deux fonctions peuvent partager une plateforme mais restent distinctes.
+| Échec | Décision sûre |
+|---|---|
+| Requête non autorisée vers autre modèle | Routeur strict à allowlist et politique de confidentialité. |
+| Usage tokens incontrôlé | Cap tokens, coûts, rate limit, admission. |
+| Traçage stocke PII | Désactiver corps, hachage/minimisation des traces. |
+| Gateway indisponible | Réplicas, quotas durables, dégradation contrôlée. |
+| Injection de prompt | Guardrails et API métiers restent indispensables. |
 
-## 8. Questions d'entretien d'architecture
-- **Quel problème est résolu ?** Centraliser authentification des consommateurs, limitation de tokens et coûts, routage, observabilité et application des politiques avant l'inférence. L'AI Gateway ne remplace ni les contrôles de contenu ni l'autorisation métier.
-- **Pourquoi ne pas ajouter ce composant partout ?** Cela augmente coût et complexité ; justifier un gain mesuré avec un corpus de référence, un SLO et des limites de confidentialité.
-- **Qu'apporte OpenShift ?** Disponibilité des workloads, isolation des namespaces/réseaux, secrets, déploiement contrôlé et métriques; pas de garantie sur l'exactitude des inférences.
-- **Quels tests conditionnent le GO ?** Identité/ACL, tests adversariaux, panne d'inférence, version du modèle, contrôles de coût et retour à un état sûr.
+## 6. Tests et preuves attendues
 
-## 9. Voir aussi
-- [Étude d'architecture IA intégrée](../case-study-ai-platform-openShift/README.md)
-- [Matrice de décision AI](../references/decision-matrix.md)
-- [Évaluation de la sécurité et de la qualité](../references/risks-evaluation.md)
+1. Tenant A n'appelle pas les modèles réservés à B.
+2. Budget 4 000 tokens impossible à dépasser.
+3. Données internes restent dans périmètre local même pendant panne.
+4. Une annulation client stoppe la consommation si supportée.
+
+**Mesures :** qualité sur jeu de référence, autorisations effectives, latence p95/p99, coût/tokens, reprise et traçabilité du modèle/version.
+
+## 7. Compromis et critères de choix
+
+Utile avec de multiples modèles ou applications ; coût/latence d'un saut supplémentaire. Ne pas multiplier les gateways sans responsabilité distincte.
+
+## 8. Question d'entretien
+
+**Question :** AI Gateway suffit-elle à protéger une action agentique ?
+
+**Réponse :** Non, l'autorisation d'outils et l'approbation métier doivent aussi être imposées dans les services destinataires.
+
+## 9. Application Cloud Native
+
+- Déployer les services d'IA par contrat explicite sur Kubernetes/OpenShift : CPU/GPU si disponible, IAM, séparation des namespaces, réseau, secrets, quota et observabilité.
+- [Plateforme IA de référence](../reference-ai-platform-openshift/README.md) · [Matrice](../PATTERNS_DECISION_MATRIX.md) · [Sources](../REFERENCES.md).
+- La sortie d'un LLM reste une **hypothèse à contrôler** lorsqu'elle détermine des décisions importantes.

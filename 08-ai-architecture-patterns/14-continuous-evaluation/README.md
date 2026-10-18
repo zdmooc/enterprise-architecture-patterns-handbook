@@ -1,73 +1,94 @@
-# 14 — Continuous Evaluation — qualité, sécurité et dérive
+# 14 — Continuous Evaluation / LLMOps
 
-> Architecture pédagogique et générique. Aucune infrastructure, organisation ni entreprise réelle n'est identifiée. Les exemples de données et seuils sont fictifs.
+> **Famille :** Production / MLOps · **Exemples fictifs, anonymisés, sans attribution à un SI d'entreprise réel**.
 
-## 1. Besoin et contexte
-Mesurer continuellement performances et risques des applications IA en reliant versions du modèle, corpus, prompts, outils et politiques. Un jeu de tests hors ligne ne suffit pas à détecter toutes les dérives en production.
+## 1. Définition et besoin
 
-**Exemple concret :** Un assistant de procédures commence à citer des versions obsolètes après une réindexation de documents : des métriques et tests de non-régression doivent révéler cette dérive.
+Évaluer les applications IA avant mise en production et continuellement après chaque changement de modèle, prompt, index, outil ou politique. On distingue qualité offline sur jeu de référence, tests de sécurité et métriques online.
 
-## 2. Schéma de composants
+**Problème :** Un changement d'embedding ou de modèle améliore les réponses génériques mais dégrade l'exactitude de procédures techniques et augmente la proportion de citations non pertinentes.
+
+## 2. Architecture logique
+
 ~~~mermaid
 flowchart TB
- DATA["Jeu d'or versionné + questions difficiles"] --> RUN["Exécution offline et canary"]
- RUN --> MET["Qualité, groundedness, sécurité, latence, coût"]
- PROD["Traces de production anonymisées + feedback"] --> MET
- MET --> TH{"Seuils et tests négatifs satisfaits ?"}
- TH -->|Oui| PROMO["Promotion/maintien version"]
- TH -->|Non| BLOCK["Bloquer changement / rollback / analyse"]
- BLOCK --> DATA
+ DATA["Jeu de référence versionné"] --> TEST["Évaluations offline : RAG, qualité, sécurité"]
+ CAND["Nouvelle version modèle/prompt/index"] --> TEST
+ TEST --> GATE{"Seuils qualité / risque satisfaits ?"}
+ GATE -->|Non| FIX["Correction / abandon"]
+ GATE -->|Oui| CAN["Canary / shadow"]
+ CAN --> OBS["Observabilité + audit des réponses"]
+ OBS --> REV["Revue et boucle d'amélioration"]
+ REV --> DATA
 ~~~
 
+### Déroulement
+
+1. Créer un jeu de référence versionné : questions, réponses attendues, passages probants et permissions.
+2. Mesurer offline retrieval (recall@k), fidélité aux sources, qualité métier, abstentions justifiées et schémas.
+3. Tester sécurité/adversarial : prompt injection, exfiltration, données hors périmètre, tool misuse.
+4. Déployer en environnement de qualification/shadow, puis canary selon profil de risque.
+5. Surveiller online latence, tokens, coûts, retours utilisateurs, drift des requêtes et erreurs de citations.
+6. Analyser les régressions ; rollback modèle/prompt/index et mise à jour contrôlée du jeu de référence.
+
 ## 3. Diagramme de séquence
+
 ~~~mermaid
 sequenceDiagram
  participant CI as Pipeline
- participant E as Évaluateur
- participant R as Registry/manifest
- participant PROD as Production
- CI->>E: Évaluer model+prompt+index versionnés
- E-->>CI: Scores + tests adversariaux
- CI->>R: Promotion si seuils
- R->>PROD: Canary autorisé
- PROD-->>E: Métriques / dérive sans PII
- E-->>CI: Décision maintenir ou rollback
+ participant E as Eval offline
+ participant P as Plateforme canary
+ participant A as Architecte / Owner
+ CI->>E: Candidate v4 + golden set
+ E-->>CI: rappel@k, groundedness, attaque, latence
+ CI->>A: Rapport et seuils
+ A-->>CI: Approve canary
+ CI->>P: Shadow / canary sans outil de mutation
+ P-->>A: Résultats réels agrégés, anonymisés
+ A-->>CI: Promote / rollback
 ~~~
 
-## 4. Étapes de conception
-1. Créer des jeux d'or représentatifs avec droits d'accès et étiquettes de confiance.
-2. Mesurer séparément retrieval, groundedness, exactitude métier, sécurité, biais et refus corrects.
-3. Versionner corpus, modèle, prompt, route, outils et politique; le même test doit être reproductible.
-4. Exécuter tests sur chaque changement, canary avant promotion et surveillance de dérive en production.
-5. Échantillonner des traces anonymisées en respectant confidentialité et rétention; ne pas réentraîner avec des données client sans base légale.
-6. Fixer seuils et responsables de décision; corriger puis rejouer la non-régression.
+**Exemple pratique :** Une mise à jour d'index change la procédure retrouvée pour « confirmation bancaire perdue ». Sur 100 questions fictives validées, on constate que certaines citations ne prouvent plus la conclusion. Le gate bloque le déploiement avant production.
 
-## 5. Contrat illustratif
-~~~json
-{"tenantId":"tenant-demo","requestId":"req-14",
- "dataClass":"internal","modelPolicy":"v1",
- "timeoutMs":2500,"maxBudgetUnits":10,"auditCorrelation":"trace-demo"}
-~~~
-L'enveloppe est pédagogique. Les budgets et permissions sont appliqués dans les services déterministes, jamais par confiance envers un prompt ou une sortie probabiliste.
+## 4. Décisions d'architecture
 
-## 6. Erreurs à prévoir et plan de tests
-- **AI-14-T1 :** Prompt injection réussit sur banc d'essai → blocage déploiement.
-- **AI-14-T2 :** Citation de document retiré → alerte de fraîcheur.
-- **AI-14-T3 :** Le juge LLM note trop haut une réponse fausse → calibration humaine.
-- **AI-14-T4 :** Hausse de coût et de p95 malgré qualité stable → revue avant promotion.
+- Jeu de référence représentatif, avec cas rares, langues et scénarios de refus.
+- Critères objectifs séparant génération, retrieval, sécurité, coût et délai.
+- Revue humaine échantillonnée et analyse du désaccord entre juges automatisés.
+- Cohérence des versions modèle, embeddings, index, prompt, guardrail et data lineage.
+- Définir qui approuve rollback, canary et modification de seuils.
 
-**Observabilité et qualité :** groundedness, factuality, precision citations, taux d'abstention, sécurité red-team, coût/tokens, p95, drift et accord juges humains.
+## 5. Pannes et protections
 
-## 7. Arbitrages et limites
-Une bonne disponibilité technique d'inférence ne signifie pas qualité. L'évaluation ne doit pas faire appel uniquement au modèle évalué comme son propre juge.
+| Échec | Décision sûre |
+|---|---|
+| Golden set trop simple | Inclure cas difficiles et adversariaux, stratifier par segment. |
+| Judge LLM biaisé ou instable | Références humaines, calibration et règles déterministes. |
+| Observations online contiennent PII | Agrégation/minimisation, consentements et rétention. |
+| Mise à jour index sans réévaluation | Gate déclenché sur toute modification de corpus/schéma. |
+| Régression de sécurité non détectée | Red-team continu et simulation de tool misuse. |
 
-## 8. Questions d'entretien d'architecture
-- **Quel problème est résolu ?** Mesurer continuellement performances et risques des applications IA en reliant versions du modèle, corpus, prompts, outils et politiques. Un jeu de tests hors ligne ne suffit pas à détecter toutes les dérives en production.
-- **Pourquoi ne pas ajouter ce composant partout ?** Cela augmente coût et complexité ; justifier un gain mesuré avec un corpus de référence, un SLO et des limites de confidentialité.
-- **Qu'apporte OpenShift ?** Disponibilité des workloads, isolation des namespaces/réseaux, secrets, déploiement contrôlé et métriques; pas de garantie sur l'exactitude des inférences.
-- **Quels tests conditionnent le GO ?** Identité/ACL, tests adversariaux, panne d'inférence, version du modèle, contrôles de coût et retour à un état sûr.
+## 6. Tests et preuves attendues
 
-## 9. Voir aussi
-- [Étude d'architecture IA intégrée](../case-study-ai-platform-openShift/README.md)
-- [Matrice de décision AI](../references/decision-matrix.md)
-- [Évaluation de la sécurité et de la qualité](../references/risks-evaluation.md)
+1. Le pipeline refuse un score de fidélité sous seuil.
+2. Retirer un document d'accès restreint ne provoque pas fuite.
+3. Rétablir version antérieure du corpus et modèle possible.
+4. Chaque sortie critique est associée à des références ou abstention.
+
+**Mesures :** qualité sur jeu de référence, autorisations effectives, latence p95/p99, coût/tokens, reprise et traçabilité du modèle/version.
+
+## 7. Compromis et critères de choix
+
+Nécessaire pour fiabilité mesurée ; attention à la validité des métriques et au coût des évaluations.
+
+## 8. Question d'entretien
+
+**Question :** Peut-on évaluer uniquement le taux de réponses jugées utiles ?
+
+**Réponse :** Non : mesurer également exactitude aux preuves, refus, permissions, latence/coût, robustesse et sécurité.
+
+## 9. Application Cloud Native
+
+- Déployer les services d'IA par contrat explicite sur Kubernetes/OpenShift : CPU/GPU si disponible, IAM, séparation des namespaces, réseau, secrets, quota et observabilité.
+- [Plateforme IA de référence](../reference-ai-platform-openshift/README.md) · [Matrice](../PATTERNS_DECISION_MATRIX.md) · [Sources](../REFERENCES.md).
+- La sortie d'un LLM reste une **hypothèse à contrôler** lorsqu'elle détermine des décisions importantes.
