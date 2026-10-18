@@ -50,7 +50,7 @@ flowchart TB
     ORC --> ROUTE --> SVC
     ORC --> TOOLS
     TOOLS --> READ
-    TOOLS -. "Seulement avec approbation" .-> HITL
+    TOOLS -.->|Seulement avec approbation| HITL
     HITL --> MUT
     RAG --> EVAL
     SVC --> EVAL

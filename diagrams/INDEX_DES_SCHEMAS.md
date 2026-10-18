@@ -1,8 +1,18 @@
-# Atlas des schémas illustratifs — Intégration bancaire
+# Atlas des schémas illustratifs — Intégration bancaire et architectures IA
 
 **Objet :** retrouver rapidement tous les schémas Mermaid éditables. Les exemples reposent sur un virement fictif de **500 €** ; les acteurs sont génériques (canal, passerelle, cœur bancaire, CSM, service de notification). **Aucun schéma ne présente une architecture d'entreprise réelle.**
 
-## Navigation par pattern
+## Nouveau : architecture IA
+
+- [15 patterns d'IA générative, agentique, sécurité et production](../08-ai-architecture-patterns/README.md) : **30 diagrammes** dans les fiches.
+- [Architecture de référence IA sur OpenShift](../08-ai-architecture-patterns/reference-ai-platform-openshift/README.md) : **2 diagrammes**.
+- [Séquences d'une plateforme IA](../08-ai-architecture-patterns/reference-ai-platform-openshift/sequences.md) : **6 diagrammes de séquence** (RAG, outils, HITL, événement, fallback, évaluation).
+- [Matrice de décision IA](../08-ai-architecture-patterns/PATTERNS_DECISION_MATRIX.md) : **1 arbre de décision**.
+- [Index des patterns IA](../08-ai-architecture-patterns/README.md) : **1 cartographie transversale**.
+
+En complément des **49 diagrammes historiques d'intégration et paiement**, la famille IA ajoute **40 diagrammes**, soit **89 diagrammes Mermaid** dans les sources du dépôt.
+
+## Navigation par pattern d'intégration
 
 | Pattern | Fiche et illustrations directement visibles | Schémas contenus dans la fiche |
 |---|---|---:|

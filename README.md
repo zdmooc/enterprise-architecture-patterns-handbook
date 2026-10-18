@@ -1,10 +1,20 @@
 # Enterprise Architecture Patterns Handbook
 
-**De la théorie aux architectures bancaires, Java/JEE et Cloud Native (Kubernetes / OpenShift).**
+**De la théorie aux architectures d'intégration, bancaires, IA générative, agentique et Cloud Native (Kubernetes / OpenShift).**
 
-Référentiel d'architecture en français : principes, responsabilités, critères de choix, scénarios d'échec, diagrammes, contrats, sécurité, observabilité et exercices. Chaque pattern est expliqué à travers un fil conducteur : **un virement bancaire de 500 €**.
+Référentiel d'architecture en français : principes, responsabilités, critères de choix, scénarios d'échec, diagrammes, contrats, sécurité, observabilité et exercices. Les patterns d'intégration utilisent un **virement fictif de 500 €** ; les patterns IA utilisent un **assistant documentaire et des investigations fictives**, sans outil financier opérationnel.
 
 > **Périmètre et confidentialité.** Tous les cas bancaires sont des **illustrations fictives**. Aucun établissement, fournisseur ou client réel n'est identifié ; aucune architecture interne ou configuration de production n'est revendiquée. Les valeurs, noms de files, APIs, formats de messages et seuils sont des exemples à valider.
+
+## Nouveau : 15 patterns d'architecture IA
+
+**[Accéder au parcours complet — Architecture IA](08-ai-architecture-patterns/README.md)**
+
+**[Architecture de référence IA sur OpenShift](08-ai-architecture-patterns/reference-ai-platform-openshift/README.md)** · **[6 séquences de bout en bout](08-ai-architecture-patterns/reference-ai-platform-openshift/sequences.md)** · **[30 scénarios de qualification](08-ai-architecture-patterns/reference-ai-platform-openshift/risks-and-tests.md)**.
+
+15 fiches détaillées (RAG, Advanced RAG, Model Router, Semantic Cache, ReAct/Tool Calling, Planner–Executor, Multi-Agent, Evaluator, Guardrails, HITL, AI Gateway, Model Serving, Fallback, Continuous Evaluation, Event-Driven AI), **30 diagrammes dans ces fiches**, matrice de sélection et laboratoire de contrôle d'accès et d'approbation fictive.
+
+[Laboratoire IA : ACL documentaire, outils et validation humaine](labs/ai-rag-guardrails/README.md) — Python standard uniquement, sans vrai LLM ni connexion bancaire.
 
 ## Étude d'architecture de référence — document unique
 
@@ -14,7 +24,7 @@ Document canonique complet : 26 sections, architecture solution et technique, fl
 
 ## Parcours illustré et audit de couverture
 
-- **[Atlas des schémas Mermaid — 10 patterns](diagrams/INDEX_DES_SCHEMAS.md)** : 34 diagrammes dans les dix fiches, navigation par scénario, carte transversale.
+- **[Atlas des schémas Mermaid — 25 patterns](diagrams/INDEX_DES_SCHEMAS.md)** : 34 schémas dans les fiches d'intégration, 30 schémas dans les fiches IA, et cas transversaux.
 - **[Audit de couverture des notions étudiées](references/AUDIT_COUVERTURE.md)** : correspondance détaillée entre cours, exemples, diagrammes et fichiers.
 - **[10 exercices corrigés et cas transversal](references/EXERCICES_CORRIGES.md)** : auto-évaluation par pattern et panne multisite.
 - Tous les noms d'établissements, de sociétés clientes, de fournisseurs et d'éditeurs sont **neutralisés** dans les documents publiés sur la branche courante.
@@ -72,7 +82,7 @@ Java / Spring Boot, OpenShift / Kubernetes, PostgreSQL, messagerie MQ, Apache Ka
 
 ## Statut
 
-**V1 — référentiel pédagogique et conception de référence.** Les exemples doivent être affinés par des tests, des SLO, des contraintes réglementaires et un dossier d'architecture avant tout usage en production.
+**V1 — référentiel pédagogique de 25 patterns, avec deux architectures de référence (paiements et IA).** Les exemples doivent être affinés par des tests, des SLO, des contraintes réglementaires et un dossier d'architecture avant tout usage en production.
 
 **Copyright © 2026 Zidane Djamal.** Aucun octroi de licence de réutilisation n'est implicite. Les références externes appartiennent à leurs éditeurs respectifs.
 
