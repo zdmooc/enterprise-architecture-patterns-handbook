@@ -1,7 +1,7 @@
-"""Read-only QA for the 55 pattern fiches, Mermaid diagrams, links and anonymization.
+"""Read-only QA: 151 architecture pattern fiches, Mermaid sources, links and anonymization.
 
 Usage: python scripts/audit-patterns.py
-No web access, no cluster mutation.
+Does not write files, contact networks or access a cluster.
 """
 from pathlib import Path
 import re
@@ -9,10 +9,17 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 FAMILIES = [
-    ("integration", ROOT / "01-integration-patterns", "*/README.md", 10),
-    ("ai", ROOT / "08-ai-architecture-patterns", "[0-9][0-9]-*/README.md", 15),
-    ("platform", ROOT / "09-containerization-kubernetes-openshift-patterns",
-     "[0-9][0-9]-*/*/README.md", 30),
+    ("integration", "01-integration-patterns", "*/README.md", 10),
+    ("ai", "08-ai-architecture-patterns", "[0-9][0-9]-*/README.md", 15),
+    ("platform", "09-containerization-kubernetes-openshift-patterns", "[0-9][0-9]-*/*/README.md", 30),
+    ("enterprise", "10-enterprise-architecture-patterns", "[0-9][0-9]-*/README.md", 12),
+    ("application", "11-application-software-patterns", "[0-9][0-9]-*/README.md", 15),
+    ("data", "12-data-architecture-patterns", "[0-9][0-9]-*/README.md", 12),
+    ("resilience", "13-resilience-distributed-systems-patterns", "[0-9][0-9]-*/README.md", 15),
+    ("security", "14-security-zero-trust-patterns", "[0-9][0-9]-*/README.md", 12),
+    ("cloud", "15-cloud-hybrid-architecture-patterns", "[0-9][0-9]-*/README.md", 10),
+    ("sre", "16-performance-sre-patterns", "[0-9][0-9]-*/README.md", 10),
+    ("modernization", "17-legacy-modernization-patterns", "[0-9][0-9]-*/README.md", 10),
 ]
 BANNED = [
     re.compile(r"\bCAPS\b"),
@@ -32,43 +39,43 @@ def audit() -> int:
     errors: list[str] = []
     diagrams = 0
     markdown_files = list(ROOT.rglob("*.md"))
-    for p in markdown_files:
-        data = p.read_text(encoding="utf-8")
-        rel = p.relative_to(ROOT)
+    for file in markdown_files:
+        data = file.read_text(encoding="utf-8")
+        rel = file.relative_to(ROOT)
         diagrams += sum(1 for line in data.splitlines() if line.strip() in MERMAID_FENCES)
-        if data.count(FENCE) % 2 != 0:
+        if data.count(FENCE) % 2:
             errors.append(f"Unbalanced Markdown code fences: {rel}")
         for expression in BANNED:
-            hit = expression.search(data)
-            if hit:
-                errors.append(f"Company/client name in {rel}: {hit.group()}")
+            for hit in expression.finditer(data):
+                line = data[:hit.start()].count("\n") + 1
+                errors.append(f"Client name: {rel}:{line}, text={hit.group()}")
         for link in LINK_RE.findall(data):
             if link.startswith(("http:", "https:", "mailto:", "#", "data:")):
                 continue
-            clean = link.split("#")[0].split("?")[0]
-            target = (p.parent / clean).resolve()
+            target = (file.parent / link.split("#")[0].split("?")[0]).resolve()
             if not target.is_relative_to(ROOT) or not target.exists():
-                errors.append(f"Broken relative link: {rel}: {link}")
+                errors.append(f"Broken relative link: {rel} -> {link}")
 
     counts = {}
     for label, folder, pattern, expected in FAMILIES:
-        cards = list(folder.glob(pattern))
+        cards = list((ROOT / folder).glob(pattern))
         counts[label] = len(cards)
         if len(cards) != expected:
-            errors.append(f"Expected {expected} {label} patterns, got {len(cards)}")
+            errors.append(f"Expected {expected} {label} patterns, found {len(cards)}")
         for card in cards:
-            text = card.read_text(encoding="utf-8")
-            n = sum(1 for line in text.splitlines() if line.strip() in MERMAID_FENCES)
+            content = card.read_text(encoding="utf-8")
+            n = sum(1 for line in content.splitlines() if line.strip() in MERMAID_FENCES)
             if n < 2:
-                errors.append(f"Less than 2 diagrams: {card.relative_to(ROOT)}")
-
-    print(f"Files: {len(markdown_files)} | diagrams: {diagrams} | patterns: {counts}")
+                errors.append(f"Less than two diagrams: {card.relative_to(ROOT)}")
+    if sum(counts.values()) != 151:
+        errors.append(f"Expected 151 pattern fiches, found {sum(counts.values())}")
+    print(f"Markdown files: {len(markdown_files)} | Mermaid diagrams: {diagrams} | family counts: {counts}")
     if errors:
-        for message in errors[:50]:
-            print("FAIL:", message)
+        for e in errors[:80]:
+            print("FAIL:", e)
         print(f"FAILED: {len(errors)} issues")
         return 1
-    print("PASS: 55 fiches, Mermaid sources, internal links, restricted company names")
+    print("PASS: 151 fiches, diagrams, relative links and restricted client names")
     return 0
 
 

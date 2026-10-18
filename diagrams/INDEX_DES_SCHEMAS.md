@@ -1,6 +1,23 @@
-# Atlas des schémas illustratifs — Intégration, IA et OpenShift
+# Atlas des schémas illustratifs — Référentiel des 151 patterns
 
 **Objet :** retrouver rapidement tous les schémas Mermaid éditables. Les exemples reposent sur un virement fictif de **500 €** ; les acteurs sont génériques (canal, passerelle, cœur bancaire, CSM, service de notification). **Aucun schéma ne présente une architecture d'entreprise réelle.**
+
+## Nouveau : 96 patterns d'architecture d'entreprise et de solutions
+
+Chaque fiche contient **2 diagrammes Mermaid** (architecture logique et séquence), soit **192 diagrammes** dans les huit familles.
+
+| Famille | Fiches et schémas |
+|---|---|
+| [Urbanisation et entreprise](../10-enterprise-architecture-patterns/README.md) | 12 fiches, 24 Mermaid |
+| [Applicative](../11-application-software-patterns/README.md) | 15 fiches, 30 Mermaid |
+| [Données](../12-data-architecture-patterns/README.md) | 12 fiches, 24 Mermaid |
+| [Résilience distribuée](../13-resilience-distributed-systems-patterns/README.md) | 15 fiches, 30 Mermaid |
+| [Sécurité Zero Trust](../14-security-zero-trust-patterns/README.md) | 12 fiches, 24 Mermaid |
+| [Cloud hybride](../15-cloud-hybrid-architecture-patterns/README.md) | 10 fiches, 20 Mermaid |
+| [Performance/SRE](../16-performance-sre-patterns/README.md) | 10 fiches, 20 Mermaid |
+| [Modernisation](../17-legacy-modernization-patterns/README.md) | 10 fiches, 20 Mermaid |
+
+À consulter aussi : **[Guide senior transversal](../references/GUIDE_ARCHITECTE_151_PATTERNS.md)**, études de cas et matrices dans les huit familles.
 
 ## Nouveau : 30 patterns Docker / Kubernetes / OpenShift
 

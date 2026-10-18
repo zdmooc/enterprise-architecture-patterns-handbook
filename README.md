@@ -1,10 +1,27 @@
 # Enterprise Architecture Patterns Handbook
 
-**55 patterns : intégration, paiements, IA, Docker/OCI, Kubernetes, OpenShift et Cloud Native.**
+**151 patterns : architecture d'entreprise, solutions, applicative, intégration, données, résilience, sécurité, cloud hybride, SRE, IA et OpenShift.**
 
 Référentiel d'architecture en français : principes, responsabilités, critères de choix, scénarios d'échec, diagrammes, contrats, sécurité, observabilité et exercices. Les patterns d'intégration utilisent un **virement fictif de 500 €** ; les patterns IA utilisent un **assistant documentaire et des investigations fictives**, sans outil financier opérationnel.
 
 > **Périmètre et confidentialité.** Tous les cas bancaires sont des **illustrations fictives**. Aucun établissement, fournisseur ou client réel n'est identifié ; aucune architecture interne ou configuration de production n'est revendiquée. Les valeurs, noms de files, APIs, formats de messages et seuils sont des exemples à valider.
+
+## Référentiel complet — 151 patterns (96 nouveaux)
+
+**[Guide de l'architecte senior : choisir parmi 151 patterns](references/GUIDE_ARCHITECTE_151_PATTERNS.md)** · **[Bibliographie et standards](references/ARCHITECTURE_REFERENCES.md)**.
+
+| Famille | Fiches | Cas d'étude, schémas et matrices |
+|---|---:|---|
+| [10 — Architecture d'entreprise et urbanisation](10-enterprise-architecture-patterns/README.md) | 12 | Capabilities, cartographies SI, cibles, transitions, roadmap, gouvernance |
+| [11 — Architecture applicative](11-application-software-patterns/README.md) | 15 | DDD, architecture hexagonale, monolithe modulaire, CQRS |
+| [12 — Architecture de données](12-data-architecture-patterns/README.md) | 12 | Data ownership, warehouse, lakehouse, data mesh, CDC |
+| [13 — Systèmes distribués et résilience](13-resilience-distributed-systems-patterns/README.md) | 15 | Consensus, quorum, active/active contrôlé, fencing, PRA |
+| [14 — Zero Trust et sécurité](14-security-zero-trust-patterns/README.md) | 12 | IAM, PEP/PDP, mTLS, clés, secrets, segmentation |
+| [15 — Cloud hybride](15-cloud-hybrid-architecture-patterns/README.md) | 10 | Landing zone, réseaux hybrides, placement et exit |
+| [16 — Performance et SRE](16-performance-sre-patterns/README.md) | 10 | Latence, caches, quotas, SLI/SLO, capacity planning |
+| [17 — Modernisation du legacy](17-legacy-modernization-patterns/README.md) | 10 | Rehost, replatform, refactor, strangler, cutover |
+
+Chacune des **96 nouvelles fiches** comprend deux diagrammes Mermaid, un exemple fictif, des arbitrages d'architecture, des scénarios d'échec, des tests et une question d'entretien. Chaque famille dispose aussi de son **cas d'étude et sa matrice de décision**. Les techniques déjà couvertes dans les 55 premières fiches sont référencées lorsqu'elles sont réutilisées dans un nouveau contexte, plutôt que présentées comme des inventions différentes.
 
 ## Nouveau : 30 patterns Docker / Kubernetes / OpenShift
 
@@ -32,7 +49,7 @@ Document canonique complet : 26 sections, architecture solution et technique, fl
 
 ## Parcours illustré et audit de couverture
 
-- **[Atlas des schémas Mermaid — 25 patterns](diagrams/INDEX_DES_SCHEMAS.md)** : 34 schémas dans les fiches d'intégration, 30 schémas dans les fiches IA, et cas transversaux.
+- **[Atlas des schémas Mermaid — 151 patterns](diagrams/INDEX_DES_SCHEMAS.md)** : 34 schémas dans les fiches d'intégration, 30 schémas dans les fiches IA, et cas transversaux.
 - **[Audit de couverture des notions étudiées](references/AUDIT_COUVERTURE.md)** : correspondance détaillée entre cours, exemples, diagrammes et fichiers.
 - **[10 exercices corrigés et cas transversal](references/EXERCICES_CORRIGES.md)** : auto-évaluation par pattern et panne multisite.
 - Tous les noms d'établissements, de sociétés clientes, de fournisseurs et d'éditeurs sont **neutralisés** dans les documents publiés sur la branche courante.
@@ -72,7 +89,7 @@ Ce référentiel est **générique et anonymisé**, sans noms d'entreprises clie
 
 ## Convention d'une fiche
 
-**Problème → contexte et forces → solution → séquence → exemple bancaire → garanties → modes de panne → sécurité/observabilité → compromis → quand éviter → critères de revue d'architecture → questions d'entretien → références.**
+**Problème → contexte et forces → solution → séquence → exemple fictif → garanties → modes de panne → sécurité/observabilité → compromis → quand éviter → critères de revue d'architecture → questions d'entretien → références.**
 
 ## Principes non négociables sur le paiement
 
@@ -90,7 +107,7 @@ Java / Spring Boot, OpenShift / Kubernetes, PostgreSQL, messagerie MQ, Apache Ka
 
 ## Statut
 
-**V2 — référentiel pédagogique de 55 patterns, avec trois architectures de référence (paiements, IA et migration Java/JEE vers OpenShift).** Les exemples doivent être affinés par des tests, des SLO, des contraintes réglementaires et un dossier d'architecture avant tout usage en production.
+**V3 — référentiel pédagogique de 151 patterns, huit nouvelles familles et des cas d'étude d'entreprise, applicatifs, données, sécurité, résilience, cloud hybride, SRE et modernisation.** Les exemples doivent être affinés par des tests, des SLO, des contraintes réglementaires et un dossier d'architecture avant tout usage en production.
 
 **Copyright © 2026 Zidane Djamal.** Aucun octroi de licence de réutilisation n'est implicite. Les références externes appartiennent à leurs éditeurs respectifs.
 
