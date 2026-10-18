@@ -19,6 +19,16 @@ Document canonique complet : 26 sections, architecture solution et technique, fl
 - **[10 exercices corrigés et cas transversal](references/EXERCICES_CORRIGES.md)** : auto-évaluation par pattern et panne multisite.
 - Tous les noms d'établissements, de sociétés clientes, de fournisseurs et d'éditeurs sont **neutralisés** dans les documents publiés sur la branche courante.
 
+## Architecture IA — 15 patterns supplémentaires
+
+**[Accéder au référentiel IA générative, agentique et MLOps](08-ai-architecture-patterns/README.md)** : quinze fiches illustrées (RAG, Advanced RAG, Router, cache, agents, Guardrails, HITL, AI Gateway, Serving, évaluation, EDA IA), schémas Mermaid et tests d'architecture.
+
+- [Architecture IA de référence sur OpenShift](08-ai-architecture-patterns/reference-ai-platform-openshift/README.md) : RAG et ACL, services d'inférence, outils, contrôle humain, sécurité et résilience.
+- [Matrice de décision IA](08-ai-architecture-patterns/PATTERNS_DECISION_MATRIX.md).
+- [Laboratoire Python IA : RAG ACL, politiques et approbations](labs/ai-rag-guardrails/README.md).
+
+Ce référentiel est **générique et anonymisé**, sans noms d'entreprises clientes ni revendication de déploiement de production.
+
 ## Parcours : 10 patterns d'intégration et de résilience
 
 | # | Pattern | Question de l'architecte |
