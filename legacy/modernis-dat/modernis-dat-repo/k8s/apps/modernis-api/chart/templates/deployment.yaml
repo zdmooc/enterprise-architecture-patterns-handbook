@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "modernis-api.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "modernis-api.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "modernis-api.name" . }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "modernis-api.name" . }}
+        app: modernis-api
+    spec:
+      containers:
+        - name: api
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          env:
+            - name: JAVA_OPTS
+              value: {{ .Values.env.JAVA_OPTS | quote }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}

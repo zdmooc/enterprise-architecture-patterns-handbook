@@ -133,3 +133,7 @@ Java / Spring Boot, OpenShift / Kubernetes, PostgreSQL, messagerie MQ, Apache Ka
 - [Tests Java GoF](labs/java-gof/README.md) et validation catalogue avec `python scripts/audit-patterns.py`.
 
 Les anciennes références portant « 151 patterns » décrivent le **socle V3**. L'extension V4 ne revendique aucune exécution de logiciel propriétaire ni compatibilité certifiée par un éditeur.
+
+## Historical preservation — modernis-dat (20 Oct 2026)
+
+Original archived source reference(s) are preserved without modifications under [legacy/modernis-dat/](legacy/modernis-dat/MIGRATION.md), with 62 SHA-verified files, including any binary files and original license documents. This is not a claim of runtime validation.

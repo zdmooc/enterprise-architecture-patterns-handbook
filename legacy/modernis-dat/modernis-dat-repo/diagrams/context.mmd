@@ -1,0 +1,8 @@
+flowchart LR
+  U[Utilisateurs internes] -->|HTTPS 443| GW[API Gateway / API Mgmt]
+  GW -->|HTTPS 443| RH[Portail RH / Services]
+  GW -->|HTTPS 443| CRM[CRM Interne / Services]
+  GW -->|HTTPS 443| ERP[ERP Finance / Services]
+  RH -->|JDBC 1521| ORA[(Oracle)]
+  CRM -->|Rules| RE[Rules Engine]
+  RH -->|S3 443| S3[(S3 Object Storage)]
