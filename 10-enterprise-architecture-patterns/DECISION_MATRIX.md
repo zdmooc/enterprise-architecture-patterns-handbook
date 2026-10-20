@@ -1,39 +1,27 @@
-# Matrice de sélection et ADR — Architecture d'entreprise et urbanisation
+# Matrice de décision — Architecture d'entreprise
 
-## Choisir à partir d'une contrainte, pas d'un outil
+**Version corrigée :** chaque besoin renvoie au pattern portant réellement ce nom. Aucun résultat d'un POC n'est implicitement validé.
 
-| Question / contrainte | Pattern ou décision candidate | Preuve minimale |
+| Besoin réel | Pattern | Preuve à fournir |
 |---|---|---|
-| Architecture cible par domaine métier ? | [Business capability mapping](01-business-capability-mapping/README.md) | Contrat, risque et test de scénario P0 |
-| Phases de migration et propriétaire d'écriture unique ? | [Value stream mapping](02-value-stream-mapping/README.md) | Contrat, risque et test de scénario P0 |
-| Gouvernance ADR et dérogations ? | [Business domain architecture](03-business-domain-architecture/README.md) | Contrat, risque et test de scénario P0 |
-| Rationalisation à partir de critères valeur/risque ? | [Application landscape](04-application-landscape/README.md) | Contrat, risque et test de scénario P0 |
+| Aligner applications et capacités métier | [business capability mapping](01-business-capability-mapping/README.md) | Contrat, cas négatif, test de panne, ADR |
+| Réduire les délais et ruptures du parcours métier | [value stream mapping](02-value-stream-mapping/README.md) | Contrat, cas négatif, test de panne, ADR |
+| Délimiter responsabilités entre domaines | [business domain architecture](03-business-domain-architecture/README.md) | Contrat, cas négatif, test de panne, ADR |
+| Visualiser applications et interdépendances | [application landscape](04-application-landscape/README.md) | Contrat, cas négatif, test de panne, ADR |
+| Tracer échanges et dépendances inter-SI | [enterprise flow mapping](05-enterprise-flow-mapping/README.md) | Contrat, cas négatif, test de panne, ADR |
+| Décider conserver, refondre ou retirer | [application portfolio rationalization](06-application-portfolio-rationalization/README.md) | Contrat, cas négatif, test de panne, ADR |
+| Formaliser architecture cible et NFR | [target architecture blueprint](07-target-architecture-blueprint/README.md) | Contrat, cas négatif, test de panne, ADR |
+| Concevoir états de transition exploitables | [transition architecture](08-transition-architecture/README.md) | Contrat, cas négatif, test de panne, ADR |
+| Planifier les vagues et risques | [transformation roadmap](09-transformation-roadmap/README.md) | Contrat, cas négatif, test de panne, ADR |
+| Mutualiser briques contractuelles | [architecture building blocks](10-architecture-building-blocks/README.md) | Contrat, cas négatif, test de panne, ADR |
+| Documenter décisions et dérogations | [architecture governance adr](11-architecture-governance-adr/README.md) | Contrat, cas négatif, test de panne, ADR |
+| Tester conformité cible aux exigences | [architecture compliance nfr](12-architecture-compliance-nfr/README.md) | Contrat, cas négatif, test de panne, ADR |
 
-## Chemin d'arbitrage
+## Méthode
 
-~~~mermaid
-flowchart TD
-  A["Besoin réel et criticité"] --> B{"Invariants et NFR spécifiés ?"}
-  B -->|Non| X["Cadrage, collecte de preuves"]
-  B -->|Oui| C["Comparer les options et coûts"]
-  C --> D{"Tests sécurité / pannes concluants ?"}
-  D -->|Non| P["POC / remédiation / NO GO"]
-  D -->|Oui| GO["ADR avec validation et runbook"]
-~~~
+1. Définir contexte métier, propriétaire de données, NFR et contraintes de licences.
+2. Comparer le minimum viable avec l'option utilisant ce pattern, risques et coûts inclus.
+3. Tester nominal + anomalie + reprise ; expliciter ce qui n'est pas prouvé.
+4. Formaliser décision, responsable, date de revue et conditions de retour arrière.
 
-## Grille de lecture
-
-| Critère | Question à poser au comité |
-|---|---|
-| Métier | Quelle capacité et quel processus changent ? |
-| Fonctionnel | Quels contrats et états sont impactés ? |
-| Sécurité | Quelle identité et quelle frontière d'autorisation ? |
-| Résilience | Que se passe-t-il entre commit et réponse perdue ? |
-| Performance | p95/p99, pointe, goulots et capacité survivante mesurés ? |
-| Données | Quel propriétaire et quel mode de réconciliation ? |
-| Déploiement | Migration, rollback, compatibilité et propriétaires d'exploitation ? |
-| Économie | Coûts/licences, alternatives et plan d'exit ? |
-
-## À éviter
-
-Un choix technique **ne** démontre **pas** automatiquement haute disponibilité, sécurité, conformité, cohérence financière ou portabilité. Les preuves attendues et les limites sont détaillées dans les fiches et le [cas d'étude](CASE_STUDY.md).
+[Sommaire famille](README.md) · [Guide de sélection](../references/GUIDE_ARCHITECTE_151_PATTERNS.md)
