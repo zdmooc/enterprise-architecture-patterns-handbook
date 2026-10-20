@@ -1,39 +1,24 @@
-# Matrice de sélection et ADR — Sécurité, identité et Zero Trust
+# Matrice de décision — Sécurité
 
-## Choisir à partir d'une contrainte, pas d'un outil
+Question concrète → fiche nommée correctement → preuve minimale.
 
-| Question / contrainte | Pattern ou décision candidate | Preuve minimale |
+| Besoin | Pattern | Gate d'acceptation |
 |---|---|---|
-| Zero Trust à chaque frontière ? | [Zero trust](01-zero-trust/README.md) | Contrat, risque et test de scénario P0 |
-| PEP côté service métier pour droits objet ? | [Policy decision enforcement](02-policy-decision-enforcement/README.md) | Contrat, risque et test de scénario P0 |
-| Identités courtes durées ? | [Defense in depth](03-defense-in-depth/README.md) | Contrat, risque et test de scénario P0 |
-| Approvisionnement et révocation des clés sous contrôle ? | [Identity federation](04-identity-federation/README.md) | Contrat, risque et test de scénario P0 |
+| Contrôler chaque demande sans confiance réseau implicite | [zero trust](01-zero-trust/README.md) | Test d'incident et contrôle négatif |
+| Distinguer moteur de politique et point de refus | [policy decision enforcement](02-policy-decision-enforcement/README.md) | Test d'incident et contrôle négatif |
+| Superposer contrôles indépendants | [defense in depth](03-defense-in-depth/README.md) | Test d'incident et contrôle négatif |
+| Accepter identités entre domaines de confiance | [identity federation](04-identity-federation/README.md) | Test d'incident et contrôle négatif |
+| Authentifier les workloads sans secrets fixes | [workload identity](05-workload-identity/README.md) | Test d'incident et contrôle négatif |
+| Autoriser chaque objet par rôle et attribut | [rbac abac](06-rbac-abac/README.md) | Test d'incident et contrôle négatif |
+| Gérer création, rotation, révocation des secrets | [secret lifecycle](07-secret-lifecycle/README.md) | Test d'incident et contrôle négatif |
+| Authentifier les deux côtés du canal TLS | [mutual tls pki](08-mutual-tls-pki/README.md) | Test d'incident et contrôle négatif |
+| Bloquer est-ouest sauf flux autorisés | [network microsegmentation](09-network-microsegmentation/README.md) | Test d'incident et contrôle négatif |
+| Isoler clés, cycles de vie et politiques | [encryption key management](10-encryption-key-management/README.md) | Test d'incident et contrôle négatif |
+| Vérifier SBOM, signatures et provenance | [software supply chain](11-software-supply-chain/README.md) | Test d'incident et contrôle négatif |
+| Séparer approbation, déploiement et audit | [audit segregation duties](12-audit-segregation-duties/README.md) | Test d'incident et contrôle négatif |
 
-## Chemin d'arbitrage
+## Gouvernance
 
-~~~mermaid
-flowchart TD
-  A["Besoin réel et criticité"] --> B{"Invariants et NFR spécifiés ?"}
-  B -->|Non| X["Cadrage, collecte de preuves"]
-  B -->|Oui| C["Comparer les options et coûts"]
-  C --> D{"Tests sécurité / pannes concluants ?"}
-  D -->|Non| P["POC / remédiation / NO GO"]
-  D -->|Oui| GO["ADR avec validation et runbook"]
-~~~
+Énoncer le risque, son propriétaire, l'alternative simple, les NFR, les coûts et l'effet d'une panne. Une politique déclarée n'est pas une preuve de son enforcement en runtime. Chaque dossier de décision doit préciser le périmètre testé et le risque résiduel.
 
-## Grille de lecture
-
-| Critère | Question à poser au comité |
-|---|---|
-| Métier | Quelle capacité et quel processus changent ? |
-| Fonctionnel | Quels contrats et états sont impactés ? |
-| Sécurité | Quelle identité et quelle frontière d'autorisation ? |
-| Résilience | Que se passe-t-il entre commit et réponse perdue ? |
-| Performance | p95/p99, pointe, goulots et capacité survivante mesurés ? |
-| Données | Quel propriétaire et quel mode de réconciliation ? |
-| Déploiement | Migration, rollback, compatibilité et propriétaires d'exploitation ? |
-| Économie | Coûts/licences, alternatives et plan d'exit ? |
-
-## À éviter
-
-Un choix technique **ne** démontre **pas** automatiquement haute disponibilité, sécurité, conformité, cohérence financière ou portabilité. Les preuves attendues et les limites sont détaillées dans les fiches et le [cas d'étude](CASE_STUDY.md).
+[Retour](README.md) · [Guide](../references/GUIDE_ARCHITECTE_151_PATTERNS.md)

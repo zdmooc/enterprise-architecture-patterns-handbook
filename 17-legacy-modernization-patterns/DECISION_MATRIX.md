@@ -1,39 +1,25 @@
-# Matrice de sélection et ADR — Modernisation des applications et systèmes historiques
+# Matrice de décision — Modernisation du legacy
 
-## Choisir à partir d'une contrainte, pas d'un outil
+Chaque besoin pointe sur la fiche exacte. Tests proposés ≠ résultats de production.
 
-| Question / contrainte | Pattern ou décision candidate | Preuve minimale |
+| Question à trancher | Fiche applicable | Acceptation minimale |
 |---|---|---|
-| Strangler graduel et non big bang ? | [Rehost](01-rehost/README.md) | Contrat, risque et test de scénario P0 |
-| Shadow sans effets externes ? | [Replatform](02-replatform/README.md) | Contrat, risque et test de scénario P0 |
-| Expand–Contract des schémas ? | [Refactor](03-refactor/README.md) | Contrat, risque et test de scénario P0 |
-| Cutover contrôlé et rollback borné ? | [Replace](04-replace/README.md) | Contrat, risque et test de scénario P0 |
+| Changer hébergement sans transformation | [rehost](01-rehost/README.md) | Invariant métier, test négatif et ADR |
+| Adapter runtime en limitant le changement | [replatform](02-replatform/README.md) | Invariant métier, test négatif et ADR |
+| Restructurer sans modifier la fonction | [refactor](03-refactor/README.md) | Invariant métier, test négatif et ADR |
+| Remplacer une capacité par un nouveau produit | [replace](04-replace/README.md) | Invariant métier, test négatif et ADR |
+| Retirer une application sans flux orphelins | [retire](05-retire/README.md) | Invariant métier, test négatif et ADR |
+| Conserver le legacy sous risque accepté | [retain](06-retain/README.md) | Invariant métier, test négatif et ADR |
+| Migrer des capacités via une façade progressive | [strangler fig migration](07-strangler-fig-migration/README.md) | Invariant métier, test négatif et ADR |
+| Comparer deux implémentations sans double effet | [parallel run shadow](08-parallel-run-shadow/README.md) | Invariant métier, test négatif et ADR |
+| Faire coexister deux schémas durant la migration | [expand contract db](09-expand-contract-db/README.md) | Invariant métier, test négatif et ADR |
+| Bascule réversible sous garde de données | [cutover rollback](10-cutover-rollback/README.md) | Invariant métier, test négatif et ADR |
 
-## Chemin d'arbitrage
+## Règles d'arbitrage
 
-~~~mermaid
-flowchart TD
-  A["Besoin réel et criticité"] --> B{"Invariants et NFR spécifiés ?"}
-  B -->|Non| X["Cadrage, collecte de preuves"]
-  B -->|Oui| C["Comparer les options et coûts"]
-  C --> D{"Tests sécurité / pannes concluants ?"}
-  D -->|Non| P["POC / remédiation / NO GO"]
-  D -->|Oui| GO["ADR avec validation et runbook"]
-~~~
+- Définir système autoritatif, frontières transactionnelles et options de repli avant le choix technique.
+- Documenter les alternatives plus simples, la réversibilité, les coûts et les licences.
+- Ne pas assimiler un déploiement ou un ACK à un comportement métier démontré.
+- Exiger une preuve de panne, le propriétaire du runbook et la date de réexamen.
 
-## Grille de lecture
-
-| Critère | Question à poser au comité |
-|---|---|
-| Métier | Quelle capacité et quel processus changent ? |
-| Fonctionnel | Quels contrats et états sont impactés ? |
-| Sécurité | Quelle identité et quelle frontière d'autorisation ? |
-| Résilience | Que se passe-t-il entre commit et réponse perdue ? |
-| Performance | p95/p99, pointe, goulots et capacité survivante mesurés ? |
-| Données | Quel propriétaire et quel mode de réconciliation ? |
-| Déploiement | Migration, rollback, compatibilité et propriétaires d'exploitation ? |
-| Économie | Coûts/licences, alternatives et plan d'exit ? |
-
-## À éviter
-
-Un choix technique **ne** démontre **pas** automatiquement haute disponibilité, sécurité, conformité, cohérence financière ou portabilité. Les preuves attendues et les limites sont détaillées dans les fiches et le [cas d'étude](CASE_STUDY.md).
+[Sommaire](README.md) · [Guide senior](../references/GUIDE_ARCHITECTE_151_PATTERNS.md)

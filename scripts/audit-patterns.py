@@ -1,4 +1,4 @@
-"""Read-only QA: 151 architecture pattern fiches, Mermaid sources, links and anonymization.
+"""Read-only QA: 180 architecture pattern fiches, Mermaid sources, links and anonymization.
 
 Usage: python scripts/audit-patterns.py
 Does not write files, contact networks or access a cluster.
@@ -20,6 +20,10 @@ FAMILIES = [
     ("cloud", "15-cloud-hybrid-architecture-patterns", "[0-9][0-9]-*/README.md", 10),
     ("sre", "16-performance-sre-patterns", "[0-9][0-9]-*/README.md", 10),
     ("modernization", "17-legacy-modernization-patterns", "[0-9][0-9]-*/README.md", 10),
+    ("eip", "18-enterprise-integration-patterns", "[0-9][0-9]-*/README.md", 8),
+    ("gof", "19-java-design-patterns-gof", "[0-9][0-9]-*/README.md", 11),
+    ("decision", "20-decision-management-patterns", "[0-9][0-9]-*/README.md", 5),
+    ("platform-engineering", "21-platform-engineering-patterns", "[0-9][0-9]-*/README.md", 5),
 ]
 BANNED = [
     re.compile(r"\bCAPS\b"),
@@ -67,15 +71,15 @@ def audit() -> int:
             n = sum(1 for line in content.splitlines() if line.strip() in MERMAID_FENCES)
             if n < 2:
                 errors.append(f"Less than two diagrams: {card.relative_to(ROOT)}")
-    if sum(counts.values()) != 151:
-        errors.append(f"Expected 151 pattern fiches, found {sum(counts.values())}")
+    if sum(counts.values()) != 180:
+        errors.append(f"Expected 180 pattern fiches, found {sum(counts.values())}")
     print(f"Markdown files: {len(markdown_files)} | Mermaid diagrams: {diagrams} | family counts: {counts}")
     if errors:
         for e in errors[:80]:
             print("FAIL:", e)
         print(f"FAILED: {len(errors)} issues")
         return 1
-    print("PASS: 151 fiches, diagrams, relative links and restricted client names")
+    print("PASS: 180 fiches, diagrams, relative links and restricted client names")
     return 0
 
 

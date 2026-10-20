@@ -1,12 +1,12 @@
 # Enterprise Architecture Patterns Handbook
 
-**151 patterns : architecture d'entreprise, solutions, applicative, intégration, données, résilience, sécurité, cloud hybride, SRE, IA et OpenShift.**
+**180 patterns : référentiel de 151 fiches historiques complété par 29 fiches d'intégration EIP, GoF Java, décision et Platform Engineering.**
 
 Référentiel d'architecture en français : principes, responsabilités, critères de choix, scénarios d'échec, diagrammes, contrats, sécurité, observabilité et exercices. Les patterns d'intégration utilisent un **virement fictif de 500 €** ; les patterns IA utilisent un **assistant documentaire et des investigations fictives**, sans outil financier opérationnel.
 
 > **Périmètre et confidentialité.** Tous les cas bancaires sont des **illustrations fictives**. Aucun établissement, fournisseur ou client réel n'est identifié ; aucune architecture interne ou configuration de production n'est revendiquée. Les valeurs, noms de files, APIs, formats de messages et seuils sont des exemples à valider.
 
-## Référentiel complet — 151 patterns (96 nouveaux)
+## Référentiel complet — 180 patterns (151 socle + 29 extensions)
 
 **[Guide de l'architecte senior : choisir parmi 151 patterns](references/GUIDE_ARCHITECTE_151_PATTERNS.md)** · **[Bibliographie et standards](references/ARCHITECTURE_REFERENCES.md)**.
 
@@ -115,3 +115,21 @@ Java / Spring Boot, OpenShift / Kubernetes, PostgreSQL, messagerie MQ, Apache Ka
 
 - [Catalogue des 10 travaux pratiques](labs/README.md)
 - [Simulation testée d'idempotence et d'Outbox (Python/SQLite)](labs/idempotency/README.md) — quatre tests automatisés (dont appels concurrents).
+
+---
+
+## Extension V4 — 29 fiches appliquées aux missions d'architecture (20/10/2026)
+
+| Famille ajoutée | Nombre | Cas de choix |
+|---|---:|---|
+| [Enterprise Integration Patterns](18-enterprise-integration-patterns/README.md) | 8 | Outbox, Inbox, Router, Splitter/Aggregator, Claim Check, DLQ, consumers, schémas |
+| [GoF Java/JEE](19-java-design-patterns-gof/README.md) | 11 | Strategy, Factories, Command, Decorator, Proxy, Template, Observer, State, Adapter, Singleton |
+| [Plateformes décisionnelles](20-decision-management-patterns/README.md) | 5 | Contrat de décision, moteur interchangeable, version, shadow et audit |
+| [Platform Engineering](21-platform-engineering-patterns/README.md) | 5 | Plans de contrôle/données, Golden Path, tenancy, politique et cells |
+| **Total ajout** | **29** | **180 patterns au total** |
+
+- [Trois études transversales](22-pattern-applications/README.md) : modernisation Java/JEE, intégration CRM, plateforme décisionnelle.
+- [Guide de choix V4](references/GUIDE_EXTENSION_180_PATTERNS.md) : problèmes → patterns → preuves → limites.
+- [Tests Java GoF](labs/java-gof/README.md) et validation catalogue avec `python scripts/audit-patterns.py`.
+
+Les anciennes références portant « 151 patterns » décrivent le **socle V3**. L'extension V4 ne revendique aucune exécution de logiciel propriétaire ni compatibilité certifiée par un éditeur.
