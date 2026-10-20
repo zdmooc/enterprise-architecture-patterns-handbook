@@ -87,8 +87,25 @@ class ManifestTest(unittest.TestCase):
     def test_no_hardcoded_real_registry_credentials(self):
         manifest = (BASE / "deployment.yaml").read_text()
         self.assertIn("registry.example.invalid", manifest)
-        self.assertNotIn("password:", manifest.lower())
-        self.assertNotIn("token:", manifest.lower())
+        # Match actual YAML credential fields, not the harmless Kubernetes
+        # automountServiceAccountToken: false setting.
+        forbidden_fields = {"password", "token", "clientsecret", "apikey",
+                            "accesskey", "secretkey"}
+
+        def check(value):
+            if isinstance(value, dict):
+                for key, child in value.items():
+                    normalized = str(key).replace("_", "").lower()
+                    self.assertNotIn(normalized, forbidden_fields,
+                                     f"Hardcoded credential field: {key}")
+                    check(child)
+            elif isinstance(value, list):
+                for child in value:
+                    check(child)
+
+        check(self.deployment)
+        self.assertIs(self.deployment["spec"]["template"]["spec"]
+                      ["automountServiceAccountToken"], False)
 
     def test_java_health_endpoints_match_manifests(self):
         source = (ROOT / "src/ExampleServer.java").read_text()
