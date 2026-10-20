@@ -78,6 +78,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -- legacy/modernis-dat/ README.md
-          git diff --cached --check
+          # Do not reject the original historical Markdown whitespace; SHA fidelity requires it.
           git commit -m 'archive: preserve 1 historical source repositories for modernis-dat'
           git push origin HEAD:refs/heads/consolidation/legacy-modernis-dat-2026-10-20
