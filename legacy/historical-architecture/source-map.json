@@ -1,0 +1,2842 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "destination_repository": "zdmooc/enterprise-architecture-patterns-handbook",
+  "source_history_copied": false,
+  "runtime_verified": false,
+  "sources": [
+    {
+      "repository": "zdmooc/MayaBank-V2",
+      "commit": "ad10ac2cb48acf834fb40102d8e808e5081ddf20",
+      "branch": "main",
+      "count": 206,
+      "files": [
+        {
+          "source": "MayaBank/.gitignore",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/.gitignore",
+          "sha": "d63c3027cb32f8577cbfd21e6b2d990015362eea",
+          "mode": "100644",
+          "bytes": 104
+        },
+        {
+          "source": "MayaBank/LICENSE",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/LICENSE",
+          "sha": "8fd665c1868416ff4f7a17ddf3027973ba4cf618",
+          "mode": "100644",
+          "bytes": 374
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/APPLY-V3-PACK.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/APPLY-V3-PACK.md",
+          "sha": "ed7896f9bc2c023eb422aff6f8fe702fdd41e8df",
+          "mode": "100644",
+          "bytes": 528
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/README.md",
+          "sha": "a0e90d2559b4c2b97bf8c911ed9445c217bb3c86",
+          "mode": "100644",
+          "bytes": 20403
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/adr/ADR-0012-architecture-toolchain.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/adr/ADR-0012-architecture-toolchain.md",
+          "sha": "927a61256afa3ecf9b3f847e1a1984dab10ce29c",
+          "mode": "100644",
+          "bytes": 969
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/adr/ADR-0013-architecture-modeling-and-repository-approach.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/adr/ADR-0013-architecture-modeling-and-repository-approach.md",
+          "sha": "59a4d18f8049a64aaa06f45de629ab60bbb99ad0",
+          "mode": "100644",
+          "bytes": 966
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/governance/Architecture-Toolchain.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/governance/Architecture-Toolchain.md",
+          "sha": "f83376d2e25fad2764d5594f121ea202772568b1",
+          "mode": "100644",
+          "bytes": 1914
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/governance/Backlog-and-Design-Authority-Process.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/governance/Backlog-and-Design-Authority-Process.md",
+          "sha": "639230b51de17f25b4d4c11f2366ca47bd5ee0b5",
+          "mode": "100644",
+          "bytes": 1245
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/governance/Documentation-and-Decision-Flow.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/governance/Documentation-and-Decision-Flow.md",
+          "sha": "97e736d76533799d73f97d3a5b2a9ea0a0817e4b",
+          "mode": "100644",
+          "bytes": 1341
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/hld/HLD-Architecture-Repository-and-Tooling.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/hld/HLD-Architecture-Repository-and-Tooling.md",
+          "sha": "ba6821f5584b869c64328a767c3b53205d4de3f5",
+          "mode": "100644",
+          "bytes": 3898
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/hld/HLD-MayaBank.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/hld/HLD-MayaBank.md",
+          "sha": "c9a759c3cc8227a8bd5f7443705bddadda886ee9",
+          "mode": "100644",
+          "bytes": 2250
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/roadmap/Product-Roadmap.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/roadmap/Product-Roadmap.md",
+          "sha": "97d278963d393a83793e7a32ff4cbea1a399cd42",
+          "mode": "100644",
+          "bytes": 1164
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/roadmap/Sprint-Plan.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/docs/roadmap/Sprint-Plan.md",
+          "sha": "a5b731694399a26d32718f2bcb44887109dcb6ff",
+          "mode": "100644",
+          "bytes": 1497
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/models/archimate/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/models/archimate/README.md",
+          "sha": "4ca71571db1c85e4b22a15d65f376dacdb868e02",
+          "mode": "100644",
+          "bytes": 758
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/models/archimate/catalogs/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/models/archimate/catalogs/README.md",
+          "sha": "252707753c91bdd5cbea803c8c947bfe4027c732",
+          "mode": "100644",
+          "bytes": 158
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/models/archimate/exchange/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/models/archimate/exchange/README.md",
+          "sha": "b01c15a63f406a8779e3274dde8864c8de4092f2",
+          "mode": "100644",
+          "bytes": 143
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/models/archimate/notes/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/models/archimate/notes/README.md",
+          "sha": "0dfc01b3d212c94d5b6e775f64f03fcb886381bb",
+          "mode": "100644",
+          "bytes": 148
+        },
+        {
+          "source": "MayaBank/MayaBank-V3-Architecture-Repository-Pack/models/archimate/views/.gitkeep",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/MayaBank-V3-Architecture-Repository-Pack/models/archimate/views/.gitkeep",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "mode": "100644",
+          "bytes": 0
+        },
+        {
+          "source": "MayaBank/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/README.md",
+          "sha": "1c6a77cb5046bf1963ce4d735e66a54ea9c14e0f",
+          "mode": "100644",
+          "bytes": 9588
+        },
+        {
+          "source": "MayaBank/cicd/github-actions/check-links.yml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/cicd/github-actions/check-links.yml",
+          "sha": "b4d3f8114c7558ec78eda88d4ff7afbaed711dfa",
+          "mode": "100644",
+          "bytes": 182
+        },
+        {
+          "source": "MayaBank/cicd/github-actions/lint-docs.yml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/cicd/github-actions/lint-docs.yml",
+          "sha": "2e74cf5d46b49883dbdee56022ccdbb59f5004e3",
+          "mode": "100644",
+          "bytes": 178
+        },
+        {
+          "source": "MayaBank/cicd/github-actions/validate-yaml.yml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/cicd/github-actions/validate-yaml.yml",
+          "sha": "847ecbcfb84aafa6707da59758536598e20d33c3",
+          "mode": "100644",
+          "bytes": 192
+        },
+        {
+          "source": "MayaBank/cicd/jenkins/Jenkinsfile-business",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/cicd/jenkins/Jenkinsfile-business",
+          "sha": "d091820f665c1ff2ad9fd356bf331d3ef303f529",
+          "mode": "100644",
+          "bytes": 141
+        },
+        {
+          "source": "MayaBank/cicd/jenkins/Jenkinsfile-platform",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/cicd/jenkins/Jenkinsfile-platform",
+          "sha": "d091820f665c1ff2ad9fd356bf331d3ef303f529",
+          "mode": "100644",
+          "bytes": 141
+        },
+        {
+          "source": "MayaBank/cicd/jenkins/Jenkinsfile-shared-services",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/cicd/jenkins/Jenkinsfile-shared-services",
+          "sha": "d091820f665c1ff2ad9fd356bf331d3ef303f529",
+          "mode": "100644",
+          "bytes": 141
+        },
+        {
+          "source": "MayaBank/cicd/quality-gates/kubeconform.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/cicd/quality-gates/kubeconform.yaml",
+          "sha": "d27032d711c01abb963c0028211155479707184f",
+          "mode": "100644",
+          "bytes": 14
+        },
+        {
+          "source": "MayaBank/cicd/quality-gates/markdownlint.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/cicd/quality-gates/markdownlint.yaml",
+          "sha": "b6f0e5ae19a8165351adb18843ac12c762a9c731",
+          "mode": "100644",
+          "bytes": 14
+        },
+        {
+          "source": "MayaBank/cicd/quality-gates/yamllint.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/cicd/quality-gates/yamllint.yaml",
+          "sha": "f9ebf5c529c50bb83c180d0d39facc295a7a30a0",
+          "mode": "100644",
+          "bytes": 17
+        },
+        {
+          "source": "MayaBank/docs/adr/ADR-0001-repository-scope.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/adr/ADR-0001-repository-scope.md",
+          "sha": "722818fefa823d5eba44e311e9fd0ac42356de50",
+          "mode": "100644",
+          "bytes": 384
+        },
+        {
+          "source": "MayaBank/docs/adr/ADR-0002-okd-as-open-source-base.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/adr/ADR-0002-okd-as-open-source-base.md",
+          "sha": "89092b1c8de143aba5cd13e3351bccc162706372",
+          "mode": "100644",
+          "bytes": 570
+        },
+        {
+          "source": "MayaBank/docs/adr/ADR-0003-onprem-aws-azure-scope.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/adr/ADR-0003-onprem-aws-azure-scope.md",
+          "sha": "0131a6b8e95da4492c02662675ab92be6dc83ca0",
+          "mode": "100644",
+          "bytes": 319
+        },
+        {
+          "source": "MayaBank/docs/adr/ADR-0004-multicloud-overlay-model.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/adr/ADR-0004-multicloud-overlay-model.md",
+          "sha": "a6b3007c5c7e2b52566ab103e968e634ba8e08e5",
+          "mode": "100644",
+          "bytes": 329
+        },
+        {
+          "source": "MayaBank/docs/adr/ADR-0005-keycloak-for-iam.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/adr/ADR-0005-keycloak-for-iam.md",
+          "sha": "f2845a08dc0a096542cf4d2ec68c89f9a5ca2eec",
+          "mode": "100644",
+          "bytes": 245
+        },
+        {
+          "source": "MayaBank/docs/adr/ADR-0006-kong-for-api-gateway.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/adr/ADR-0006-kong-for-api-gateway.md",
+          "sha": "141c8a5ffcede8b9e270cc47acf6568b2469fc2f",
+          "mode": "100644",
+          "bytes": 246
+        },
+        {
+          "source": "MayaBank/docs/adr/ADR-0007-kafka-as-event-backbone.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/adr/ADR-0007-kafka-as-event-backbone.md",
+          "sha": "c2fe630b23f11937270580f2f0c6fca834f646e5",
+          "mode": "100644",
+          "bytes": 273
+        },
+        {
+          "source": "MayaBank/docs/adr/ADR-0008-postgresql-mongodb-stateful-split.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/adr/ADR-0008-postgresql-mongodb-stateful-split.md",
+          "sha": "a1c5772f581da364310cf309c6bba32fa50d7fa0",
+          "mode": "100644",
+          "bytes": 280
+        },
+        {
+          "source": "MayaBank/docs/adr/ADR-0009-observability-stack-choice.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/adr/ADR-0009-observability-stack-choice.md",
+          "sha": "67603c67239a7f2333b09f8e9c0fe50dbc2b3b28",
+          "mode": "100644",
+          "bytes": 283
+        },
+        {
+          "source": "MayaBank/docs/adr/ADR-0010-finops-tagging-model.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/adr/ADR-0010-finops-tagging-model.md",
+          "sha": "462fdf0e8e12d48b128161d8fb0290a808b86514",
+          "mode": "100644",
+          "bytes": 245
+        },
+        {
+          "source": "MayaBank/docs/adr/ADR-0011-okd-to-openshift-enterprise-mapping.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/adr/ADR-0011-okd-to-openshift-enterprise-mapping.md",
+          "sha": "77f35b1d0a53a53498fad975ece3a5e6672f80eb",
+          "mode": "100644",
+          "bytes": 450
+        },
+        {
+          "source": "MayaBank/docs/diagrams/context/.gitkeep",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/diagrams/context/.gitkeep",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "mode": "100644",
+          "bytes": 0
+        },
+        {
+          "source": "MayaBank/docs/diagrams/deployment/.gitkeep",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/diagrams/deployment/.gitkeep",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "mode": "100644",
+          "bytes": 0
+        },
+        {
+          "source": "MayaBank/docs/diagrams/finops/.gitkeep",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/diagrams/finops/.gitkeep",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "mode": "100644",
+          "bytes": 0
+        },
+        {
+          "source": "MayaBank/docs/diagrams/logical/.gitkeep",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/diagrams/logical/.gitkeep",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "mode": "100644",
+          "bytes": 0
+        },
+        {
+          "source": "MayaBank/docs/diagrams/sequence/.gitkeep",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/diagrams/sequence/.gitkeep",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "mode": "100644",
+          "bytes": 0
+        },
+        {
+          "source": "MayaBank/docs/finops/Capacity-and-Cost-Model.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/finops/Capacity-and-Cost-Model.md",
+          "sha": "3e82e5f8cfbe11804c449bb3726bd68e5d942018",
+          "mode": "100644",
+          "bytes": 711
+        },
+        {
+          "source": "MayaBank/docs/finops/Environment-Budgets.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/finops/Environment-Budgets.md",
+          "sha": "17307f468f3a1a7dd80b49e2a4cdd4e4b9809222",
+          "mode": "100644",
+          "bytes": 159
+        },
+        {
+          "source": "MayaBank/docs/finops/FinOps-Framework.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/finops/FinOps-Framework.md",
+          "sha": "14a725a5718d9733ca6aec020cfd01c5499de9bb",
+          "mode": "100644",
+          "bytes": 486
+        },
+        {
+          "source": "MayaBank/docs/finops/KPI-Dashboard-Spec.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/finops/KPI-Dashboard-Spec.md",
+          "sha": "f769df34588e0580dd5c599d2a1b9f170d7816bd",
+          "mode": "100644",
+          "bytes": 223
+        },
+        {
+          "source": "MayaBank/docs/finops/Showback-Chargeback.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/finops/Showback-Chargeback.md",
+          "sha": "90f25665cac9c29953b7782e5898399a6deec495",
+          "mode": "100644",
+          "bytes": 292
+        },
+        {
+          "source": "MayaBank/docs/finops/Tagging-Strategy.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/finops/Tagging-Strategy.md",
+          "sha": "a10f25345f7d35bb76ac4149dd1b5acd7d17fc8f",
+          "mode": "100644",
+          "bytes": 226
+        },
+        {
+          "source": "MayaBank/docs/finops/Unit-Economics.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/finops/Unit-Economics.md",
+          "sha": "292f388e745468c3611e6e498eac8108f06de422",
+          "mode": "100644",
+          "bytes": 464
+        },
+        {
+          "source": "MayaBank/docs/governance/Architecture-Review-Checklist.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/governance/Architecture-Review-Checklist.md",
+          "sha": "3b8b9f3a7871843f9882a9cc1ff69b634ada77e0",
+          "mode": "100644",
+          "bytes": 215
+        },
+        {
+          "source": "MayaBank/docs/governance/Decision-Log.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/governance/Decision-Log.md",
+          "sha": "150fbbdd3a516c685b808b764847c48333f5439b",
+          "mode": "100644",
+          "bytes": 333
+        },
+        {
+          "source": "MayaBank/docs/governance/Design-Authority-Pack.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/governance/Design-Authority-Pack.md",
+          "sha": "072ef24967a1be36468ea1e56db6c9c61fb06cd7",
+          "mode": "100644",
+          "bytes": 157
+        },
+        {
+          "source": "MayaBank/docs/governance/HLD-LLD-Quality-Gates.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/governance/HLD-LLD-Quality-Gates.md",
+          "sha": "def81c65369e27b382da0fd50c7112958a818cff",
+          "mode": "100644",
+          "bytes": 213
+        },
+        {
+          "source": "MayaBank/docs/governance/Risk-Register.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/governance/Risk-Register.md",
+          "sha": "527f47483664a0206a3736d2ed34b756716b0316",
+          "mode": "100644",
+          "bytes": 255
+        },
+        {
+          "source": "MayaBank/docs/hld/HLD-Data-AI-Platform.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/hld/HLD-Data-AI-Platform.md",
+          "sha": "14bef08c307b7c17c68bdc3afa46681a1cb430ed",
+          "mode": "100644",
+          "bytes": 2340
+        },
+        {
+          "source": "MayaBank/docs/hld/HLD-Data-Stateful.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/hld/HLD-Data-Stateful.md",
+          "sha": "a13ca69ae5aa0a5a54bcda1d17cf5eb3d22406fb",
+          "mode": "100644",
+          "bytes": 327
+        },
+        {
+          "source": "MayaBank/docs/hld/HLD-FinOps.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/hld/HLD-FinOps.md",
+          "sha": "1b0a4e9072516abb687ee2e63637289d6a3dbc13",
+          "mode": "100644",
+          "bytes": 644
+        },
+        {
+          "source": "MayaBank/docs/hld/HLD-Integration-Eventing.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/hld/HLD-Integration-Eventing.md",
+          "sha": "0f49c546291c53610ff69fcc319a882d76a04274",
+          "mode": "100644",
+          "bytes": 494
+        },
+        {
+          "source": "MayaBank/docs/hld/HLD-MayaBank.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/hld/HLD-MayaBank.md",
+          "sha": "9770b46852f738871ddc138e95d5b18b7c01295a",
+          "mode": "100644",
+          "bytes": 3774
+        },
+        {
+          "source": "MayaBank/docs/hld/HLD-Platform.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/hld/HLD-Platform.md",
+          "sha": "8b83cbca8db6be65d66bf3ca24eeaa7825b484b3",
+          "mode": "100644",
+          "bytes": 373
+        },
+        {
+          "source": "MayaBank/docs/hld/HLD-Security.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/hld/HLD-Security.md",
+          "sha": "64742058b8b76ad5e70410effd37cc3902c57bee",
+          "mode": "100644",
+          "bytes": 260
+        },
+        {
+          "source": "MayaBank/docs/lld/LLD-global.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/LLD-global.md",
+          "sha": "850975690331bd1253e40f938d2d9904becfa825",
+          "mode": "100644",
+          "bytes": 819
+        },
+        {
+          "source": "MayaBank/docs/lld/aws.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/aws.md",
+          "sha": "095163b7381b8b03ff2c2d43ec1306349d933f32",
+          "mode": "100644",
+          "bytes": 377
+        },
+        {
+          "source": "MayaBank/docs/lld/azure.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/azure.md",
+          "sha": "57d92b9a8d1bf23e1fa969a49e21aff9807da24e",
+          "mode": "100644",
+          "bytes": 368
+        },
+        {
+          "source": "MayaBank/docs/lld/onprem.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/onprem.md",
+          "sha": "bc91dc21fdaf99f38bc38b5afea276fa1829716b",
+          "mode": "100644",
+          "bytes": 391
+        },
+        {
+          "source": "MayaBank/docs/lld/platform/cluster-topology.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/platform/cluster-topology.md",
+          "sha": "2c37552808b0028e16011fcd3c1cea4375fc9a88",
+          "mode": "100644",
+          "bytes": 272
+        },
+        {
+          "source": "MayaBank/docs/lld/platform/gitops-cicd.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/platform/gitops-cicd.md",
+          "sha": "aed9a04b4f0c4c2f6fbf2d776cae2724b208474e",
+          "mode": "100644",
+          "bytes": 259
+        },
+        {
+          "source": "MayaBank/docs/lld/platform/identity-and-secrets.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/platform/identity-and-secrets.md",
+          "sha": "f4251cb6b15b531c0a6b99693d15a517c3ab3db4",
+          "mode": "100644",
+          "bytes": 263
+        },
+        {
+          "source": "MayaBank/docs/lld/platform/ingress-and-exposure.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/platform/ingress-and-exposure.md",
+          "sha": "bad5bccb99f99438a54f5102e4ba77fd082f3153",
+          "mode": "100644",
+          "bytes": 263
+        },
+        {
+          "source": "MayaBank/docs/lld/platform/network-flows.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/platform/network-flows.md",
+          "sha": "0ae71974f6bf739f88eaa3a855f06f88a7c4b3c3",
+          "mode": "100644",
+          "bytes": 256
+        },
+        {
+          "source": "MayaBank/docs/lld/platform/storage-patterns.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/platform/storage-patterns.md",
+          "sha": "1641279a7b7ca404e3239c5cb96ef3ad4f1e4763",
+          "mode": "100644",
+          "bytes": 259
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/batch-cronjob.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/batch-cronjob.md",
+          "sha": "6cba327f609828a744b1b5961a377ae1d097dac0",
+          "mode": "100644",
+          "bytes": 318
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/client-portal-stateful.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/client-portal-stateful.md",
+          "sha": "243bdd99ad0c8875d3600cd6a12a90c2b8ce6730",
+          "mode": "100644",
+          "bytes": 327
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/client-portal-stateless.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/client-portal-stateless.md",
+          "sha": "203db944c1702d8acf622bbb44efea95f6eb9f29",
+          "mode": "100644",
+          "bytes": 328
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/data-ai/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/data-ai/README.md",
+          "sha": "ee955efb06f2422572c8728a3fa8db63d6492047",
+          "mode": "100644",
+          "bytes": 82
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/data-ai/data-pipelines.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/data-ai/data-pipelines.md",
+          "sha": "1a56f3d94e04308d46da64501430b9534e4a0aec",
+          "mode": "100644",
+          "bytes": 485
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/data-ai/ml-serving.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/data-ai/ml-serving.md",
+          "sha": "bb98bd824b3ac3cfcfafaeb67124c00211bef6f1",
+          "mode": "100644",
+          "bytes": 520
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/data-ai/rag-patterns.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/data-ai/rag-patterns.md",
+          "sha": "d580aa87fe948703aa78a28a07db2c6ecfaa8fd1",
+          "mode": "100644",
+          "bytes": 474
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/data-ai/vector-database.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/data-ai/vector-database.md",
+          "sha": "3ad3a12d47871f1185cfd951310ebb6002d9e9c0",
+          "mode": "100644",
+          "bytes": 622
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/kafka.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/kafka.md",
+          "sha": "04ddff613c45f2d9a8e591424d5feb84debc8f6b",
+          "mode": "100644",
+          "bytes": 310
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/keycloak.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/keycloak.md",
+          "sha": "1127f9dec81e36249ba12e906cf00576eb15f7e6",
+          "mode": "100644",
+          "bytes": 313
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/kong.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/kong.md",
+          "sha": "cad3e667d2b732e6655863cfb12050325751a0bf",
+          "mode": "100644",
+          "bytes": 309
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/mongodb.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/mongodb.md",
+          "sha": "27a951bbd4be0a905aa356593e483d91d9dafb24",
+          "mode": "100644",
+          "bytes": 312
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/observability.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/observability.md",
+          "sha": "34fb985ec5b6f71ce51f7c3319b6a996d3352c99",
+          "mode": "100644",
+          "bytes": 318
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/odm-decisioning.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/odm-decisioning.md",
+          "sha": "f01946b86363c14a0b98235170fb27136d7a2dff",
+          "mode": "100644",
+          "bytes": 320
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/pega-workflow.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/pega-workflow.md",
+          "sha": "75c7c8866645b11fd1d9301f2c013b47070d0091",
+          "mode": "100644",
+          "bytes": 318
+        },
+        {
+          "source": "MayaBank/docs/lld/workloads/postgresql.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/lld/workloads/postgresql.md",
+          "sha": "a8e36716d6d90bb4412f5380f9dcfeac1a6ac5d9",
+          "mode": "100644",
+          "bytes": 315
+        },
+        {
+          "source": "MayaBank/docs/roadmap/FinOps-Roadmap.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/roadmap/FinOps-Roadmap.md",
+          "sha": "1c41f2bd08cbfebe3770b13f06400c75ec947658",
+          "mode": "100644",
+          "bytes": 458
+        },
+        {
+          "source": "MayaBank/docs/roadmap/Platform-Roadmap.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/roadmap/Platform-Roadmap.md",
+          "sha": "3cfcdf00aa13248c89cc83c9b86e49fbfeb0f85b",
+          "mode": "100644",
+          "bytes": 183
+        },
+        {
+          "source": "MayaBank/docs/roadmap/Product-Roadmap.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/roadmap/Product-Roadmap.md",
+          "sha": "b006fa9de4653fa3e39a2bb5ceffc1b24d183e28",
+          "mode": "100644",
+          "bytes": 660
+        },
+        {
+          "source": "MayaBank/docs/roadmap/Security-Roadmap.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/roadmap/Security-Roadmap.md",
+          "sha": "a437087492731c7922c0740cb1349bd5d91cee2f",
+          "mode": "100644",
+          "bytes": 267
+        },
+        {
+          "source": "MayaBank/docs/roadmap/Sprint-Plan.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/roadmap/Sprint-Plan.md",
+          "sha": "85ff60397a4d929764cb4f3a3a52b8464c4d4c2e",
+          "mode": "100644",
+          "bytes": 772
+        },
+        {
+          "source": "MayaBank/docs/runbooks/operations/Backup-Restore.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/operations/Backup-Restore.md",
+          "sha": "fa4b33aea412846754a9ffcd5aabf485448f9106",
+          "mode": "100644",
+          "bytes": 288
+        },
+        {
+          "source": "MayaBank/docs/runbooks/operations/Capacity-Review.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/operations/Capacity-Review.md",
+          "sha": "dca40e01f8b9abb290770966e822ebc608317029",
+          "mode": "100644",
+          "bytes": 289
+        },
+        {
+          "source": "MayaBank/docs/runbooks/operations/Certificate-Rotation.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/operations/Certificate-Rotation.md",
+          "sha": "42537bdcd4e0bf7c92d8f8d6042d51af82167c78",
+          "mode": "100644",
+          "bytes": 294
+        },
+        {
+          "source": "MayaBank/docs/runbooks/operations/Cluster-Day-0-Day-1-Day-2.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/operations/Cluster-Day-0-Day-1-Day-2.md",
+          "sha": "35c3ed653792dc74387eaee914734e50fcacae55",
+          "mode": "100644",
+          "bytes": 299
+        },
+        {
+          "source": "MayaBank/docs/runbooks/operations/Incident-Triage.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/operations/Incident-Triage.md",
+          "sha": "80cca74fbd2a2e90fbcf4ac0008ee3b43679a7c6",
+          "mode": "100644",
+          "bytes": 289
+        },
+        {
+          "source": "MayaBank/docs/runbooks/operations/Node-Drain-and-Recovery.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/operations/Node-Drain-and-Recovery.md",
+          "sha": "9170f9527c11d97eae66d68b4b3ede7bf51e351a",
+          "mode": "100644",
+          "bytes": 297
+        },
+        {
+          "source": "MayaBank/docs/runbooks/security/Access-Review.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/security/Access-Review.md",
+          "sha": "b6f2320f48b25fa91a95ffb72a9c2216c636244a",
+          "mode": "100644",
+          "bytes": 287
+        },
+        {
+          "source": "MayaBank/docs/runbooks/security/Audit-Logging-Review.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/security/Audit-Logging-Review.md",
+          "sha": "024200d95ddfc9bca8ad66ea1742ebbfbcdab1f3",
+          "mode": "100644",
+          "bytes": 294
+        },
+        {
+          "source": "MayaBank/docs/runbooks/security/NetworkPolicy-Review.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/security/NetworkPolicy-Review.md",
+          "sha": "6fa3a1d3bd35f174493c5e92ce8d2d2045f0f392",
+          "mode": "100644",
+          "bytes": 294
+        },
+        {
+          "source": "MayaBank/docs/runbooks/security/Secret-Rotation.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/security/Secret-Rotation.md",
+          "sha": "6b1d0cac81c2c3572a05cb0682fa8db69a373713",
+          "mode": "100644",
+          "bytes": 289
+        },
+        {
+          "source": "MayaBank/docs/runbooks/workloads/Batch-Runbook.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/workloads/Batch-Runbook.md",
+          "sha": "535f070a6f07fa33a469d0265f9cef69eeab1341",
+          "mode": "100644",
+          "bytes": 287
+        },
+        {
+          "source": "MayaBank/docs/runbooks/workloads/Kafka-Runbook.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/workloads/Kafka-Runbook.md",
+          "sha": "b17523db6f2e696863401aac65a725a8805616de",
+          "mode": "100644",
+          "bytes": 287
+        },
+        {
+          "source": "MayaBank/docs/runbooks/workloads/Keycloak-Runbook.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/workloads/Keycloak-Runbook.md",
+          "sha": "a6af520e5af8dedc95a42e25ade1829bdb909d6c",
+          "mode": "100644",
+          "bytes": 290
+        },
+        {
+          "source": "MayaBank/docs/runbooks/workloads/Kong-Runbook.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/workloads/Kong-Runbook.md",
+          "sha": "322339cb13c6df776dea985e8be8e1470860be4b",
+          "mode": "100644",
+          "bytes": 286
+        },
+        {
+          "source": "MayaBank/docs/runbooks/workloads/MongoDB-Runbook.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/workloads/MongoDB-Runbook.md",
+          "sha": "6a5c9d16775b1db87018cdc98db8a0feb5d45a30",
+          "mode": "100644",
+          "bytes": 289
+        },
+        {
+          "source": "MayaBank/docs/runbooks/workloads/ODM-Runbook.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/workloads/ODM-Runbook.md",
+          "sha": "260ad34f58db33ea6f699f99dfbd0b4e19470ab3",
+          "mode": "100644",
+          "bytes": 285
+        },
+        {
+          "source": "MayaBank/docs/runbooks/workloads/Pega-Runbook.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/workloads/Pega-Runbook.md",
+          "sha": "64f4ef28a5db3b3df22c9592dcfe397beb7263c0",
+          "mode": "100644",
+          "bytes": 286
+        },
+        {
+          "source": "MayaBank/docs/runbooks/workloads/Portal-Runbook.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/workloads/Portal-Runbook.md",
+          "sha": "2261c1410d961fdd3ff52112a83f73bf9e1f8f8f",
+          "mode": "100644",
+          "bytes": 288
+        },
+        {
+          "source": "MayaBank/docs/runbooks/workloads/PostgreSQL-Runbook.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/runbooks/workloads/PostgreSQL-Runbook.md",
+          "sha": "f9396f82e59e4f6e1314f218fca50bc76a4fbde2",
+          "mode": "100644",
+          "bytes": 292
+        },
+        {
+          "source": "MayaBank/docs/security/Compliance-Matrix.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/security/Compliance-Matrix.md",
+          "sha": "eea600d626a54ec3aece209212ced544d9872db2",
+          "mode": "100644",
+          "bytes": 131
+        },
+        {
+          "source": "MayaBank/docs/security/IAM-Model.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/security/IAM-Model.md",
+          "sha": "124e7cdba11392e5a651ef6b98213131ccd0e589",
+          "mode": "100644",
+          "bytes": 131
+        },
+        {
+          "source": "MayaBank/docs/security/OIDC-SSO-Model.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/security/OIDC-SSO-Model.md",
+          "sha": "cb42e1492dd6103fb091922a45538c426cb57fcb",
+          "mode": "100644",
+          "bytes": 94
+        },
+        {
+          "source": "MayaBank/docs/security/Policy-As-Code.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/security/Policy-As-Code.md",
+          "sha": "7e71f01c55269bb5389cc0bc14423ea74cb1bc80",
+          "mode": "100644",
+          "bytes": 95
+        },
+        {
+          "source": "MayaBank/docs/security/Secrets-Management.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/security/Secrets-Management.md",
+          "sha": "370f661f076b4b6739b1ae0c6cc1707505e28019",
+          "mode": "100644",
+          "bytes": 105
+        },
+        {
+          "source": "MayaBank/docs/security/Security-Baseline.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/security/Security-Baseline.md",
+          "sha": "bb0d5b114c851ec757b8dfba04751167d3b89a6e",
+          "mode": "100644",
+          "bytes": 208
+        },
+        {
+          "source": "MayaBank/docs/security/Threat-Model.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/security/Threat-Model.md",
+          "sha": "44759a679dda4a68a1646f33f34c391e8d1b5a1f",
+          "mode": "100644",
+          "bytes": 128
+        },
+        {
+          "source": "MayaBank/docs/vision/Architecture-Principles.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/vision/Architecture-Principles.md",
+          "sha": "b3c4d637cae3b1aad60b6f42e04ee016e30029d2",
+          "mode": "100644",
+          "bytes": 561
+        },
+        {
+          "source": "MayaBank/docs/vision/Business-Capabilities.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/vision/Business-Capabilities.md",
+          "sha": "05a6e5c2e7c5ac132223f7160ba52247d54a90c7",
+          "mode": "100644",
+          "bytes": 383
+        },
+        {
+          "source": "MayaBank/docs/vision/Mayabank-Vision.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/docs/vision/Mayabank-Vision.md",
+          "sha": "1349641add2801b066d560b52db1743a2c8dfe34",
+          "mode": "100644",
+          "bytes": 2804
+        },
+        {
+          "source": "MayaBank/evidence/architecture-reviews/.gitkeep",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/evidence/architecture-reviews/.gitkeep",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "mode": "100644",
+          "bytes": 0
+        },
+        {
+          "source": "MayaBank/evidence/command-logs/.gitkeep",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/evidence/command-logs/.gitkeep",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "mode": "100644",
+          "bytes": 0
+        },
+        {
+          "source": "MayaBank/evidence/screenshots/.gitkeep",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/evidence/screenshots/.gitkeep",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "mode": "100644",
+          "bytes": 0
+        },
+        {
+          "source": "MayaBank/evidence/smoke-tests/.gitkeep",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/evidence/smoke-tests/.gitkeep",
+          "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "mode": "100644",
+          "bytes": 0
+        },
+        {
+          "source": "MayaBank/finops/dashboards/grafana-finops-spec.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/finops/dashboards/grafana-finops-spec.md",
+          "sha": "5044aeb7b6708020681ddf607f5e364fd6e6b4dc",
+          "mode": "100644",
+          "bytes": 83
+        },
+        {
+          "source": "MayaBank/finops/dashboards/kpi-definitions.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/finops/dashboards/kpi-definitions.md",
+          "sha": "9b8ffc25d4e2c0ab22895a072e0bd1cb9df39b36",
+          "mode": "100644",
+          "bytes": 62
+        },
+        {
+          "source": "MayaBank/finops/models/environment-cost-model.xlsx.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/finops/models/environment-cost-model.xlsx.md",
+          "sha": "6734a91e879849ea5a2ded7f48303393fded7559",
+          "mode": "100644",
+          "bytes": 92
+        },
+        {
+          "source": "MayaBank/finops/models/tagging-catalog.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/finops/models/tagging-catalog.md",
+          "sha": "3c62ed1754406b52227d749d070a82fad2d628e3",
+          "mode": "100644",
+          "bytes": 54
+        },
+        {
+          "source": "MayaBank/finops/models/unit-economics-model.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/finops/models/unit-economics-model.md",
+          "sha": "bc161f09bbe78edbb6db5bb20523e1921108c6e8",
+          "mode": "100644",
+          "bytes": 67
+        },
+        {
+          "source": "MayaBank/finops/reports/capacity-vs-cost-review.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/finops/reports/capacity-vs-cost-review.md",
+          "sha": "0459dc053ed728e58bdaee721a18f3812110eaff",
+          "mode": "100644",
+          "bytes": 64
+        },
+        {
+          "source": "MayaBank/finops/reports/chargeback-template.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/finops/reports/chargeback-template.md",
+          "sha": "6db6c7b74a4f98930ac5957827fe104df7a0caaa",
+          "mode": "100644",
+          "bytes": 58
+        },
+        {
+          "source": "MayaBank/finops/reports/monthly-showback-template.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/finops/reports/monthly-showback-template.md",
+          "sha": "488d956e2db3a3a330994d29c56513c603f998bd",
+          "mode": "100644",
+          "bytes": 75
+        },
+        {
+          "source": "MayaBank/gitops/argocd/applications/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/gitops/argocd/applications/README.md",
+          "sha": "c565c9199f7a6e5f9328190082457de4997d0dbc",
+          "mode": "100644",
+          "bytes": 83
+        },
+        {
+          "source": "MayaBank/gitops/argocd/appsets/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/gitops/argocd/appsets/README.md",
+          "sha": "8269aa37a6b90d281b104a86d5ba7a1c36b0ac3d",
+          "mode": "100644",
+          "bytes": 78
+        },
+        {
+          "source": "MayaBank/gitops/argocd/projects/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/gitops/argocd/projects/README.md",
+          "sha": "fc51a2c422de5bba0b5d7a1c6a47d99e5495a19a",
+          "mode": "100644",
+          "bytes": 79
+        },
+        {
+          "source": "MayaBank/gitops/helm/mayabank-business/Chart.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/gitops/helm/mayabank-business/Chart.yaml",
+          "sha": "741ecd4225151983742c4e02b85cd0d0b6b90a7e",
+          "mode": "100644",
+          "bytes": 132
+        },
+        {
+          "source": "MayaBank/gitops/helm/mayabank-business/values.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/gitops/helm/mayabank-business/values.yaml",
+          "sha": "afa5e237dd818fde87cd46efe0c0b7ce8ecea991",
+          "mode": "100644",
+          "bytes": 49
+        },
+        {
+          "source": "MayaBank/gitops/helm/mayabank-platform/Chart.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/gitops/helm/mayabank-platform/Chart.yaml",
+          "sha": "c208bbe2b3b8c17b9ea7cf034b763028151a98bd",
+          "mode": "100644",
+          "bytes": 132
+        },
+        {
+          "source": "MayaBank/gitops/helm/mayabank-platform/values.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/gitops/helm/mayabank-platform/values.yaml",
+          "sha": "afa5e237dd818fde87cd46efe0c0b7ce8ecea991",
+          "mode": "100644",
+          "bytes": 49
+        },
+        {
+          "source": "MayaBank/gitops/helm/mayabank-shared-services/Chart.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/gitops/helm/mayabank-shared-services/Chart.yaml",
+          "sha": "88edad4eea659a46a364d9503b52b5f1ac427ed4",
+          "mode": "100644",
+          "bytes": 139
+        },
+        {
+          "source": "MayaBank/gitops/helm/mayabank-shared-services/values.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/gitops/helm/mayabank-shared-services/values.yaml",
+          "sha": "afa5e237dd818fde87cd46efe0c0b7ce8ecea991",
+          "mode": "100644",
+          "bytes": 49
+        },
+        {
+          "source": "MayaBank/gitops/kustomize/base/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/gitops/kustomize/base/README.md",
+          "sha": "ba3de4cd1b86e9487a4fee5c4c60dee2dec926f2",
+          "mode": "100644",
+          "bytes": 75
+        },
+        {
+          "source": "MayaBank/gitops/kustomize/overlays/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/gitops/kustomize/overlays/README.md",
+          "sha": "a2c7a82e34b3ff537a9b057e2f28e913ad277934",
+          "mode": "100644",
+          "bytes": 79
+        },
+        {
+          "source": "MayaBank/infra/ansible/group_vars/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/ansible/group_vars/README.md",
+          "sha": "1cd9d432e3f6a9f553a9bb464792b80a77e9bcc6",
+          "mode": "100644",
+          "bytes": 81
+        },
+        {
+          "source": "MayaBank/infra/ansible/inventories/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/ansible/inventories/README.md",
+          "sha": "5972e2a80476501b77b206ae0e82a00add78ea71",
+          "mode": "100644",
+          "bytes": 82
+        },
+        {
+          "source": "MayaBank/infra/ansible/playbooks/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/ansible/playbooks/README.md",
+          "sha": "94e79242ffa444ef98ee98c52c1d514f259442bf",
+          "mode": "100644",
+          "bytes": 80
+        },
+        {
+          "source": "MayaBank/infra/ansible/roles/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/ansible/roles/README.md",
+          "sha": "8ee234268dded66963fc6a11a56bf9c11507ba6a",
+          "mode": "100644",
+          "bytes": 76
+        },
+        {
+          "source": "MayaBank/infra/scripts/bootstrap/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/scripts/bootstrap/README.md",
+          "sha": "e0709f4351ffd54a6af592994505a8c20c8140b2",
+          "mode": "100644",
+          "bytes": 80
+        },
+        {
+          "source": "MayaBank/infra/scripts/cleanup/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/scripts/cleanup/README.md",
+          "sha": "55560ae5df400c478490efec506b9d344c68e86b",
+          "mode": "100644",
+          "bytes": 78
+        },
+        {
+          "source": "MayaBank/infra/scripts/evidence/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/scripts/evidence/README.md",
+          "sha": "7cf97b582ee4e707d570e7a1dffbfd772959415e",
+          "mode": "100644",
+          "bytes": 79
+        },
+        {
+          "source": "MayaBank/infra/scripts/validation/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/scripts/validation/README.md",
+          "sha": "cb0edab3092af6ec7a3b5ef552d942298c08fc19",
+          "mode": "100644",
+          "bytes": 81
+        },
+        {
+          "source": "MayaBank/infra/terraform/aws/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/terraform/aws/README.md",
+          "sha": "28ae8f2f06480b276b4ab2fc5d8145e8b34bdc12",
+          "mode": "100644",
+          "bytes": 74
+        },
+        {
+          "source": "MayaBank/infra/terraform/azure/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/terraform/azure/README.md",
+          "sha": "7d5d077a78e35b4dd2de212518eca83fc551825a",
+          "mode": "100644",
+          "bytes": 76
+        },
+        {
+          "source": "MayaBank/infra/terraform/modules/compute/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/terraform/modules/compute/README.md",
+          "sha": "e9726de45579fd480f7212cac937ab2906d29798",
+          "mode": "100644",
+          "bytes": 78
+        },
+        {
+          "source": "MayaBank/infra/terraform/modules/loadbalancer/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/terraform/modules/loadbalancer/README.md",
+          "sha": "ad373007f10f16556abb0c00548daf315b83ef58",
+          "mode": "100644",
+          "bytes": 83
+        },
+        {
+          "source": "MayaBank/infra/terraform/modules/network/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/terraform/modules/network/README.md",
+          "sha": "04748f066e1abfa5a540777e1b7945e89bd7bb74",
+          "mode": "100644",
+          "bytes": 78
+        },
+        {
+          "source": "MayaBank/infra/terraform/modules/security/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/terraform/modules/security/README.md",
+          "sha": "1f5db3a6ce4d95485376e2965acbc514be68bed7",
+          "mode": "100644",
+          "bytes": 79
+        },
+        {
+          "source": "MayaBank/infra/terraform/modules/storage/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/terraform/modules/storage/README.md",
+          "sha": "d0e6237dde561fa9f2bafc9819f56d8f9ab1cc61",
+          "mode": "100644",
+          "bytes": 78
+        },
+        {
+          "source": "MayaBank/infra/terraform/onprem/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/infra/terraform/onprem/README.md",
+          "sha": "ab67c71309dee3df3028ccf39ac0028188b9c797",
+          "mode": "100644",
+          "bytes": 77
+        },
+        {
+          "source": "MayaBank/lab/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/README.md",
+          "sha": "e16901d5f03e14b081f420f5bb4af24ee7eb3b7e",
+          "mode": "100644",
+          "bytes": 532
+        },
+        {
+          "source": "MayaBank/lab/aws/assumptions.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/aws/assumptions.md",
+          "sha": "01d3f8a81a0002d2d6eb7ef792fce761fc02f055",
+          "mode": "100644",
+          "bytes": 57
+        },
+        {
+          "source": "MayaBank/lab/aws/topology.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/aws/topology.md",
+          "sha": "3a7533c5909444afc632314775f86e9c2b453af1",
+          "mode": "100644",
+          "bytes": 77
+        },
+        {
+          "source": "MayaBank/lab/aws/variables-example.tfvars",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/aws/variables-example.tfvars",
+          "sha": "c4cc80374d803889582478ca175e49d819b2b1eb",
+          "mode": "100644",
+          "bytes": 45
+        },
+        {
+          "source": "MayaBank/lab/azure/assumptions.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/azure/assumptions.md",
+          "sha": "d5fe9bd1881c8a8588b1bd077f2244586284eac5",
+          "mode": "100644",
+          "bytes": 61
+        },
+        {
+          "source": "MayaBank/lab/azure/topology.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/azure/topology.md",
+          "sha": "fea39dca574dac997d1fca0f706c633e1c799c5b",
+          "mode": "100644",
+          "bytes": 80
+        },
+        {
+          "source": "MayaBank/lab/azure/variables-example.tfvars",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/azure/variables-example.tfvars",
+          "sha": "aa6b4147bf71f6a73d6cb36af8e28d952fe7b378",
+          "mode": "100644",
+          "bytes": 51
+        },
+        {
+          "source": "MayaBank/lab/data-ai/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/data-ai/README.md",
+          "sha": "c542b050bc1330de6d78eb8710ee77ec0ad2180d",
+          "mode": "100644",
+          "bytes": 290
+        },
+        {
+          "source": "MayaBank/lab/local/kind/bootstrap.sh",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/local/kind/bootstrap.sh",
+          "sha": "ca67b73552925a93f74a437d3984878dc2d21187",
+          "mode": "100644",
+          "bytes": 181
+        },
+        {
+          "source": "MayaBank/lab/local/kind/kind-config.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/local/kind/kind-config.yaml",
+          "sha": "c2a53e4b398e90626e76a08ea156051aec15630a",
+          "mode": "100644",
+          "bytes": 135
+        },
+        {
+          "source": "MayaBank/lab/local/okd/notes.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/local/okd/notes.md",
+          "sha": "369cc9fb1d29e9dfdb6b903eb24dd330d67ca8aa",
+          "mode": "100644",
+          "bytes": 122
+        },
+        {
+          "source": "MayaBank/lab/local/okd/prerequisites.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/local/okd/prerequisites.md",
+          "sha": "baab87ef059133fb6bfc3da8246cb114ec04c8ad",
+          "mode": "100644",
+          "bytes": 99
+        },
+        {
+          "source": "MayaBank/lab/local/samples/limitranges.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/local/samples/limitranges.yaml",
+          "sha": "3f846019ea94068b38c85ec6613a5a4352503eab",
+          "mode": "100644",
+          "bytes": 262
+        },
+        {
+          "source": "MayaBank/lab/local/samples/namespaces.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/local/samples/namespaces.yaml",
+          "sha": "4d13cb5d2ce4537c297c204883d49ce204770f08",
+          "mode": "100644",
+          "bytes": 145
+        },
+        {
+          "source": "MayaBank/lab/local/samples/networkpolicies/default-deny-all.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/local/samples/networkpolicies/default-deny-all.yaml",
+          "sha": "e1b243f67c751cc3f5e7fcd2819ee1e614283ea5",
+          "mode": "100644",
+          "bytes": 185
+        },
+        {
+          "source": "MayaBank/lab/local/samples/resourcequotas.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/local/samples/resourcequotas.yaml",
+          "sha": "2194d2ae5af42ae2f06d52fec08dbf2fcf6a3105",
+          "mode": "100644",
+          "bytes": 213
+        },
+        {
+          "source": "MayaBank/lab/onprem/dns-and-loadbalancer.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/onprem/dns-and-loadbalancer.md",
+          "sha": "896f57c88bf1fcf9921277d5c48a949984588179",
+          "mode": "100644",
+          "bytes": 76
+        },
+        {
+          "source": "MayaBank/lab/onprem/inventory-example.yaml",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/onprem/inventory-example.yaml",
+          "sha": "4c72888e4e17eeda0a8f48eee434c82eebe0d399",
+          "mode": "100644",
+          "bytes": 135
+        },
+        {
+          "source": "MayaBank/lab/onprem/storage-assumptions.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/onprem/storage-assumptions.md",
+          "sha": "637ce846c5d90e24228820f36d036ddc0bdf5b4b",
+          "mode": "100644",
+          "bytes": 91
+        },
+        {
+          "source": "MayaBank/lab/onprem/topology.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/lab/onprem/topology.md",
+          "sha": "b8dce0f6f69b5afc7b2db8dd41100ea76b8a52c6",
+          "mode": "100644",
+          "bytes": 123
+        },
+        {
+          "source": "MayaBank/platform/base/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/base/README.md",
+          "sha": "ba3de4cd1b86e9487a4fee5c4c60dee2dec926f2",
+          "mode": "100644",
+          "bytes": 75
+        },
+        {
+          "source": "MayaBank/platform/base/ingress/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/base/ingress/README.md",
+          "sha": "5eb5cbaa4533744a0e3fe6ee1d3b34e224dfb993",
+          "mode": "100644",
+          "bytes": 78
+        },
+        {
+          "source": "MayaBank/platform/base/namespaces/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/base/namespaces/README.md",
+          "sha": "a383fb65058a908fed36f175be5b97d5561ce277",
+          "mode": "100644",
+          "bytes": 81
+        },
+        {
+          "source": "MayaBank/platform/base/observability/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/base/observability/README.md",
+          "sha": "bd008314478a505551ba134ba234442b34bc52d7",
+          "mode": "100644",
+          "bytes": 84
+        },
+        {
+          "source": "MayaBank/platform/base/policies/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/base/policies/README.md",
+          "sha": "4bee03cb06c924a414320af31899ea81861b7e82",
+          "mode": "100644",
+          "bytes": 79
+        },
+        {
+          "source": "MayaBank/platform/base/quotas/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/base/quotas/README.md",
+          "sha": "4668d8378efa928674cc84367b9c6bb0c1d9fac6",
+          "mode": "100644",
+          "bytes": 77
+        },
+        {
+          "source": "MayaBank/platform/business/batch/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/business/batch/README.md",
+          "sha": "705f625c91b5c2824353e6ac6e476da8041150e3",
+          "mode": "100644",
+          "bytes": 76
+        },
+        {
+          "source": "MayaBank/platform/business/odm/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/business/odm/README.md",
+          "sha": "bdb4a034ac773916a9896afe04da68d0287dd00b",
+          "mode": "100644",
+          "bytes": 74
+        },
+        {
+          "source": "MayaBank/platform/business/pega/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/business/pega/README.md",
+          "sha": "7759b14e5881c670d3b09155b2cc9e2cc1c66223",
+          "mode": "100644",
+          "bytes": 75
+        },
+        {
+          "source": "MayaBank/platform/business/portals/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/business/portals/README.md",
+          "sha": "6d1c1bd8532710a600019d730b53bb8edd66a4ae",
+          "mode": "100644",
+          "bytes": 78
+        },
+        {
+          "source": "MayaBank/platform/data-ai/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/data-ai/README.md",
+          "sha": "913485defb75927507b0c4bda8029cf9dbbd7443",
+          "mode": "100644",
+          "bytes": 302
+        },
+        {
+          "source": "MayaBank/platform/overlays/aws/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/overlays/aws/README.md",
+          "sha": "28ae8f2f06480b276b4ab2fc5d8145e8b34bdc12",
+          "mode": "100644",
+          "bytes": 74
+        },
+        {
+          "source": "MayaBank/platform/overlays/azure/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/overlays/azure/README.md",
+          "sha": "7d5d077a78e35b4dd2de212518eca83fc551825a",
+          "mode": "100644",
+          "bytes": 76
+        },
+        {
+          "source": "MayaBank/platform/overlays/onprem/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/overlays/onprem/README.md",
+          "sha": "ab67c71309dee3df3028ccf39ac0028188b9c797",
+          "mode": "100644",
+          "bytes": 77
+        },
+        {
+          "source": "MayaBank/platform/shared-services/kafka/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/shared-services/kafka/README.md",
+          "sha": "c6331eca3a486e47b322c76275a5f09519fff601",
+          "mode": "100644",
+          "bytes": 76
+        },
+        {
+          "source": "MayaBank/platform/shared-services/keycloak/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/shared-services/keycloak/README.md",
+          "sha": "e5234f86d7b2fdf02e929835d030120b8e1b9316",
+          "mode": "100644",
+          "bytes": 79
+        },
+        {
+          "source": "MayaBank/platform/shared-services/kong/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/shared-services/kong/README.md",
+          "sha": "3e3ae01b2013f293616f18b891ebca6689830e94",
+          "mode": "100644",
+          "bytes": 75
+        },
+        {
+          "source": "MayaBank/platform/shared-services/mongodb/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/shared-services/mongodb/README.md",
+          "sha": "695971136198c63c755ba59f745a1c7b4b7e0bbf",
+          "mode": "100644",
+          "bytes": 78
+        },
+        {
+          "source": "MayaBank/platform/shared-services/observability/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/shared-services/observability/README.md",
+          "sha": "bd008314478a505551ba134ba234442b34bc52d7",
+          "mode": "100644",
+          "bytes": 84
+        },
+        {
+          "source": "MayaBank/platform/shared-services/postgresql/README.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/platform/shared-services/postgresql/README.md",
+          "sha": "398b611ec7901aa7fbcaed5fbf75282ccdfa6ce6",
+          "mode": "100644",
+          "bytes": 81
+        },
+        {
+          "source": "MayaBank/risks/Assumptions.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/risks/Assumptions.md",
+          "sha": "8d5cc8033cf120ed4e9bcbe1edbb9572d9c1218a",
+          "mode": "100644",
+          "bytes": 136
+        },
+        {
+          "source": "MayaBank/risks/Open-Issues.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/risks/Open-Issues.md",
+          "sha": "0f024bf4918ddf76c6972adc36307493cb0e19da",
+          "mode": "100644",
+          "bytes": 215
+        },
+        {
+          "source": "MayaBank/risks/RAID-Log.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/risks/RAID-Log.md",
+          "sha": "55789c97e2ad36c4018a9b07b3861ad99b778cdb",
+          "mode": "100644",
+          "bytes": 61
+        },
+        {
+          "source": "MayaBank/risks/Technical-Debt.md",
+          "destination": "legacy/historical-architecture/MayaBank-V2/MayaBank/risks/Technical-Debt.md",
+          "sha": "f3862dc6b0cf586dea80511bbb05f7291525dc3f",
+          "mode": "100644",
+          "bytes": 245
+        }
+      ]
+    },
+    {
+      "repository": "zdmooc/archimate-level1-companion-repo",
+      "commit": "611b0e6cb9d0a6ecc7e7a32181c9ddc5fae0fe9f",
+      "branch": "main",
+      "count": 92,
+      "files": [
+        {
+          "source": "LEGAL_AND_SCOPE.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/LEGAL_AND_SCOPE.md",
+          "sha": "8150ecd2eb9b723cf86c2ccc6ce21fbbbb9dad92",
+          "mode": "100644",
+          "bytes": 380
+        },
+        {
+          "source": "README.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/README.md",
+          "sha": "a34e2cbcf0e4aff2ec8d9ac562affb7ee859055b",
+          "mode": "100644",
+          "bytes": 1333
+        },
+        {
+          "source": "chapter-notes/chapter-01-structure-du-langage.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/chapter-notes/chapter-01-structure-du-langage.md",
+          "sha": "6e3ecbb66d878cd006b008ecec1dc6b869a3a7ea",
+          "mode": "100644",
+          "bytes": 620
+        },
+        {
+          "source": "chapter-notes/chapter-02-couches-et-aspects.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/chapter-notes/chapter-02-couches-et-aspects.md",
+          "sha": "8512e8d790ae9cee683795b0d7784e841714b06c",
+          "mode": "100644",
+          "bytes": 408
+        },
+        {
+          "source": "chapter-notes/chapter-03-relations.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/chapter-notes/chapter-03-relations.md",
+          "sha": "f4d8228cef6736577d8c05a49f7751b69e17b14f",
+          "mode": "100644",
+          "bytes": 497
+        },
+        {
+          "source": "chapter-notes/chapter-04-viewpoints.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/chapter-notes/chapter-04-viewpoints.md",
+          "sha": "e04bea96d3876ee583aa7f5374e1885fa8e25a71",
+          "mode": "100644",
+          "bytes": 441
+        },
+        {
+          "source": "chapter-notes/chapter-05-cross-layer-modeling.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/chapter-notes/chapter-05-cross-layer-modeling.md",
+          "sha": "e3b9470a8a5409a3d6ed082402fd8b5ab2dd1a0a",
+          "mode": "100644",
+          "bytes": 428
+        },
+        {
+          "source": "chapter-notes/chapter-06-foundation-exam-mindset.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/chapter-notes/chapter-06-foundation-exam-mindset.md",
+          "sha": "92e0373deb40b6728fbef6a28a4856313eccd005",
+          "mode": "100644",
+          "bytes": 426
+        },
+        {
+          "source": "daily-plan/day-01.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-01.md",
+          "sha": "7e561227820fe63fad8bd4b1525de02f9e9bec5c",
+          "mode": "100644",
+          "bytes": 233
+        },
+        {
+          "source": "daily-plan/day-02.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-02.md",
+          "sha": "52a1622b3bab69c585b3469b8b68b195ce719c33",
+          "mode": "100644",
+          "bytes": 233
+        },
+        {
+          "source": "daily-plan/day-03.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-03.md",
+          "sha": "f7869be7f86d6980de6508bc237aefb9cf381fc4",
+          "mode": "100644",
+          "bytes": 233
+        },
+        {
+          "source": "daily-plan/day-04.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-04.md",
+          "sha": "cd42745b77212dc796545f3ff3d0031ef151497a",
+          "mode": "100644",
+          "bytes": 228
+        },
+        {
+          "source": "daily-plan/day-05.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-05.md",
+          "sha": "864574f854a81cb65ae1678eefc25e547760ada5",
+          "mode": "100644",
+          "bytes": 228
+        },
+        {
+          "source": "daily-plan/day-06.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-06.md",
+          "sha": "b0b7f5eb77e7ad061ad3c435253c310fddd9e97e",
+          "mode": "100644",
+          "bytes": 228
+        },
+        {
+          "source": "daily-plan/day-07.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-07.md",
+          "sha": "0501b18750078f2d9a8e589d80cef54fc4965d3b",
+          "mode": "100644",
+          "bytes": 186
+        },
+        {
+          "source": "daily-plan/day-08.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-08.md",
+          "sha": "4e5b6da2b5ff96cca28de2656f7ed3e9dc9ca0be",
+          "mode": "100644",
+          "bytes": 186
+        },
+        {
+          "source": "daily-plan/day-09.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-09.md",
+          "sha": "c3b921dfa861f6e37a8becaddcee1e944163d460",
+          "mode": "100644",
+          "bytes": 186
+        },
+        {
+          "source": "daily-plan/day-10.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-10.md",
+          "sha": "dcb8e3f11c0134a051c640c5401f0e34010e95dd",
+          "mode": "100644",
+          "bytes": 199
+        },
+        {
+          "source": "daily-plan/day-11.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-11.md",
+          "sha": "7d7c8d918dc9a836234932882961c8731af9f16d",
+          "mode": "100644",
+          "bytes": 199
+        },
+        {
+          "source": "daily-plan/day-12.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-12.md",
+          "sha": "f018796aef18ca1539340dad106bff0d31bffce1",
+          "mode": "100644",
+          "bytes": 199
+        },
+        {
+          "source": "daily-plan/day-13.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-13.md",
+          "sha": "220994daaa894be4bbd00f7e35026b9d33823d94",
+          "mode": "100644",
+          "bytes": 213
+        },
+        {
+          "source": "daily-plan/day-14.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-14.md",
+          "sha": "e4fdac4b5e0bc7d398c9a6990b2f8f6d876ad85a",
+          "mode": "100644",
+          "bytes": 213
+        },
+        {
+          "source": "daily-plan/day-15.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-15.md",
+          "sha": "97c1f6b6187bc5cd60ce78d7346e32a145201259",
+          "mode": "100644",
+          "bytes": 213
+        },
+        {
+          "source": "daily-plan/day-16.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-16.md",
+          "sha": "91e9700196094fb1ad63dfdcb5d6b7f6e6279809",
+          "mode": "100644",
+          "bytes": 189
+        },
+        {
+          "source": "daily-plan/day-17.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-17.md",
+          "sha": "5f7d9ae53bd7e65860c614c38109f349c9526724",
+          "mode": "100644",
+          "bytes": 189
+        },
+        {
+          "source": "daily-plan/day-18.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-18.md",
+          "sha": "00899bcb85c551c9ff01e70f89bc32bfd6f41ab5",
+          "mode": "100644",
+          "bytes": 189
+        },
+        {
+          "source": "daily-plan/day-19.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-19.md",
+          "sha": "d97735dd820b498aa8d415ea069b10fb9902bec2",
+          "mode": "100644",
+          "bytes": 181
+        },
+        {
+          "source": "daily-plan/day-20.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-20.md",
+          "sha": "9f2832dd83c80ca0583b56be9047b15d4423bd96",
+          "mode": "100644",
+          "bytes": 181
+        },
+        {
+          "source": "daily-plan/day-21.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/daily-plan/day-21.md",
+          "sha": "06c996ab35198b89dc4e6720c81d1a0e5fc9d2ff",
+          "mode": "100644",
+          "bytes": 223
+        },
+        {
+          "source": "docs/00-overview.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/docs/00-overview.md",
+          "sha": "b087f51e97f3013d0edb62109e794227e173dee6",
+          "mode": "100644",
+          "bytes": 585
+        },
+        {
+          "source": "docs/01-official-context.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/docs/01-official-context.md",
+          "sha": "0af51c2e068c1f3cb4d1cb319b8186067ce54afb",
+          "mode": "100644",
+          "bytes": 607
+        },
+        {
+          "source": "img/00_Couverture.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/00_Couverture.png",
+          "sha": "b18a0936db81abf6b93c2084e3cb633bfa2b3b6e",
+          "mode": "100644",
+          "bytes": 169476
+        },
+        {
+          "source": "img/01_ADM.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_ADM.png",
+          "sha": "4a78473ed2eafee5f3a07ec5c01a5c9d816565a0",
+          "mode": "100644",
+          "bytes": 152969
+        },
+        {
+          "source": "img/01_Architecture_Governance.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Architecture_Governance.png",
+          "sha": "f093c13893c4a8dde69aa4807215795ffa07370c",
+          "mode": "100644",
+          "bytes": 171855
+        },
+        {
+          "source": "img/01_Architecture_Repository.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Architecture_Repository.png",
+          "sha": "2ccb5573378557fc9275519681b68a568f824995",
+          "mode": "100644",
+          "bytes": 179907
+        },
+        {
+          "source": "img/01_Architecture_Vision.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Architecture_Vision.png",
+          "sha": "4266e26797bf9825d0f7f5660cefe9c9355c5bf0",
+          "mode": "100644",
+          "bytes": 170337
+        },
+        {
+          "source": "img/01_Architecture_d’entreprise.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Architecture_d’entreprise.png",
+          "sha": "aab43e45a2f3442326403f6d79cb5249423a98a8",
+          "mode": "100644",
+          "bytes": 183167
+        },
+        {
+          "source": "img/01_Artifact.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Artifact.png",
+          "sha": "2c10daf42a52b455768d8826bf1b13c72063a3a5",
+          "mode": "100644",
+          "bytes": 153502
+        },
+        {
+          "source": "img/01_Baseline_Architecture.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Baseline_Architecture.png",
+          "sha": "74319bae26e4a03fe72bce5e11b75894e2ff3c0b",
+          "mode": "100644",
+          "bytes": 162777
+        },
+        {
+          "source": "img/01_Building_Block.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Building_Block.png",
+          "sha": "daeb3c66132015aadcc0b931bda03ba401a85acf",
+          "mode": "100644",
+          "bytes": 157201
+        },
+        {
+          "source": "img/01_Business_Scenarios.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Business_Scenarios.png",
+          "sha": "b76432ab044f0318870e2701cb401ecd05dbc4b5",
+          "mode": "100644",
+          "bytes": 166714
+        },
+        {
+          "source": "img/01_Concern.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Concern.png",
+          "sha": "93b37902ac2c3a85cc74a8e30c96ab85f44b4b66",
+          "mode": "100644",
+          "bytes": 150841
+        },
+        {
+          "source": "img/01_Constraint.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Constraint.png",
+          "sha": "a5cd2fd9abd8fc36ad2cd0bbe928924edf707e48",
+          "mode": "100644",
+          "bytes": 156848
+        },
+        {
+          "source": "img/01_Deliverable.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Deliverable.png",
+          "sha": "59ed4789ff7ce9748ff2e2ae716c38bec557f485",
+          "mode": "100644",
+          "bytes": 161146
+        },
+        {
+          "source": "img/01_Gap_Analysis.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Gap_Analysis.png",
+          "sha": "27f446d599732278094c4f2b4c3139b702650542",
+          "mode": "100644",
+          "bytes": 167311
+        },
+        {
+          "source": "img/01_Principle.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Principle.png",
+          "sha": "13757cd22f5c81cb9b7aee0d53a7a2c00924d7f7",
+          "mode": "100644",
+          "bytes": 150878
+        },
+        {
+          "source": "img/01_Requirement.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Requirement.png",
+          "sha": "00e9ef08c2ba9eab093ab2e8a533a6dfc2110b27",
+          "mode": "100644",
+          "bytes": 154191
+        },
+        {
+          "source": "img/01_Requirements_Management.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Requirements_Management.png",
+          "sha": "b18f40f1873b9c2f0437593a6ac59a8261f92f43",
+          "mode": "100644",
+          "bytes": 169417
+        },
+        {
+          "source": "img/01_Stakeholder.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Stakeholder.png",
+          "sha": "27d9e8caf7784ab7d22d68801bda50ef5d970de1",
+          "mode": "100644",
+          "bytes": 170759
+        },
+        {
+          "source": "img/01_Target_Architecture.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Target_Architecture.png",
+          "sha": "edec98c83a68437350288497c8548febb0e5f04e",
+          "mode": "100644",
+          "bytes": 154891
+        },
+        {
+          "source": "img/01_Transition_Architecture.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Transition_Architecture.png",
+          "sha": "28d354ca32ade47957d1817e4aa7787b22a1cc8e",
+          "mode": "100644",
+          "bytes": 161151
+        },
+        {
+          "source": "img/01_Value_of_Architecture.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/01_Value_of_Architecture.png",
+          "sha": "669ddc5b6f6b303637141dd4fc9bcf1a0b5dcee9",
+          "mode": "100644",
+          "bytes": 181017
+        },
+        {
+          "source": "img/22_ADM_vue_d_ensemble.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/22_ADM_vue_d_ensemble.png",
+          "sha": "0708b9d1a8eacc705903fa5304fa8dc824e01491",
+          "mode": "100644",
+          "bytes": 143486
+        },
+        {
+          "source": "img/23_Preliminary.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/23_Preliminary.png",
+          "sha": "5a8f72f3b83442f72a42e3b4e0d5e1e63385de4b",
+          "mode": "100644",
+          "bytes": 119714
+        },
+        {
+          "source": "img/24_Phase_A.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/24_Phase_A.png",
+          "sha": "1dca33958f8c94160f10bfc996bfc61c1c034501",
+          "mode": "100644",
+          "bytes": 128916
+        },
+        {
+          "source": "img/25_Phases_BCD.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/25_Phases_BCD.png",
+          "sha": "156fcf956ac3b7cf02a84ec0846904085f13119a",
+          "mode": "100644",
+          "bytes": 120669
+        },
+        {
+          "source": "img/26_Phases_EF.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/26_Phases_EF.png",
+          "sha": "0da9c02c374ee3059f16df51385ad33df2282fee",
+          "mode": "100644",
+          "bytes": 108356
+        },
+        {
+          "source": "img/27_Phase_G.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/27_Phase_G.png",
+          "sha": "29eab589ff27c82bd9c54bfdca183d5ac7c2888c",
+          "mode": "100644",
+          "bytes": 132719
+        },
+        {
+          "source": "img/28_Phase_H.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/28_Phase_H.png",
+          "sha": "142a93c5fda357ceea4e10b80b066cae0c01a0b4",
+          "mode": "100644",
+          "bytes": 140165
+        },
+        {
+          "source": "img/Arch-entreprise.png",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/img/Arch-entreprise.png",
+          "sha": "cf30848db53f3dac5c57e388ae509fe4f7400d80",
+          "mode": "100644",
+          "bytes": 605072
+        },
+        {
+          "source": "interview-mission/archimate-foundation-pour-entretien.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/interview-mission/archimate-foundation-pour-entretien.md",
+          "sha": "d02a07fce91e0c53f1f43746ed466ca2cdff96e3",
+          "mode": "100644",
+          "bytes": 387
+        },
+        {
+          "source": "interview-mission/mini-cas-mission.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/interview-mission/mini-cas-mission.md",
+          "sha": "3a77b660cadd543205b4d47959cff45fb4a8293b",
+          "mode": "100644",
+          "bytes": 325
+        },
+        {
+          "source": "layers/01-business-layer.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/layers/01-business-layer.md",
+          "sha": "1f817c90f0a4b3f48f5d42303747cb431aa5ab7b",
+          "mode": "100644",
+          "bytes": 393
+        },
+        {
+          "source": "layers/02-application-layer.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/layers/02-application-layer.md",
+          "sha": "8f877bf0faa187be900a4f3389ea7b9377848a30",
+          "mode": "100644",
+          "bytes": 374
+        },
+        {
+          "source": "layers/03-technology-layer.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/layers/03-technology-layer.md",
+          "sha": "c8d6226b69689f8e112cb069372ba39bbddc2b10",
+          "mode": "100644",
+          "bytes": 360
+        },
+        {
+          "source": "layers/04-motivation-layer.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/layers/04-motivation-layer.md",
+          "sha": "d43e92af9d6b652af6ac8d9f0e35f691d54cbb9f",
+          "mode": "100644",
+          "bytes": 245
+        },
+        {
+          "source": "layers/05-strategy-layer.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/layers/05-strategy-layer.md",
+          "sha": "7177d561355036f359aca6fceab084729d0be8d8",
+          "mode": "100644",
+          "bytes": 219
+        },
+        {
+          "source": "layers/06-implementation-migration.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/layers/06-implementation-migration.md",
+          "sha": "28446babc5fb12f4b287526e1d579ec76bc52f0e",
+          "mode": "100644",
+          "bytes": 232
+        },
+        {
+          "source": "mcq/corrections/mcq-mock-exam-01-correction.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/mcq/corrections/mcq-mock-exam-01-correction.md",
+          "sha": "4e1ef3738146b1ea2092d93992aa9bfe590a5480",
+          "mode": "100644",
+          "bytes": 3844
+        },
+        {
+          "source": "mcq/corrections/mcq-mock-exam-02-correction.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/mcq/corrections/mcq-mock-exam-02-correction.md",
+          "sha": "92dc78916f81d0e51c374b093bbf1480f4b8ee1a",
+          "mode": "100644",
+          "bytes": 3819
+        },
+        {
+          "source": "mcq/corrections/mcq-mock-exam-03-correction.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/mcq/corrections/mcq-mock-exam-03-correction.md",
+          "sha": "ef4f7a4b29ff9ce586d8672461b98dca17b1c559",
+          "mode": "100644",
+          "bytes": 3815
+        },
+        {
+          "source": "mcq/mcq-mock-exam-01.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/mcq/mcq-mock-exam-01.md",
+          "sha": "57c8440c8c46e42729ca653ff7dfbe5f201a46d8",
+          "mode": "100644",
+          "bytes": 7502
+        },
+        {
+          "source": "mcq/mcq-mock-exam-02.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/mcq/mcq-mock-exam-02.md",
+          "sha": "e99b20334ba2ee676cabfe7790142c22b10c81cc",
+          "mode": "100644",
+          "bytes": 7958
+        },
+        {
+          "source": "mcq/mcq-mock-exam-03.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/mcq/mcq-mock-exam-03.md",
+          "sha": "f339a5fe734a5831fbf9ffce1a58b418ed0856fa",
+          "mode": "100644",
+          "bytes": 7843
+        },
+        {
+          "source": "mcq/question-bank-mcq.csv",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/mcq/question-bank-mcq.csv",
+          "sha": "b94255714b1dd5a04837a87b2cc5dae78fa825cf",
+          "mode": "100644",
+          "bytes": 27716
+        },
+        {
+          "source": "mcq/question-bank-mcq.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/mcq/question-bank-mcq.md",
+          "sha": "619d0c0b68e32a0268d36d1d6a5f6f7adb0210d9",
+          "mode": "100644",
+          "bytes": 27156
+        },
+        {
+          "source": "memory-aids/mnemonics.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/memory-aids/mnemonics.md",
+          "sha": "6b3b75807f9d2c3015addafcb10c8cb36319e13d",
+          "mode": "100644",
+          "bytes": 357
+        },
+        {
+          "source": "memory-aids/one-page-recap.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/memory-aids/one-page-recap.md",
+          "sha": "884d3fde9adf7ec2c122d7893249bed797859c77",
+          "mode": "100644",
+          "bytes": 412
+        },
+        {
+          "source": "model-drills/drill-01-business-application-tech.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/model-drills/drill-01-business-application-tech.md",
+          "sha": "16df8ebf0f15daaf8d996cb42660bad16fe591be",
+          "mode": "100644",
+          "bytes": 447
+        },
+        {
+          "source": "model-drills/drill-02-relations.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/model-drills/drill-02-relations.md",
+          "sha": "a90e2e963e8ff707de27506c02935f25e52ac498",
+          "mode": "100644",
+          "bytes": 274
+        },
+        {
+          "source": "model-drills/drill-03-viewpoint.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/model-drills/drill-03-viewpoint.md",
+          "sha": "472f4101140bedfcb1d37893fd8038d79bbe3b18",
+          "mode": "100644",
+          "bytes": 284
+        },
+        {
+          "source": "practice/flashcards.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/practice/flashcards.md",
+          "sha": "bddf9c94152fa18bbeee98cea58b30fd91b20275",
+          "mode": "100644",
+          "bytes": 527
+        },
+        {
+          "source": "practice/question-bank-open.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/practice/question-bank-open.md",
+          "sha": "875ecbf3a1ee79f4eb0420db020862aa35dccdc0",
+          "mode": "100644",
+          "bytes": 465
+        },
+        {
+          "source": "relations/01-core-relations.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/relations/01-core-relations.md",
+          "sha": "069e1cdb2c19524a2cfb8c96384f2e68896aa56d",
+          "mode": "100644",
+          "bytes": 315
+        },
+        {
+          "source": "relations/02-relation-cheatsheet.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/relations/02-relation-cheatsheet.md",
+          "sha": "102f5f0082afa890d6dab9d31355219b3a2f2af3",
+          "mode": "100644",
+          "bytes": 549
+        },
+        {
+          "source": "sources/SOURCES.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/sources/SOURCES.md",
+          "sha": "ba902412ac78ebe12e06bf746ebe58a4f503822d",
+          "mode": "100644",
+          "bytes": 305
+        },
+        {
+          "source": "togaf_part1_schemas.pdf",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/togaf_part1_schemas.pdf",
+          "sha": "4dce07dc9b36a1aa79d72f6f8a21e4257681eef9",
+          "mode": "100644",
+          "bytes": 97753
+        },
+        {
+          "source": "trackers/error-log.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/trackers/error-log.md",
+          "sha": "f137654228f7b5bd9ec231b0b06996841baba38c",
+          "mode": "100644",
+          "bytes": 321
+        },
+        {
+          "source": "trackers/mock-exam-log.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/trackers/mock-exam-log.md",
+          "sha": "e125530e2e24d5b9b3be5c6894dba965507ff3a2",
+          "mode": "100644",
+          "bytes": 107
+        },
+        {
+          "source": "trackers/study-log.csv",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/trackers/study-log.csv",
+          "sha": "6af0edef4314ee46e5c0327d7f6847a8a0d37348",
+          "mode": "100644",
+          "bytes": 56
+        },
+        {
+          "source": "viewpoints/01-why-viewpoints-matter.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/viewpoints/01-why-viewpoints-matter.md",
+          "sha": "55d3d16c898897dca3ff9d71267a18e675d5d9d8",
+          "mode": "100644",
+          "bytes": 203
+        },
+        {
+          "source": "viewpoints/02-view-selection-guide.md",
+          "destination": "legacy/historical-architecture/archimate-level1-companion-repo/viewpoints/02-view-selection-guide.md",
+          "sha": "b6d1562a7baa51ba7b35cf457ddb7501d5d5aba3",
+          "mode": "100644",
+          "bytes": 316
+        }
+      ]
+    },
+    {
+      "repository": "zdmooc/archimate-level2-companion-repo",
+      "commit": "ab68b29dc084a7e84d13f046addae51e9e97b206",
+      "branch": "main",
+      "count": 103,
+      "files": [
+        {
+          "source": "LEGAL_AND_SCOPE.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/LEGAL_AND_SCOPE.md",
+          "sha": "3fd96e2f577afa3b588d6d1b3824ac60e4492d87",
+          "mode": "100644",
+          "bytes": 389
+        },
+        {
+          "source": "README.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/README.md",
+          "sha": "5726217c51eec874e5b268fcabbcabbdad95a5e3",
+          "mode": "100644",
+          "bytes": 962
+        },
+        {
+          "source": "answer-patterns/common-traps.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/answer-patterns/common-traps.md",
+          "sha": "bf15fbef0393f1fbd081dd54a784012377ffdfd1",
+          "mode": "100644",
+          "bytes": 255
+        },
+        {
+          "source": "answer-patterns/good-answer-patterns.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/answer-patterns/good-answer-patterns.md",
+          "sha": "475ff966a8af32a22fe1d58bb7016c7b58041616",
+          "mode": "100644",
+          "bytes": 294
+        },
+        {
+          "source": "answer-patterns/weak-answer-patterns.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/answer-patterns/weak-answer-patterns.md",
+          "sha": "b7c59825e16fb0631401ecaca1aaa1d4b3c89757",
+          "mode": "100644",
+          "bytes": 230
+        },
+        {
+          "source": "chapter-notes/chapter-01-practitioner-mindset.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/chapter-notes/chapter-01-practitioner-mindset.md",
+          "sha": "fdea52019e85bca17f13d448b1e15348463b32fa",
+          "mode": "100644",
+          "bytes": 541
+        },
+        {
+          "source": "chapter-notes/chapter-02-reading-scenarios.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/chapter-notes/chapter-02-reading-scenarios.md",
+          "sha": "58a597da62f3ec807234dfb3961f0a9512fcbead",
+          "mode": "100644",
+          "bytes": 272
+        },
+        {
+          "source": "chapter-notes/chapter-03-view-selection.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/chapter-notes/chapter-03-view-selection.md",
+          "sha": "8a93278b5fe2cd1e8ac0fe3c504f15d358b701d0",
+          "mode": "100644",
+          "bytes": 432
+        },
+        {
+          "source": "chapter-notes/chapter-04-relations-and-precision.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/chapter-notes/chapter-04-relations-and-precision.md",
+          "sha": "60a8cf7b3b6ff48abf710c0ad8710bcb5cca0319",
+          "mode": "100644",
+          "bytes": 350
+        },
+        {
+          "source": "chapter-notes/chapter-05-cross-layer-logic.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/chapter-notes/chapter-05-cross-layer-logic.md",
+          "sha": "2bf1ea6f1a322593f9de3f90406a81c4e6335a61",
+          "mode": "100644",
+          "bytes": 355
+        },
+        {
+          "source": "chapter-notes/chapter-06-open-book-strategy.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/chapter-notes/chapter-06-open-book-strategy.md",
+          "sha": "b3e47fa104dee15e69ac491f0339f058f8bfa39d",
+          "mode": "100644",
+          "bytes": 296
+        },
+        {
+          "source": "daily-plan/day-01.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-01.md",
+          "sha": "3ed0e8e90bb46777e597883bc502870b66efdaeb",
+          "mode": "100644",
+          "bytes": 245
+        },
+        {
+          "source": "daily-plan/day-02.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-02.md",
+          "sha": "d88c431c9985169d713c706399736f165c4ba0e0",
+          "mode": "100644",
+          "bytes": 245
+        },
+        {
+          "source": "daily-plan/day-03.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-03.md",
+          "sha": "951596dc0f632f5c0f095108fb885b745b741192",
+          "mode": "100644",
+          "bytes": 245
+        },
+        {
+          "source": "daily-plan/day-04.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-04.md",
+          "sha": "05cbfa06684d3129880a32b8a633259701194174",
+          "mode": "100644",
+          "bytes": 211
+        },
+        {
+          "source": "daily-plan/day-05.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-05.md",
+          "sha": "8c1702839c6fc16fe72930453bdfd81e26cda50f",
+          "mode": "100644",
+          "bytes": 211
+        },
+        {
+          "source": "daily-plan/day-06.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-06.md",
+          "sha": "fea022e6b8b199eb4cfc4e7131540c38c789bb91",
+          "mode": "100644",
+          "bytes": 211
+        },
+        {
+          "source": "daily-plan/day-07.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-07.md",
+          "sha": "dbaf458575186394c186d40633db99c13643e7b3",
+          "mode": "100644",
+          "bytes": 217
+        },
+        {
+          "source": "daily-plan/day-08.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-08.md",
+          "sha": "3fa4c6846d509ec975e0755edb401d44684c1dfd",
+          "mode": "100644",
+          "bytes": 217
+        },
+        {
+          "source": "daily-plan/day-09.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-09.md",
+          "sha": "e6f5f0915f0a895e38a2fc11a1d3acca5038a075",
+          "mode": "100644",
+          "bytes": 217
+        },
+        {
+          "source": "daily-plan/day-10.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-10.md",
+          "sha": "fabeb63b4a846fd4cdfe4bceafe65668677d717f",
+          "mode": "100644",
+          "bytes": 215
+        },
+        {
+          "source": "daily-plan/day-11.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-11.md",
+          "sha": "2dd2a781a0ea7940d78980b46c39c3ff57a26641",
+          "mode": "100644",
+          "bytes": 215
+        },
+        {
+          "source": "daily-plan/day-12.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-12.md",
+          "sha": "2c0da650fcb4804b0f69fb09a11da96d130903c4",
+          "mode": "100644",
+          "bytes": 215
+        },
+        {
+          "source": "daily-plan/day-13.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-13.md",
+          "sha": "1f9b9ac93040fa1fc69edad2077a0385e742134b",
+          "mode": "100644",
+          "bytes": 237
+        },
+        {
+          "source": "daily-plan/day-14.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-14.md",
+          "sha": "6336fa0068b2cb6ca2bf63ab4ddf817f70015af0",
+          "mode": "100644",
+          "bytes": 237
+        },
+        {
+          "source": "daily-plan/day-15.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-15.md",
+          "sha": "17ccc9dc4e84cda2d0e3fe7a0492cafdcda8b3f3",
+          "mode": "100644",
+          "bytes": 237
+        },
+        {
+          "source": "daily-plan/day-16.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-16.md",
+          "sha": "0ae6656c967e88dbc76f13013905bf45820d3bcd",
+          "mode": "100644",
+          "bytes": 208
+        },
+        {
+          "source": "daily-plan/day-17.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-17.md",
+          "sha": "8691bad256a720c2ec50718d7c4333ffb8205af4",
+          "mode": "100644",
+          "bytes": 208
+        },
+        {
+          "source": "daily-plan/day-18.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-18.md",
+          "sha": "4e21cf8ed08b3847750de8db3d1d084d32549e89",
+          "mode": "100644",
+          "bytes": 208
+        },
+        {
+          "source": "daily-plan/day-19.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-19.md",
+          "sha": "6bb10cace8c3a3686e96fc74c22beee07e08e8be",
+          "mode": "100644",
+          "bytes": 174
+        },
+        {
+          "source": "daily-plan/day-20.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-20.md",
+          "sha": "da75bb29a913724cb5bec64dc21ac57c05a024b1",
+          "mode": "100644",
+          "bytes": 174
+        },
+        {
+          "source": "daily-plan/day-21.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/daily-plan/day-21.md",
+          "sha": "60c230b6e51b4fcc35eb1485b985d51dc24dff6b",
+          "mode": "100644",
+          "bytes": 229
+        },
+        {
+          "source": "docs/00-overview.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/docs/00-overview.md",
+          "sha": "09114f9dd9a5deafb5df0ef26c4e3ba10c319de3",
+          "mode": "100644",
+          "bytes": 540
+        },
+        {
+          "source": "docs/01-official-context.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/docs/01-official-context.md",
+          "sha": "8a6ec0cf7a685b282aad5cede5702e59c94c1b16",
+          "mode": "100644",
+          "bytes": 424
+        },
+        {
+          "source": "interview-mission/archimate-practitioner-pour-entretien.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/interview-mission/archimate-practitioner-pour-entretien.md",
+          "sha": "e923cd3021811d88f8766cee11f7b9a8d6649c40",
+          "mode": "100644",
+          "bytes": 463
+        },
+        {
+          "source": "interview-mission/mini-cas-mission.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/interview-mission/mini-cas-mission.md",
+          "sha": "0daf5851b5dff236fcd4f5cf046795722d11add7",
+          "mode": "100644",
+          "bytes": 258
+        },
+        {
+          "source": "memory-aids/one-page-recap.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/memory-aids/one-page-recap.md",
+          "sha": "d78eb6708c3c76af43cb694c3a7d276b06c28481",
+          "mode": "100644",
+          "bytes": 350
+        },
+        {
+          "source": "memory-aids/stakeholder-message-view.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/memory-aids/stakeholder-message-view.md",
+          "sha": "68f7945206f65490b835d920a8f7dc03f7ec283f",
+          "mode": "100644",
+          "bytes": 273
+        },
+        {
+          "source": "mock-exams/mock-exam-01-correction.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/mock-exams/mock-exam-01-correction.md",
+          "sha": "713c7e89829d608ed95a4b0ef8d59c83e0621a75",
+          "mode": "100644",
+          "bytes": 1277
+        },
+        {
+          "source": "mock-exams/mock-exam-01.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/mock-exams/mock-exam-01.md",
+          "sha": "3d12580dd64c8807d7641c4d6b3c21203a6aa207",
+          "mode": "100644",
+          "bytes": 2009
+        },
+        {
+          "source": "mock-exams/mock-exam-02-correction.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/mock-exams/mock-exam-02-correction.md",
+          "sha": "8f2cef870bf017868f52a3872609564bc6743c42",
+          "mode": "100644",
+          "bytes": 1277
+        },
+        {
+          "source": "mock-exams/mock-exam-02.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/mock-exams/mock-exam-02.md",
+          "sha": "74dd7bb934c83defaee084c83d0de87cff694cee",
+          "mode": "100644",
+          "bytes": 2009
+        },
+        {
+          "source": "mock-exams/mock-exam-03-correction.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/mock-exams/mock-exam-03-correction.md",
+          "sha": "3f490ccf47226f6ceda8ff10730905235b5335bc",
+          "mode": "100644",
+          "bytes": 1277
+        },
+        {
+          "source": "mock-exams/mock-exam-03.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/mock-exams/mock-exam-03.md",
+          "sha": "875dfd5c0a8ca57e480281db0bafce2887ef5d3d",
+          "mode": "100644",
+          "bytes": 2009
+        },
+        {
+          "source": "mock-exams/mock-exam-04-correction.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/mock-exams/mock-exam-04-correction.md",
+          "sha": "9382801f07c0ae832fc310e4db7e4228d5c037f7",
+          "mode": "100644",
+          "bytes": 1277
+        },
+        {
+          "source": "mock-exams/mock-exam-04.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/mock-exams/mock-exam-04.md",
+          "sha": "179c8a43f633f952e7174855fec1b392dad5046d",
+          "mode": "100644",
+          "bytes": 2009
+        },
+        {
+          "source": "model-reviews/common-modeling-mistakes.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/model-reviews/common-modeling-mistakes.md",
+          "sha": "79e91deff775e89eeb4583eefb9784787bf2c712",
+          "mode": "100644",
+          "bytes": 263
+        },
+        {
+          "source": "model-reviews/model-review-checklist.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/model-reviews/model-review-checklist.md",
+          "sha": "4cef2d47f4918590523491ac658fc82161d655fb",
+          "mode": "100644",
+          "bytes": 443
+        },
+        {
+          "source": "open-book/open-book-checklist.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/open-book/open-book-checklist.md",
+          "sha": "7b7d9a79ef07de3708d943fef03729cb5fd091a8",
+          "mode": "100644",
+          "bytes": 243
+        },
+        {
+          "source": "open-book/open-book-practice-template.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/open-book/open-book-practice-template.md",
+          "sha": "b419173a2eac2fdcad161673cde1680ed51fda4e",
+          "mode": "100644",
+          "bytes": 124
+        },
+        {
+          "source": "scenario-bank/INDEX.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/INDEX.md",
+          "sha": "b8d1d585ad6da2f9c63009e9e2b58590950cdcab",
+          "mode": "100644",
+          "bytes": 1413
+        },
+        {
+          "source": "scenario-bank/scenario-01-sponsor-transformation.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-01-sponsor-transformation.md",
+          "sha": "27e12c5334c572fb6c7af33d51bcdd6a81b562de",
+          "mode": "100644",
+          "bytes": 723
+        },
+        {
+          "source": "scenario-bank/scenario-02-sponsor-transformation.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-02-sponsor-transformation.md",
+          "sha": "e07752acf74ccc32751a611f5990dfcea1b22e3c",
+          "mode": "100644",
+          "bytes": 723
+        },
+        {
+          "source": "scenario-bank/scenario-03-sponsor-transformation.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-03-sponsor-transformation.md",
+          "sha": "23a0e367448feeb5ceb4bfe0bea3baacccb6fed3",
+          "mode": "100644",
+          "bytes": 723
+        },
+        {
+          "source": "scenario-bank/scenario-04-sponsor-transformation.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-04-sponsor-transformation.md",
+          "sha": "67e559da62b2a1cade2175f58e1dba73cf79889e",
+          "mode": "100644",
+          "bytes": 723
+        },
+        {
+          "source": "scenario-bank/scenario-05-sponsor-transformation.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-05-sponsor-transformation.md",
+          "sha": "af323f0f67710367b6683d5e8ec74bd0092499eb",
+          "mode": "100644",
+          "bytes": 723
+        },
+        {
+          "source": "scenario-bank/scenario-06-app-dependencies.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-06-app-dependencies.md",
+          "sha": "1023a9cead2d86177301ef5470471f00ce4dd331",
+          "mode": "100644",
+          "bytes": 733
+        },
+        {
+          "source": "scenario-bank/scenario-07-app-dependencies.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-07-app-dependencies.md",
+          "sha": "fc3da914e801092840048d592581bdc7074e6f89",
+          "mode": "100644",
+          "bytes": 733
+        },
+        {
+          "source": "scenario-bank/scenario-08-app-dependencies.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-08-app-dependencies.md",
+          "sha": "4fd18408645a26a5d6808d0490975a7b458cb8c3",
+          "mode": "100644",
+          "bytes": 733
+        },
+        {
+          "source": "scenario-bank/scenario-09-app-dependencies.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-09-app-dependencies.md",
+          "sha": "0cb56813b1e23c3c62853a5e4ca5a8a3f61740fc",
+          "mode": "100644",
+          "bytes": 733
+        },
+        {
+          "source": "scenario-bank/scenario-10-app-dependencies.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-10-app-dependencies.md",
+          "sha": "a2561db18287535498ecb9690f436b660b79bd99",
+          "mode": "100644",
+          "bytes": 733
+        },
+        {
+          "source": "scenario-bank/scenario-11-platform-hosting.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-11-platform-hosting.md",
+          "sha": "cde370de1c116ac47d9c49c789d22195510ea197",
+          "mode": "100644",
+          "bytes": 683
+        },
+        {
+          "source": "scenario-bank/scenario-12-platform-hosting.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-12-platform-hosting.md",
+          "sha": "abba4a409197ad2ccce37de0eccb37f8ab43e3fa",
+          "mode": "100644",
+          "bytes": 683
+        },
+        {
+          "source": "scenario-bank/scenario-13-platform-hosting.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-13-platform-hosting.md",
+          "sha": "a785777b9f626c946b87804b80438c2bae4ef9ee",
+          "mode": "100644",
+          "bytes": 683
+        },
+        {
+          "source": "scenario-bank/scenario-14-platform-hosting.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-14-platform-hosting.md",
+          "sha": "f59628a5dd862edfa15c3e72b4418df498d8c960",
+          "mode": "100644",
+          "bytes": 683
+        },
+        {
+          "source": "scenario-bank/scenario-15-platform-hosting.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-15-platform-hosting.md",
+          "sha": "c930b452bc4d8b4345a8a7efaefa6afe8c74bab4",
+          "mode": "100644",
+          "bytes": 683
+        },
+        {
+          "source": "scenario-bank/scenario-16-migration-lots.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-16-migration-lots.md",
+          "sha": "bf4c7bfac9c82df13da47cb9a84c667e52a3ef4e",
+          "mode": "100644",
+          "bytes": 693
+        },
+        {
+          "source": "scenario-bank/scenario-17-migration-lots.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-17-migration-lots.md",
+          "sha": "e88d689e6b4f967efc4abf9c1842c81f465d707d",
+          "mode": "100644",
+          "bytes": 693
+        },
+        {
+          "source": "scenario-bank/scenario-18-migration-lots.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-18-migration-lots.md",
+          "sha": "e007b116ed015f15d44bda2dd95559529451740e",
+          "mode": "100644",
+          "bytes": 693
+        },
+        {
+          "source": "scenario-bank/scenario-19-migration-lots.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-19-migration-lots.md",
+          "sha": "0ca3bb41d9cddb27ce171fb9af8ee800d96cee47",
+          "mode": "100644",
+          "bytes": 693
+        },
+        {
+          "source": "scenario-bank/scenario-20-migration-lots.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-20-migration-lots.md",
+          "sha": "f6ed4a552e020307c4102420d2fb4ba49f13aa5d",
+          "mode": "100644",
+          "bytes": 693
+        },
+        {
+          "source": "scenario-bank/scenario-21-iam-visibility.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-21-iam-visibility.md",
+          "sha": "6ac5df8411e426152f32d575889ae043fa88bf37",
+          "mode": "100644",
+          "bytes": 686
+        },
+        {
+          "source": "scenario-bank/scenario-22-iam-visibility.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-22-iam-visibility.md",
+          "sha": "bf7c7b7d259badac0a4a7fc5e3c25e8535cf1112",
+          "mode": "100644",
+          "bytes": 686
+        },
+        {
+          "source": "scenario-bank/scenario-23-iam-visibility.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-23-iam-visibility.md",
+          "sha": "be2c4804891caef281e5009d6e12680d5942c3e5",
+          "mode": "100644",
+          "bytes": 686
+        },
+        {
+          "source": "scenario-bank/scenario-24-iam-visibility.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-24-iam-visibility.md",
+          "sha": "c6d3e87ae72b071620e5eb8828f111e7cb6712b1",
+          "mode": "100644",
+          "bytes": 686
+        },
+        {
+          "source": "scenario-bank/scenario-25-iam-visibility.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-25-iam-visibility.md",
+          "sha": "d53a76e2c711b871e96000961a5047920f6463b2",
+          "mode": "100644",
+          "bytes": 686
+        },
+        {
+          "source": "scenario-bank/scenario-26-rationalization.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-26-rationalization.md",
+          "sha": "0b33432dedc4b59d77d246d240bbbd637c992daa",
+          "mode": "100644",
+          "bytes": 648
+        },
+        {
+          "source": "scenario-bank/scenario-27-rationalization.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-27-rationalization.md",
+          "sha": "cfe08d7ff55789d2e92beb92a5002d2459cfebbe",
+          "mode": "100644",
+          "bytes": 648
+        },
+        {
+          "source": "scenario-bank/scenario-28-rationalization.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-28-rationalization.md",
+          "sha": "71434de346c80556fde2a959af82be1e4871ac41",
+          "mode": "100644",
+          "bytes": 648
+        },
+        {
+          "source": "scenario-bank/scenario-29-rationalization.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-29-rationalization.md",
+          "sha": "a97467e227cd3df2a39927b2baf882e6eed09d4b",
+          "mode": "100644",
+          "bytes": 648
+        },
+        {
+          "source": "scenario-bank/scenario-30-rationalization.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-30-rationalization.md",
+          "sha": "d440acac5bd2244dbb2e9efa9902ede160bed9d0",
+          "mode": "100644",
+          "bytes": 648
+        },
+        {
+          "source": "scenario-bank/scenario-31-security-concerns.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-31-security-concerns.md",
+          "sha": "55b76da183ecf78066fb1a45d724a260231c298d",
+          "mode": "100644",
+          "bytes": 687
+        },
+        {
+          "source": "scenario-bank/scenario-32-security-concerns.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-32-security-concerns.md",
+          "sha": "0f798290f0bc4b2f659217cc5bfb0ae5d53d1146",
+          "mode": "100644",
+          "bytes": 687
+        },
+        {
+          "source": "scenario-bank/scenario-33-security-concerns.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-33-security-concerns.md",
+          "sha": "f871bb093d365711ab176b02f6dca25b492e93c9",
+          "mode": "100644",
+          "bytes": 687
+        },
+        {
+          "source": "scenario-bank/scenario-34-security-concerns.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-34-security-concerns.md",
+          "sha": "e3b6e8ed77e777dfc5a3b21b3159bee144498014",
+          "mode": "100644",
+          "bytes": 687
+        },
+        {
+          "source": "scenario-bank/scenario-35-security-concerns.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-35-security-concerns.md",
+          "sha": "cf3e409c7d32a510d230ec18d0949d31545238eb",
+          "mode": "100644",
+          "bytes": 687
+        },
+        {
+          "source": "scenario-bank/scenario-36-business-value-chain.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-36-business-value-chain.md",
+          "sha": "aef905bcedeb42795241e1252c01655670951802",
+          "mode": "100644",
+          "bytes": 677
+        },
+        {
+          "source": "scenario-bank/scenario-37-business-value-chain.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-37-business-value-chain.md",
+          "sha": "ed3e461f8799c20156e3e2c2f6a74d5460f77299",
+          "mode": "100644",
+          "bytes": 677
+        },
+        {
+          "source": "scenario-bank/scenario-38-business-value-chain.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-38-business-value-chain.md",
+          "sha": "78e753b8e461faca7f7b167fecae3673e6a90046",
+          "mode": "100644",
+          "bytes": 677
+        },
+        {
+          "source": "scenario-bank/scenario-39-business-value-chain.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-39-business-value-chain.md",
+          "sha": "849bd6e1a011d49b794411f7fe99a5ef59b7dae1",
+          "mode": "100644",
+          "bytes": 677
+        },
+        {
+          "source": "scenario-bank/scenario-40-business-value-chain.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-bank/scenario-40-business-value-chain.md",
+          "sha": "9c7340ea3f2cd029914bc102c6f26a6d6f41f24a",
+          "mode": "100644",
+          "bytes": 677
+        },
+        {
+          "source": "scenario-method/checklist-before-answer.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-method/checklist-before-answer.md",
+          "sha": "869e3e56858865afc73ebf572b8433d1f68194a7",
+          "mode": "100644",
+          "bytes": 290
+        },
+        {
+          "source": "scenario-method/how-to-compare-model-options.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-method/how-to-compare-model-options.md",
+          "sha": "3e372c7d91907e87768f15fb0a1b90ee2a12026c",
+          "mode": "100644",
+          "bytes": 369
+        },
+        {
+          "source": "scenario-method/how-to-read-an-archimate-scenario.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/scenario-method/how-to-read-an-archimate-scenario.md",
+          "sha": "472a7d676ab1a1fb9a7fd7e1337897411ff622b5",
+          "mode": "100644",
+          "bytes": 485
+        },
+        {
+          "source": "sources/SOURCES.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/sources/SOURCES.md",
+          "sha": "d803f34c18a447c8998413560881fe622949d93d",
+          "mode": "100644",
+          "bytes": 347
+        },
+        {
+          "source": "trackers/error-log.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/trackers/error-log.md",
+          "sha": "11cffd73f3e277e696c18589bbae1510e4b84dd0",
+          "mode": "100644",
+          "bytes": 335
+        },
+        {
+          "source": "trackers/mock-exam-log.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/trackers/mock-exam-log.md",
+          "sha": "38d62b23555956188c0e850bee5ab1aabbd26715",
+          "mode": "100644",
+          "bytes": 114
+        },
+        {
+          "source": "trackers/study-log.csv",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/trackers/study-log.csv",
+          "sha": "6af0edef4314ee46e5c0327d7f6847a8a0d37348",
+          "mode": "100644",
+          "bytes": 56
+        },
+        {
+          "source": "view-selection/stakeholder-to-view-map.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/view-selection/stakeholder-to-view-map.md",
+          "sha": "88c1c61fc062136f536d681279ca85c9507fa22f",
+          "mode": "100644",
+          "bytes": 388
+        },
+        {
+          "source": "view-selection/view-selection-guide.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/view-selection/view-selection-guide.md",
+          "sha": "e76ecd8967c403be1893701933dffd7d660a501f",
+          "mode": "100644",
+          "bytes": 423
+        },
+        {
+          "source": "worksheets/worksheet-01-scenario-analysis.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/worksheets/worksheet-01-scenario-analysis.md",
+          "sha": "404150cc7c2422f1f39fbaed51bf305195d308e1",
+          "mode": "100644",
+          "bytes": 174
+        },
+        {
+          "source": "worksheets/worksheet-02-view-comparison.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/worksheets/worksheet-02-view-comparison.md",
+          "sha": "c3132f4e230b5dde28acf78f44bc40c76e47ed03",
+          "mode": "100644",
+          "bytes": 181
+        },
+        {
+          "source": "worksheets/worksheet-03-open-book.md",
+          "destination": "legacy/historical-architecture/archimate-level2-companion-repo/worksheets/worksheet-03-open-book.md",
+          "sha": "2d065c280d8bcdeaa66aeccf010b01946e087b2c",
+          "mode": "100644",
+          "bytes": 149
+        }
+      ]
+    }
+  ],
+  "status": "CONTENT_TRANSFER_PENDING_PR_MERGE",
+  "total": 401
+}

@@ -1,0 +1,11 @@
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+.terraform/
+terraform.tfstate*
+.idea/
+.vscode/
+__pycache__/
+*.swp

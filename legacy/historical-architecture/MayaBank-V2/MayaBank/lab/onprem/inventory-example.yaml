@@ -1,0 +1,10 @@
+all:
+  children:
+    control_plane:
+      hosts:
+        cp-01:
+        cp-02:
+    workers:
+      hosts:
+        wk-01:
+        wk-02:
