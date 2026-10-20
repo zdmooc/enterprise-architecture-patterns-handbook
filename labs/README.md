@@ -1,6 +1,6 @@
 # Catalogue de travaux pratiques (10 patterns)
 
-Cette liste donne, pour chaque pattern, le banc d'essai minimal et la **preuve** à produire. Les scénarios nécessitant MQ, Kafka ou OpenShift sont des exercices de conception/implantation proposés ; **seul le lab d'idempotence SQLite est implémenté et testé dans cette version.**
+Cette liste donne, pour chaque pattern, le banc d'essai minimal et la **preuve** à produire. Les scénarios nécessitant MQ, Kafka ou OpenShift sont des exercices de conception/implantation proposés ; **la table des dix intégrations présente les exercices disponibles ; les laboratoires effectivement exécutables sont listés ci-dessous, dont idempotence SQLite et GoF Java 17.**
 
 | # | Pattern | Exercice | Preuve attendue |
 |---|---|---|---|
@@ -26,3 +26,8 @@ Cette liste donne, pour chaque pattern, le banc d'essai minimal et la **preuve**
 - **[RAG ACL + Tool Gateway + validation humaine (Python standard library)](ai-rag-guardrails/README.md)** : démonstrateur local fictif, sans réseau ni LLM, avec tests de confidentialité tenant/rôle, prompt injection comme donnée, outils en lecture seule, approbation immuable et action simulée idempotente.
 - Commande : `python -m unittest discover -s labs/ai-rag-guardrails -v` depuis la racine du dépôt.
 - Ce laboratoire n'est **pas** un banc de preuve de sécurité en production ; le store de décision et les approvals sont en mémoire.
+
+## GoF Java 17 — extension V4
+
+- [Lab exécutable sans dépendance](java-gof/README.md) : sept contrôles en Java (stratégie, factory, commande, décorateur, proxy, template, observer).
+- Les fiches documentaires nouvelles ne sont **pas** des tests de runtime propriétaire.
