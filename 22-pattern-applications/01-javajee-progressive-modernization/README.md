@@ -22,7 +22,7 @@ Flux métier envisagé : **Canal API --> Façade de routage --> Application trad
 - [17 legacy modernization patterns](../../17-legacy-modernization-patterns/08-parallel-run-shadow/README.md)
 - [11 application software patterns](../../11-application-software-patterns/15-branch-by-abstraction/README.md)
 - [16 performance sre patterns](../../16-performance-sre-patterns/04-connection-pooling/README.md)
-- [09 containerization kubernetes openshift patterns](../09-containerization-kubernetes-openshift-patterns/README.md)
+- [09 containerization kubernetes openshift patterns](../../09-containerization-kubernetes-openshift-patterns/README.md)
 
 ## 4. Exécution de la démarche
 
