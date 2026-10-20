@@ -137,3 +137,7 @@ Les anciennes références portant « 151 patterns » décrivent le **socle V3**
 ## Historical preservation — modernis-dat (20 Oct 2026)
 
 Original archived source reference(s) are preserved without modifications under [legacy/modernis-dat/](legacy/modernis-dat/MIGRATION.md), with 62 SHA-verified files, including any binary files and original license documents. This is not a claim of runtime validation.
+
+## Historical preservation — historical-architecture (20 Oct 2026)
+
+Original archived source reference(s) are preserved without modifications under [legacy/historical-architecture/](legacy/historical-architecture/MIGRATION.md), with 401 SHA-verified files, including any binary files and original license documents. This is not a claim of runtime validation.

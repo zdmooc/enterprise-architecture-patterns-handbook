@@ -1,0 +1,2 @@
+location = "francecentral"
+environment = "sandbox"
