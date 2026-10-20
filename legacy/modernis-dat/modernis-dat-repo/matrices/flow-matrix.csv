@@ -1,0 +1,7 @@
+source,source_zone,destination,dest_zone,protocol,port,auth,crypto,justification,owner,criticality
+Portail-RH,DMZ,API-Gateway,APP,HTTPS,443,OIDC,TLS,Accès utilisateurs internes,AppTeam-RH,Gold
+CRM-Interne,APP,Rules-Engine,APP,HTTPS,8443,RBAC,mTLS,Appels règles métier,AppTeam-CRM,Gold
+API-Gateway,APP,ERP-Finance,DATA,HTTPS,443,OAuth2,TLS,Orchestration services,AppTeam-ERP,Gold
+Services,APP,Oracle,DATA,TCP,1521,Wallet,TDE,Accès base finance,DBA-Team,Gold
+Services,APP,S3-Object-Storage,DATA,HTTPS,443,IAM,TLS,Stockage documents/exports,Platform-Team,Silver
+Observability,APP,Logs-Platform,APP,HTTPS,9200,Token,TLS,Centralisation logs,Run-Team,Silver

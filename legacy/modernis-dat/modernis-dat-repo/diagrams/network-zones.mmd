@@ -1,0 +1,20 @@
+flowchart LR
+  subgraph DMZ
+    U[Users]
+    LB[LB/WAF]
+  end
+
+  subgraph APP[Zone Applicative]
+    IN[Ingress]
+    GW[API Mgmt]
+    API[Apps/Services]
+  end
+
+  subgraph DATA[Zone Data]
+    ORA[(Oracle)]
+    S3[(S3)]
+  end
+
+  U --> LB --> IN --> GW --> API
+  API --> ORA
+  API --> S3

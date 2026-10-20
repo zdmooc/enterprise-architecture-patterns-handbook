@@ -1,0 +1,13 @@
+# ADR-001 — Plateforme Kubernetes : Red Hat OpenShift
+- **Statut** : Accepted
+- **Date** : 2025-12-18
+- **Décideurs** : Architecture / RUN / SSI
+- **Contexte** : Besoin de standardiser les déploiements, améliorer la résilience, et renforcer la conformité sécurité.
+- **Décision** : Retenir OpenShift 4.x comme plateforme cible (clusters HA, segmentation par environnement).
+- **Options** :
+  - Kubernetes upstream + outillage maison
+  - OpenShift
+  - Plateformes managées cloud
+- **Conséquences** :
+  - Standardisation (operators, RBAC, policies)
+  - Gouvernance et exploitation simplifiées

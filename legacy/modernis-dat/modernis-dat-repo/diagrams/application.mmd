@@ -1,0 +1,23 @@
+flowchart TB
+  subgraph Applications
+    RH[Portail RH]
+    CRM[CRM Interne]
+    ERP[ERP Finance]
+  end
+
+  subgraph Socles
+    GW[API Gateway / API Mgmt]
+    IAM[SSO OIDC]
+    OBS[Observabilité]
+    RE[Rules Engine]
+  end
+
+  RH --> GW
+  CRM --> GW
+  ERP --> GW
+  GW --> IAM
+  RH --> RE
+  CRM --> RE
+  RH --> OBS
+  CRM --> OBS
+  ERP --> OBS

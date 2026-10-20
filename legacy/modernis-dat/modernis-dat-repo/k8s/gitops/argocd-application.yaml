@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: modernis-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://example.invalid/modernis-dat.git
+    targetRevision: main
+    path: k8s/apps/modernis-api
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: modernis-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

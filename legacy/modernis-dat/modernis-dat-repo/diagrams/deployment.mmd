@@ -1,0 +1,21 @@
+flowchart LR
+  subgraph DMZ
+    LB[Load Balancer / WAF]
+  end
+
+  subgraph OCP[OpenShift Cluster]
+    IN[Ingress Controller]
+    GW[API Gateway]
+    API[Services Java (pods)]
+    OBS[Prometheus/Grafana/Logs]
+  end
+
+  subgraph DATA[Zone Data]
+    ORA[(Oracle)]
+    S3[(S3)]
+  end
+
+  LB --> IN --> GW --> API
+  API --> ORA
+  API --> S3
+  OBS <---> API

@@ -1,0 +1,10 @@
+flowchart TB
+  P[Production Site] -->|Backups| B[Backup Repository]
+  P -->|Replicas (option)| S[Secondary Site]
+  B -->|Restore| S
+  subgraph Tests
+    T1[Test trimestriel restauration]
+    T2[Test annuel bascule]
+  end
+  T1 --> B
+  T2 --> S

@@ -1,0 +1,453 @@
+{
+  "schema": 1,
+  "date": "2026-10-20",
+  "destination_repository": "zdmooc/enterprise-architecture-patterns-handbook",
+  "source_history_copied": false,
+  "runtime_verified": false,
+  "sources": [
+    {
+      "repository": "zdmooc/modernis-dat-repo",
+      "commit": "c3332042dd21228e3a9797969798824caca0f5fa",
+      "branch": "main",
+      "count": 62,
+      "files": [
+        {
+          "source": ".gitignore",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/.gitignore",
+          "sha": "94dd4a056fea8a66888d1a96aa0865aa9e61efcb",
+          "mode": "100644",
+          "bytes": 30
+        },
+        {
+          "source": "CONTRIBUTING.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/CONTRIBUTING.md",
+          "sha": "c25297ed53257aa47c0dc47f5567018352d756b3",
+          "mode": "100644",
+          "bytes": 274
+        },
+        {
+          "source": "LICENSE.txt",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/LICENSE.txt",
+          "sha": "046d3f25e5c56350d3468a5e21a08309201c6591",
+          "mode": "100644",
+          "bytes": 181
+        },
+        {
+          "source": "Makefile",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/Makefile",
+          "sha": "7edf1bf8b0557e0fb9261176f6a5f8a2bd2f4f21",
+          "mode": "100644",
+          "bytes": 134
+        },
+        {
+          "source": "README.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/README.md",
+          "sha": "f2ed082a80119275a044f03b44518c6461dceca3",
+          "mode": "100644",
+          "bytes": 2063
+        },
+        {
+          "source": "adr/000-template.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/adr/000-template.md",
+          "sha": "f24841a85ec474bcd9ae031d7a469c3ad9217ccd",
+          "mode": "100644",
+          "bytes": 299
+        },
+        {
+          "source": "adr/001-openshift.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/adr/001-openshift.md",
+          "sha": "75f371e94f530c4933a58adb2641e0e3f42e8f63",
+          "mode": "100644",
+          "bytes": 604
+        },
+        {
+          "source": "adr/002-api-management.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/adr/002-api-management.md",
+          "sha": "c6f6512d060702c168c3a0b4f7689ba9ea07f405",
+          "mode": "100644",
+          "bytes": 582
+        },
+        {
+          "source": "adr/003-oidc-sso.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/adr/003-oidc-sso.md",
+          "sha": "be2eddfc2ab1e692c4961f98ccb70f7d42258b37",
+          "mode": "100644",
+          "bytes": 402
+        },
+        {
+          "source": "adr/004-s3-storage.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/adr/004-s3-storage.md",
+          "sha": "188f64c07d018e8b89db2fa1b8e7e078aef1472c",
+          "mode": "100644",
+          "bytes": 464
+        },
+        {
+          "source": "adr/005-service-mesh.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/adr/005-service-mesh.md",
+          "sha": "9ed0a4c91a0ccd76bb63ba76738a3a7631af2e11",
+          "mode": "100644",
+          "bytes": 401
+        },
+        {
+          "source": "adr/006-dr-strategy.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/adr/006-dr-strategy.md",
+          "sha": "8291cb9873a0d30b37c3b94aca54f00a07941910",
+          "mode": "100644",
+          "bytes": 399
+        },
+        {
+          "source": "diagrams/application.mmd",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/diagrams/application.mmd",
+          "sha": "8c0d616a5723ef941a326295437a93ac2423e8d1",
+          "mode": "100644",
+          "bytes": 341
+        },
+        {
+          "source": "diagrams/context.mmd",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/diagrams/context.mmd",
+          "sha": "69a238e2b9ce391b5dc0b4b27ec4bf5b21271df2",
+          "mode": "100644",
+          "bytes": 333
+        },
+        {
+          "source": "diagrams/deployment.mmd",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/diagrams/deployment.mmd",
+          "sha": "b1400474e52e5be77e4067fbecccfb2cf35e1a16",
+          "mode": "100644",
+          "bytes": 349
+        },
+        {
+          "source": "diagrams/drp.mmd",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/diagrams/drp.mmd",
+          "sha": "872366124764fbbf5d4d13f2a5aad5dd5d175943",
+          "mode": "100644",
+          "bytes": 243
+        },
+        {
+          "source": "diagrams/network-zones.mmd",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/diagrams/network-zones.mmd",
+          "sha": "419c4089c77ba648422e0536c6fb6d44df4d37f0",
+          "mode": "100644",
+          "bytes": 284
+        },
+        {
+          "source": "docs/ARCHIMATE_GUIDE.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/docs/ARCHIMATE_GUIDE.md",
+          "sha": "291a4b3bd8f486631cfc28a2a4be9e2057b4267c",
+          "mode": "100644",
+          "bytes": 710
+        },
+        {
+          "source": "docs/DAT.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/docs/DAT.md",
+          "sha": "cada256e10a811d6d168b1502118e2ff80c99d72",
+          "mode": "100644",
+          "bytes": 6875
+        },
+        {
+          "source": "docs/EXECUTIVE_SUMMARY.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/docs/EXECUTIVE_SUMMARY.md",
+          "sha": "527d01199ce1d3b218e6b276933a558905440331",
+          "mode": "100644",
+          "bytes": 613
+        },
+        {
+          "source": "docs/GLOSSARY.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/docs/GLOSSARY.md",
+          "sha": "e8b1f9aaa9139413ea21a1bbc4dffa1854d010ce",
+          "mode": "100644",
+          "bytes": 371
+        },
+        {
+          "source": "docs/HYPOTHESES_CONSTRAINTS.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/docs/HYPOTHESES_CONSTRAINTS.md",
+          "sha": "a09be6529a929001dd437f14dd50915323293d07",
+          "mode": "100644",
+          "bytes": 617
+        },
+        {
+          "source": "docs/REPO_STRUCTURE.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/docs/REPO_STRUCTURE.md",
+          "sha": "478821a7d4929641e3437ec025b20355062b957f",
+          "mode": "100644",
+          "bytes": 1248
+        },
+        {
+          "source": "docs/RISKS.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/docs/RISKS.md",
+          "sha": "d506a84a283306cd5387c43c659673aaf1cc5a40",
+          "mode": "100644",
+          "bytes": 578
+        },
+        {
+          "source": "docs/STAKEHOLDERS_RACI.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/docs/STAKEHOLDERS_RACI.md",
+          "sha": "0620e1604614b26917e4a4dd9fbdf1e8986e3021",
+          "mode": "100644",
+          "bytes": 1000
+        },
+        {
+          "source": "evidence/README.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/evidence/README.md",
+          "sha": "be49d4e2cf20f5f079a89048b9e7611fee3a2164",
+          "mode": "100644",
+          "bytes": 272
+        },
+        {
+          "source": "governance/COMITE_ARCHI_TEMPLATE.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/governance/COMITE_ARCHI_TEMPLATE.md",
+          "sha": "db518c063d70e89764b898c7ece95c9d7abc62e7",
+          "mode": "100644",
+          "bytes": 240
+        },
+        {
+          "source": "governance/CR_COMITE_TEMPLATE.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/governance/CR_COMITE_TEMPLATE.md",
+          "sha": "af2aad0a04de076ec5641e4e5f8dc1f55bbb0e17",
+          "mode": "100644",
+          "bytes": 106
+        },
+        {
+          "source": "governance/PROD_ARCH_REVIEW.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/governance/PROD_ARCH_REVIEW.md",
+          "sha": "3d0c84b832b290f494c5c1889d0a55a24f282e54",
+          "mode": "100644",
+          "bytes": 247
+        },
+        {
+          "source": "k8s/apps/modernis-api/chart/Chart.yaml",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/k8s/apps/modernis-api/chart/Chart.yaml",
+          "sha": "1eaabe1a002c6230ee018c2c7d84403a6da4ac81",
+          "mode": "100644",
+          "bytes": 151
+        },
+        {
+          "source": "k8s/apps/modernis-api/chart/templates/_helpers.tpl",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/k8s/apps/modernis-api/chart/templates/_helpers.tpl",
+          "sha": "159ceafcd0e0a3202f35356f8bc0c6ac660d1919",
+          "mode": "100644",
+          "bytes": 148
+        },
+        {
+          "source": "k8s/apps/modernis-api/chart/templates/deployment.yaml",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/k8s/apps/modernis-api/chart/templates/deployment.yaml",
+          "sha": "c6496cf48708c254d18c5140e38c3bb9f4fa56b2",
+          "mode": "100644",
+          "bytes": 862
+        },
+        {
+          "source": "k8s/apps/modernis-api/chart/templates/service.yaml",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/k8s/apps/modernis-api/chart/templates/service.yaml",
+          "sha": "1d1789be91f65a5ca0d99481d28c2c3f29cb76d5",
+          "mode": "100644",
+          "bytes": 297
+        },
+        {
+          "source": "k8s/apps/modernis-api/chart/values.yaml",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/k8s/apps/modernis-api/chart/values.yaml",
+          "sha": "b606aa0481e2b1a690b37bc52f95b04f34d80707",
+          "mode": "100644",
+          "bytes": 294
+        },
+        {
+          "source": "k8s/base/limitrange.yaml",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/k8s/base/limitrange.yaml",
+          "sha": "7a39f2cc9544a185d98be8921dcc16779e80805b",
+          "mode": "100644",
+          "bytes": 240
+        },
+        {
+          "source": "k8s/base/namespace.yaml",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/k8s/base/namespace.yaml",
+          "sha": "c0c29e8853b702f2517afeb9ef46beb5f24f6cd5",
+          "mode": "100644",
+          "bytes": 112
+        },
+        {
+          "source": "k8s/base/resourcequota.yaml",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/k8s/base/resourcequota.yaml",
+          "sha": "db91ab4fd49e164f099714c13149869afc17f281",
+          "mode": "100644",
+          "bytes": 214
+        },
+        {
+          "source": "k8s/gitops/argocd-application.yaml",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/k8s/gitops/argocd-application.yaml",
+          "sha": "e8c73b55d2530cc2d9229e9a03b940e118ee9578",
+          "mode": "100644",
+          "bytes": 402
+        },
+        {
+          "source": "k8s/network/allow-api-to-oracle.yaml",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/k8s/network/allow-api-to-oracle.yaml",
+          "sha": "e2b4a7d0d71e3df76e6c4dcdefb5b0f0e902d70b",
+          "mode": "100644",
+          "bytes": 359
+        },
+        {
+          "source": "k8s/network/default-deny.yaml",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/k8s/network/default-deny.yaml",
+          "sha": "b6b3326a58c341cce35a87a25bcc3f28b07b6501",
+          "mode": "100644",
+          "bytes": 176
+        },
+        {
+          "source": "k8s/security/sealedsecret-example.yaml",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/k8s/security/sealedsecret-example.yaml",
+          "sha": "ef426f78fc55f465a1ef2884c7faa70e81c86ccd",
+          "mode": "100644",
+          "bytes": 286
+        },
+        {
+          "source": "matrices/flow-matrix.csv",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/matrices/flow-matrix.csv",
+          "sha": "90d6c5e9615686cf3da91a66dfb278bc6ec2ce43",
+          "mode": "100644",
+          "bytes": 656
+        },
+        {
+          "source": "matrices/flow-matrix.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/matrices/flow-matrix.md",
+          "sha": "b895a8e5e6c112e6341d39f142c7d85b30fd7348",
+          "mode": "100644",
+          "bytes": 639
+        },
+        {
+          "source": "nfr/CAPACITY_MODEL.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/nfr/CAPACITY_MODEL.md",
+          "sha": "63a3d72391eb46213b40ae435d5a842d21863d74",
+          "mode": "100644",
+          "bytes": 511
+        },
+        {
+          "source": "nfr/NFR_CATALOG.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/nfr/NFR_CATALOG.md",
+          "sha": "fff17bc9d5a3f521faf47ec033542d49a61e6759",
+          "mode": "100644",
+          "bytes": 763
+        },
+        {
+          "source": "nfr/PERFORMANCE_TEST_PLAN.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/nfr/PERFORMANCE_TEST_PLAN.md",
+          "sha": "7d3629027528d18cd916a8de3c45c2e148f732f1",
+          "mode": "100644",
+          "bytes": 576
+        },
+        {
+          "source": "nfr/SLO_SLI.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/nfr/SLO_SLI.md",
+          "sha": "030b6717900100f4ed28c699739afd721e397f6c",
+          "mode": "100644",
+          "bytes": 442
+        },
+        {
+          "source": "rfp/AO-TEMPLATE.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/rfp/AO-TEMPLATE.md",
+          "sha": "2a5937fc1b090002c2cdaa1dcc525437b50a84a2",
+          "mode": "100644",
+          "bytes": 204
+        },
+        {
+          "source": "rfp/CDC-API-Management.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/rfp/CDC-API-Management.md",
+          "sha": "5129c2d4a2d0d0829955acf94fb967e7085f8b42",
+          "mode": "100644",
+          "bytes": 828
+        },
+        {
+          "source": "rfp/CDC-S3-Storage.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/rfp/CDC-S3-Storage.md",
+          "sha": "512f0768cbc587b4cf719bb349171f981328fcd0",
+          "mode": "100644",
+          "bytes": 646
+        },
+        {
+          "source": "runbooks/RUNBOOK_ACCESS.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/runbooks/RUNBOOK_ACCESS.md",
+          "sha": "c1576e516c3de61258a08f9a53c9b29723d97904",
+          "mode": "100644",
+          "bytes": 326
+        },
+        {
+          "source": "runbooks/RUNBOOK_DEPLOYMENT.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/runbooks/RUNBOOK_DEPLOYMENT.md",
+          "sha": "179e21781d1ff5b75b1d21fa6c7e82a7b1652067",
+          "mode": "100644",
+          "bytes": 382
+        },
+        {
+          "source": "runbooks/RUNBOOK_DRP_TEST.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/runbooks/RUNBOOK_DRP_TEST.md",
+          "sha": "b46b07cd178a2eb68ff8aaf6ee8bc69132b4b804",
+          "mode": "100644",
+          "bytes": 443
+        },
+        {
+          "source": "runbooks/RUNBOOK_INCIDENT.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/runbooks/RUNBOOK_INCIDENT.md",
+          "sha": "047b714ba14d5de072706cd6056fa61ab07a2d95",
+          "mode": "100644",
+          "bytes": 638
+        },
+        {
+          "source": "runbooks/RUNBOOK_ROLLBACK.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/runbooks/RUNBOOK_ROLLBACK.md",
+          "sha": "68b294c181a8392e880fc8c0bc22fdd2c2a43fd9",
+          "mode": "100644",
+          "bytes": 296
+        },
+        {
+          "source": "scripts/build-pdf.sh",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/scripts/build-pdf.sh",
+          "sha": "b9bb2f17edeb4898121e1d14cb692a2953d73ebe",
+          "mode": "100644",
+          "bytes": 408
+        },
+        {
+          "source": "scripts/generate-tree.sh",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/scripts/generate-tree.sh",
+          "sha": "965867f47987538e14de33ebba24a64e3d2c68f5",
+          "mode": "100644",
+          "bytes": 195
+        },
+        {
+          "source": "scripts/validate.sh",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/scripts/validate.sh",
+          "sha": "1e47cba7b51069f37956f33c41cb3f27d558fe52",
+          "mode": "100644",
+          "bytes": 309
+        },
+        {
+          "source": "security/COMPLIANCE_CHECKLIST.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/security/COMPLIANCE_CHECKLIST.md",
+          "sha": "c43f8d4a0a09890560dbc874349ba8b4f3eae6f3",
+          "mode": "100644",
+          "bytes": 521
+        },
+        {
+          "source": "security/SECRETS_MANAGEMENT.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/security/SECRETS_MANAGEMENT.md",
+          "sha": "ac29de64cd6634618131a0c5e18768060697e46b",
+          "mode": "100644",
+          "bytes": 364
+        },
+        {
+          "source": "security/SECURITY_SHEET.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/security/SECURITY_SHEET.md",
+          "sha": "abe27baba5b66921c2e5a62722aaf578a81cf9c1",
+          "mode": "100644",
+          "bytes": 1120
+        },
+        {
+          "source": "security/THREAT_MODEL.md",
+          "destination": "legacy/modernis-dat/modernis-dat-repo/security/THREAT_MODEL.md",
+          "sha": "6fec129d812debfed561765732b33c772db29e38",
+          "mode": "100644",
+          "bytes": 436
+        }
+      ]
+    }
+  ],
+  "status": "CONTENT_TRANSFER_PENDING_PR_MERGE",
+  "total": 62
+}
