@@ -35,3 +35,10 @@ Chaque fiche comprend : problème, architecture, **2 schémas Mermaid**, exemple
 - [Référentiel de sécurité Zero Trust](../14-security-zero-trust-patterns/README.md).
 
 **Critère de conception :** appliquer le pattern uniquement lorsqu'il répond à un problème réel, puis démontrer ses invariants en test sur un contexte précisé.
+
+
+## Formation bancaire — cours 01 à 10
+
+Parcours pratique complémentaire, sans remplacement des fiches canoniques : **[Formation Architecture d'entreprise appliquée aux paiements bancaires](formation-banque-paiements/README.md)**.
+
+Le dossier contient **10 cours détaillés**, exemples fictifs de virements SEPA et instantanés, diagrammes Mermaid, cas Java/JEE–IBM MQ–Kafka–Core Banking–OpenShift, **10 exercices corrigés**, une étude transverse et deux atlas de schémas (architecture de référence, incidents/cutover). Les cours 11 et 12 restent dans le référentiel canonique jusqu'à leur approfondissement pédagogique.
