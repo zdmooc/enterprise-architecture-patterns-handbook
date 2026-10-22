@@ -49,7 +49,7 @@ Document canonique complet : 26 sections, architecture solution et technique, fl
 
 ## Parcours illustré et audit de couverture
 
-- **[Formation bancaire — 10 cours d'architecture d'entreprise + exercices corrigés](10-enterprise-architecture-patterns/formation-banque-paiements/README.md)** : fil rouge virement de 500 EUR, Java/JEE, IBM MQ, Kafka, Core Banking, OpenShift, diagrammes et études de migration (cas fictifs).
+- **[Formation bancaire — 12 cours d'architecture d'entreprise + exercices corrigés](10-enterprise-architecture-patterns/formation-banque-paiements/README.md)** : fil rouge virement de 500 EUR, Java/JEE, IBM MQ, Kafka, Core Banking, OpenShift, diagrammes et études de migration (cas fictifs).
 
 - **[Atlas des schémas Mermaid — 151 patterns](diagrams/INDEX_DES_SCHEMAS.md)** : 34 schémas dans les fiches d'intégration, 30 schémas dans les fiches IA, et cas transversaux.
 - **[Audit de couverture des notions étudiées](references/AUDIT_COUVERTURE.md)** : correspondance détaillée entre cours, exemples, diagrammes et fichiers.
