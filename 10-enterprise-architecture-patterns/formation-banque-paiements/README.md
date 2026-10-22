@@ -1,6 +1,6 @@
-# Formation — Architecture d'entreprise appliquée aux paiements bancaires
+# Formation — 12 patterns d'architecture d'entreprise appliqués aux paiements bancaires
 
-**Parcours 01 à 10 — 10 cours détaillés et exercices corrigés.**  
+**Parcours 01 à 12 — 12 cours détaillés et exercices corrigés.**  
 Référentiel : [famille des 12 patterns d'architecture d'entreprise](../README.md) | [Handbook (180 patterns)](../../README.md).
 
 > **Pédagogie et anonymisation.** Cas fictif d'une banque traitant des virements SEPA et instantanés de 500 EUR ; aucun SI client, dessin confidentiel ni performance de production n'est reproduit. Les produits Java, IBM MQ, Kafka, PostgreSQL et OpenShift sont des exemples techniques, pas une déclaration de technologie chez un établissement. La conformité aux règles de paiement doit être examinée sur les textes applicables.
@@ -21,11 +21,13 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 08 | [Transition Architecture](08-transition-architecture.md) | Comment faire coexister et basculer sans double débit ? | [08](../08-transition-architecture/README.md) | B corrigé |
 | 09 | [Transformation Roadmap](09-transformation-roadmap.md) | Quelles vagues et quelles gates GO/NO-GO ? | [09](../09-transformation-roadmap/README.md) | C corrigé |
 | 10 | [ABB / SBB](10-architecture-building-blocks.md) | Quel contrat d'architecture et quelle solution le réalise ? | [10](../10-architecture-building-blocks/README.md) | B corrigé |
+| 11 | [Architecture Governance / ADR](11-architecture-governance-adr.md) | Qui décide et sur quelles preuves ? | [11](../11-architecture-governance-adr/README.md) | À valider en session |
+| 12 | [Architecture Compliance / NFR](12-architecture-compliance-nfr.md) | Comment prouver la conformité aux exigences ? | [12](../12-architecture-compliance-nfr/README.md) | À étudier et valider |
 
-**Précision :** « validé » signifie ici qu'un QCM de formation a été corrigé dans la conversation pédagogique ; **ce n'est ni une certification ni une validation de production**.
+**Précision :** les dix premiers QCM ont été corrigés dans la conversation pédagogique ; les cours 11 et 12 disposent désormais de fiches et de corrigés mais leur validation interactive reste à faire. **Aucun QCM n'est une certification ou une validation de production**.
 
 ## Ressources complémentaires
-- [10 exercices et corrigés + étude transverse](exercices-et-corriges/README.md) — décisions, justifications, pièges et réponses attendues.
+- [12 exercices et corrigés + étude transverse](exercices-et-corriges/README.md) — décisions, justifications, pièges et réponses attendues.
 - [Schéma central des paiements et cartographie des flux](schemas/architecture-de-reference.md) — vues métier/applicative/technique.
 - [Séquences de reprise, coexistence et cutover](schemas/cutover-et-incidents.md) — gestion d'incidents et invariants.
 - [Étude bancaire transversale canonique du dépôt](../../07-case-studies/banking-payments-reference/README.md).
@@ -38,10 +40,10 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 4. Répondre à l'exercice sans regarder le corrigé, puis examiner les preuves attendues.
 5. Compléter un livrable de mission : carte, matrice, ADR, risques ou plan de validation.
 
-## Prochaines leçons dans l'ordre de la famille existante
-- **11 — [Architecture Governance / ADR](../11-architecture-governance-adr/README.md)** : le cours conversationnel est entamé ; à finaliser puis documenter séparément.
-- **12 — [Architecture Compliance / NFR](../12-architecture-compliance-nfr/README.md)** : prochaine leçon.
-- **Extensions métier à développer** : BPMN/processus détaillé, RACI, règles métier, modèle d'information, états et événements bancaires. Ces sujets ne sont pas considérés comme couverts intégralement par les dix fiches ci-dessus.
+## Suite de l'apprentissage
+- **Valider en conversation** le cours [11 — ADR](11-architecture-governance-adr.md) puis le cours [12 — NFR](12-architecture-compliance-nfr.md).
+- **Approfondir le métier** : BPMN/processus, acteurs/RACI, règles de paiement, modèle d'information, états et événements bancaires. Ces méthodes ne sont pas intégralement couvertes par les 12 patterns ci-dessus.
+- **Ensuite** : architecture applicative, données, intégration, résilience, sécurité et plateforme selon les autres familles du [Handbook](../../README.md).
 
 ## Glossaire minimum
 - **ABB / SBB** : responsabilité d'architecture / réalisation technique.
