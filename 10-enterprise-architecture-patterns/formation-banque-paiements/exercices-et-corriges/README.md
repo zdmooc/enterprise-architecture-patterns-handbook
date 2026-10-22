@@ -1,4 +1,4 @@
-# Exercices corrigés — 10 cours d'architecture appliquée aux paiements
+# Exercices corrigés — 12 cours d'architecture appliquée aux paiements
 
 > Banque et virements **entièrement fictifs**. Ces cas ne représentent pas l'infrastructure réelle d'un établissement. La bonne réponse démontre un raisonnement d'architecture, pas la performance d'un produit. Un QCM validé ici n'est pas une certification.
 
@@ -54,6 +54,18 @@ A. Bascule générale. B. Remplacer MQ par Kafka. **C. Continuer les vagues sûr
 **Cas :** un ABB « commandes durables » utilise MQ ; Kafka est proposé pour le remplacer.  
 A. Approuver car récent. **B. Comparer contrats, NFR, risques, coûts et preuves.** C. Interdire toute évolution.
 **Correction B :** le fournisseur est un moyen ; l'ABB porte l'obligation. **Preuve :** matrice de conformité ABB↔SBB, tests comparatifs et ADR.
+
+### 11 — Architecture Governance et ADR
+**Cas :** une équipe souhaite remplacer IBM MQ par Kafka. Un POC de publication/consommation fonctionne, mais les pannes de Core, la redélivrance et l'idempotence financière n'ont pas été testées.  
+A. Approuver la production immédiatement. B. Refuser Kafka a priori. **C. Enregistrer options et risques dans une ADR, poursuivre la qualification et refuser la bascule sans preuves critiques.**
+
+**Correction C :** une ADR conserve les raisons du choix et ses limites ; un prototype ne vaut pas une garantie de résilience. **Preuve :** version d'ADR, propriétaire, comparatif de coûts/NFR, suite de tests, approbation de la Design Authority et décision GO/NO-GO. Un GO de conception ne remplace pas l'autorisation de production.
+
+### 12 — Architecture Compliance et NFR Traceability
+**Cas :** trois pods du moteur Java/OpenShift sont Running ; aucune perte de nœud, panne MQ/Core, redélivrance financière ni restauration complète n'a été testée.  
+A. Déclarer la disponibilité démontrée. **B. Tracer les NFR métier jusqu'aux tests de bout en bout et refuser de conclure tant que les P0 ne sont pas qualifiés.** C. Ajouter deux pods de plus.
+
+**Correction B :** une architecture ne devient pas conforme par son apparence. **Preuve :** fiches NFR avec seuils validés, protocole, environnement, résultats datés, écarts, responsable, décision approuvée et capacité de rollback. Une dérogation ne contourne pas une obligation non dérogeable.
 
 ---
 
