@@ -1,5 +1,8 @@
 # Cas d'étude — Architecture bancaire de paiement bout en bout
 
+**Référence métier externe :** [architecture métier unique des paiements bancaires](https://github.com/zdmooc/banking-payments-business-architecture). Ce document est un exercice spécialisé et ne doit pas être consulté comme dictionnaire de règles de paiement.
+
+
 > **Simulation de conception, pas description d'un SI bancaire réel.** Aucun produit (MQ, Kafka, PostgreSQL, OpenShift) n'est présenté comme effectivement déployé dans un établissement. Montants, comptes, noms des files et services sont fictifs.
 
 ## Objectif
@@ -69,18 +72,13 @@ Les flèches sont **logiques** ; notamment, la publication des commandes au brok
 9. **Réconciliation** pour l'issue inconnue ; aucun mensonge métier en cas de perte de réponse.
 10. **Deadline d'exécution SCT Inst** transportée et vérifiée au dernier composant capable d'ordonner l'exécution.
 
-## Définition des statuts
-- RECEIVED = intention enregistrée ; ne prouve ni acceptation finale ni règlement.
-- VALIDATING = contrôles en cours.
-- FUNDS_RESERVED = réservation **si** le domaine bancaire le permet.
-- SUBMITTED = instruction transmise ; pas une preuve de règlement.
-- SETTLED = règlement confirmé par source autoritative.
-- REJECTED = rejet constaté selon une preuve métier.
-- UNKNOWN / TO_RECONCILE = issue incertaine nécessitant rapprochement.
-Il faut compléter les statuts selon la nomenclature véritable du rail de paiement retenu et séparer codes techniques / métier.
+## Statuts et délais : autorité métier centralisée
 
-## SCT Inst : précaution d'architecte
-Au 18/10/2026, la page de l'EPC indique le **2025 SCT Inst rulebook v1.2**, publié le 30/09/2026. La contrainte globale est de **10 secondes** avec sous-délais et obligations spécifiques en l'absence de confirmation, y compris restauration du compte et communication de l'issue ; la restauration n'est pas une preuve que tout message tardif n'aura jamais de conséquence. Un ordre en queue dépassant la deadline n'est **jamais relancé aveuglément**. Consulter le rulebook pour la sémantique précise et les responsabilités PSP.
+Les états `RECEIVED`, `SUBMITTED`, `SETTLED`, `REJECTED`, `UNKNOWN` et les obligations SCT Inst ne sont **pas** redéfinis par les patterns d'intégration ci-dessus. Leur sens, leur preuve et le traitement des résultats non confirmés figurent dans [les états métier canoniques](https://github.com/zdmooc/banking-payments-business-architecture/blob/main/04-capacites-metier/ETATS_INVARIANTS.md), le [processus SCT Inst détaillé](https://github.com/zdmooc/banking-payments-business-architecture/blob/main/15-processus-bpmn/PARCOURS_SCT_INST_METIER_12_ETAPES.md) et les [obligations d'exceptions](https://github.com/zdmooc/banking-payments-business-architecture/blob/main/06-sepa-sct-inst/REFERENTIEL_R_TRANSACTIONS_2026.md).
+
+Ici, la Saga, l'Outbox, MQ, Kafka et l'ACL décrivent des **choix de réalisation** : ils ne modifient ni les délais applicables ni le résultat financier.
+
+**Version originale des règles remplacées** : [historique Git 4080ad42](https://github.com/zdmooc/enterprise-architecture-patterns-handbook/blob/4080ad420f8151131d105728c4e52b6d9f6578e7/07-case-studies/banking-payments-reference/README.md).
 
 ## Sujets de revue avant toute production
 - Partage exact des responsabilités PSP/CSM/settlement et conditions d'irrévocabilité.
