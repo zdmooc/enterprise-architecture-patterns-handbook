@@ -1,6 +1,6 @@
-# Formation complète — 52 cours d'architecture appliqués aux paiements bancaires
+# Formation complète — 53 cours d'architecture appliqués aux paiements bancaires
 
-**52 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
+**53 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
 
 Référentiel : [Architecture d'entreprise](../README.md) · [Handbook de patterns](../../README.md).
 
@@ -25,7 +25,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 11 | [Architecture Governance / ADR](11-architecture-governance-adr.md) | Qui décide et sur quelles preuves ? | [11](../11-architecture-governance-adr/README.md) | À valider en session |
 | 12 | [Architecture Compliance / NFR](12-architecture-compliance-nfr.md) | Comment prouver la conformité aux exigences ? | [12](../12-architecture-compliance-nfr/README.md) | À étudier et valider |
 
-## Index — cours 13 à 52
+## Index — cours 13 à 53
 | N° | Cours | Domaine | Corrigé |
 |---:|---|---|---|
 | 13 | [Business Process Architecture et BPMN](13-business-process-bpmn.md) | Métier | C (corrigé dans le cours) |
@@ -68,12 +68,13 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 50 | [Branch by Abstraction](50-branch-by-abstraction.md) | Applicative | B (corrigé dans le cours) |
 | 51 | [Factory Method (Java GoF)](51-factory-method.md) | Java / GoF | B (corrigé dans le cours) |
 | 52 | [Abstract Factory (Java GoF)](52-abstract-factory.md) | Java / GoF | C (corrigé dans le cours) |
+| 53 | [Builder (Java GoF)](53-builder.md) | Java / GoF | C (validé en session) |
 
 **Portée des QCM :** outils d'entraînement pédagogique, pas une certification ni une preuve de conformité ou de production. Les cours 13–50 ont été consolidés en supports à partir de la progression étudiée; les exercices du dépôt sont des exercices de consolidation et peuvent différer de leur formulation orale initiale.
 
 ## Exercices
 - [Cahier des exercices 01–12](exercices-et-corriges/README.md)
-- [Cahier de révision et corrections 13–52](exercices-et-corriges/cours-13-52.md)
+- [Cahier de révision et corrections 13–53](exercices-et-corriges/cours-13-53.md)
 
 ## Ressources complémentaires
 - [Architecture bancaire de référence](schemas/architecture-de-reference.md)
@@ -91,7 +92,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 5. Produire un livrable concret : schéma, contrat, ADR, tests ou trajectoire.
 
 ## Suite prévue après le cours 52
-Cours 53–73 : autres patterns GoF Java, puis patterns Java/JEE et Spring, intégration, données, sécurité, résilience, OpenShift et IA selon le programme pédagogique. **Les cours 53 et suivants ne sont pas encore publiés dans ce dossier.**
+Cours 54–73 : autres patterns GoF Java, puis patterns Java/JEE et Spring, intégration, données, sécurité, résilience, OpenShift et IA selon le programme pédagogique. **Les cours 54 et suivants ne sont pas encore publiés dans ce dossier.**
 
 ## Glossaire
 - **AS-IS / TO-BE** : existant constaté / cible argumentée.
