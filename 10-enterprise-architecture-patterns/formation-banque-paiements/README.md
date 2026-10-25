@@ -1,6 +1,6 @@
-# Formation complète — 58 cours d'architecture appliqués aux paiements bancaires
+# Formation complète — 62 cours d'architecture appliqués aux paiements bancaires
 
-**58 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
+**62 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
 
 Référentiel : [Architecture d'entreprise](../README.md) · [Handbook de patterns](../../README.md).
 
@@ -25,7 +25,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 11 | [Architecture Governance / ADR](11-architecture-governance-adr.md) | Qui décide et sur quelles preuves ? | [11](../11-architecture-governance-adr/README.md) | À valider en session |
 | 12 | [Architecture Compliance / NFR](12-architecture-compliance-nfr.md) | Comment prouver la conformité aux exigences ? | [12](../12-architecture-compliance-nfr/README.md) | À étudier et valider |
 
-## Index — cours 13 à 58
+## Index — cours 13 à 62
 | N° | Cours | Domaine | Corrigé |
 |---:|---|---|---|
 | 13 | [Business Process Architecture et BPMN](13-business-process-bpmn.md) | Métier | C (corrigé dans le cours) |
@@ -74,12 +74,17 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 56 | [Adapter (Java GoF)](56-adapter.md) | Java / GoF | C (validé en session) |
 | 57 | [Bridge (Java GoF)](57-bridge.md) | Java / GoF | B (validé en session) |
 | 58 | [Composite (Java GoF)](58-composite.md) | Java / GoF | C (validé en session) |
+| 59 | [Decorator (Java GoF)](59-decorator.md) | Java / GoF structurel | Étudié, auto-évaluation à valider |
+| 60 | [Facade (Java GoF)](60-facade.md) | Java / GoF structurel | Étudié, auto-évaluation à valider |
+| 61 | [Flyweight (Java GoF)](61-flyweight.md) | Java / GoF structurel | Étudié, auto-évaluation à valider |
+| 62 | [Proxy (Java GoF)](62-proxy.md) | Java / GoF structurel | B correct ; réponse A corrigée en session |
 
-**Portée des QCM :** outils d'entraînement pédagogique, pas une certification ni une preuve de conformité ou de production. Les cours 13–50 ont été consolidés en supports à partir de la progression étudiée; les exercices du dépôt sont des exercices de consolidation et peuvent différer de leur formulation orale initiale.
+**Portée des QCM :** outils d'entraînement pédagogique, pas une certification ni une preuve de conformité ou de production. Les cours 13–50 ont été consolidés en supports à partir de la progression étudiée; les exercices du dépôt sont des exercices de consolidation et peuvent différer de leur formulation orale initiale. Les cours 59–62 ont été présentés ensemble : seule la question transversale Proxy a reçu une réponse en session (A, incorrecte, corrigée B).
 
 ## Exercices
 - [Cahier des exercices 01–12](exercices-et-corriges/README.md)
 - [Cahier de révision et corrections 13–58](exercices-et-corriges/cours-13-58.md)
+- [Cahier de révision et corrections 59–62](exercices-et-corriges/cours-59-62.md)
 
 ## Ressources complémentaires
 - [Architecture bancaire de référence](schemas/architecture-de-reference.md)
@@ -96,8 +101,8 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 4. Répondre au QCM, lire le corrigé et justifier les alternatives.
 5. Produire un livrable concret : schéma, contrat, ADR, tests ou trajectoire.
 
-## Suite prévue après le cours 58
-Cours 59–73 : autres patterns GoF Java, puis patterns Java/JEE et Spring, intégration, données, sécurité, résilience, OpenShift et IA selon le programme pédagogique. **Les cours 59 et suivants ne sont pas encore publiés dans ce dossier.**
+## Suite prévue après le cours 62
+Cours 63–73 : patterns GoF comportementaux, puis patterns Java/JEE et Spring, intégration, données, sécurité, résilience, OpenShift et IA selon le programme pédagogique. **Les cours 63 et suivants ne sont pas encore publiés dans ce dossier.**
 
 ## Glossaire
 - **AS-IS / TO-BE** : existant constaté / cible argumentée.
