@@ -1,6 +1,6 @@
-# Formation complète — 73 cours d'architecture appliqués aux paiements bancaires
+# Formation complète — 83 cours d'architecture appliqués aux paiements bancaires
 
-**73 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
+**83 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
 
 Référentiel : [Architecture d'entreprise](../README.md) · [Handbook de patterns](../../README.md).
 
@@ -25,7 +25,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 11 | [Architecture Governance / ADR](11-architecture-governance-adr.md) | Qui décide et sur quelles preuves ? | [11](../11-architecture-governance-adr/README.md) | À valider en session |
 | 12 | [Architecture Compliance / NFR](12-architecture-compliance-nfr.md) | Comment prouver la conformité aux exigences ? | [12](../12-architecture-compliance-nfr/README.md) | À étudier et valider |
 
-## Index — cours 13 à 73
+## Index — cours 13 à 83
 | N° | Cours | Domaine | Corrigé |
 |---:|---|---|---|
 | 13 | [Business Process Architecture et BPMN](13-business-process-bpmn.md) | Métier | C (corrigé dans le cours) |
@@ -89,14 +89,25 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 71 | [Strategy (GoF)](71-strategy.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
 | 72 | [Template Method (GoF)](72-template-method.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
 | 73 | [Visitor (GoF)](73-visitor.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
+| 74 | [Dependency Injection](74-dependency-injection.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
+| 75 | [Inversion of Control (IoC)](75-inversion-of-control.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
+| 76 | [Bean Scopes et Lifecycle](76-bean-scopes-lifecycle.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
+| 77 | [Spring AOP](77-spring-aop.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
+| 78 | [Spring Transactions](78-spring-transactions.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
+| 79 | [Spring Data / JPA](79-spring-data-jpa.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
+| 80 | [Spring MVC / REST](80-spring-mvc-rest.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
+| 81 | [Exception Handling Spring](81-exception-handling.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
+| 82 | [Tests unitaires et d'intégration](82-spring-testing.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
+| 83 | [Configuration Spring Boot](83-spring-boot-configuration.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
 
-**Portée des QCM :** outils d'entraînement pédagogique, pas une certification ni une preuve de conformité ou de production. Les cours 13–50 ont été consolidés en supports à partir de la progression étudiée; les exercices du dépôt sont des exercices de consolidation et peuvent différer de leur formulation orale initiale. Les cours 59–62 ont été présentés ensemble : seule la question transversale Proxy a reçu une réponse en session (A, incorrecte, corrigée B). Les cours 63–73 sont publiés avec leurs exercices théoriquement corrigés, non validés individuellement en session.
+**Portée des QCM :** outils d'entraînement pédagogique, pas une certification ni une preuve de conformité ou de production. Les cours 13–50 ont été consolidés en supports à partir de la progression étudiée; les exercices du dépôt sont des exercices de consolidation et peuvent différer de leur formulation orale initiale. Les cours 59–62 ont été présentés ensemble : seule la question transversale Proxy a reçu une réponse en session (A, incorrecte, corrigée B). Les cours 63–73 sont publiés avec leurs exercices théoriquement corrigés, non validés individuellement en session. Les cours 74–83 sont désormais publiés de la même manière : théorie couverte et corrigés fournis, sans validation individuelle de leurs exercices.
 
 ## Exercices
 - [Cahier des exercices 01–12](exercices-et-corriges/README.md)
 - [Cahier de révision et corrections 13–58](exercices-et-corriges/cours-13-58.md)
 - [Cahier de révision et corrections 59–62](exercices-et-corriges/cours-59-62.md)
 - [Cahier de révision et corrections 63–73](exercices-et-corriges/cours-63-73.md)
+- [Cahier de révision et corrections Java/JEE et Spring 74–83](exercices-et-corriges/cours-74-83.md)
 
 ## Ressources complémentaires
 - [Architecture bancaire de référence](schemas/architecture-de-reference.md)
@@ -105,6 +116,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 - [Migration Java/JEE vers OpenShift](../../09-containerization-kubernetes-openshift-patterns/09-case-study-java-jee-openshift/migration-playbook.md)
 - [Patterns applicatifs détaillés](../../11-application-software-patterns/README.md)
 - [GoF Java détaillés](../../19-java-design-patterns-gof/README.md)
+- [Schéma de synthèse Java / Spring et cas bancaire](schemas/spring-paiement-74-83.md)
 
 ## Mode d'étude
 1. Lire le besoin, les règles et l'exemple bancaire.
@@ -113,8 +125,8 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 4. Répondre au QCM, lire le corrigé et justifier les alternatives.
 5. Produire un livrable concret : schéma, contrat, ADR, tests ou trajectoire.
 
-## Bilan GoF et suite prévue après le cours 73
-Les 23 GoF sont désormais couverts par les cours 51–73 : 5 création, 7 structure, 11 comportement. La publication des fiches ne signifie pas validation individuelle des 11 exercices 63–73. Suite proposée : patterns Java/JEE et Spring, intégration, données, sécurité, résilience, OpenShift et IA.
+## Bilan GoF et Java/Spring — suite après le cours 83
+Les 23 GoF sont couverts par les cours 51–73 : 5 création, 7 structure, 11 comportement. La catégorie Java/JEE et Spring comprend 10 cours complémentaires 74–83. Les fiches théoriques et corrigés de ces 33 cours existent ; les exercices individuels 63–83 restent à valider selon les réponses réellement données. Suite du parcours : architecture d'intégration (IBM MQ, JMS, Kafka, Outbox, Saga), données, sécurité, résilience, OpenShift et IA.
 
 ## Glossaire
 - **AS-IS / TO-BE** : existant constaté / cible argumentée.
