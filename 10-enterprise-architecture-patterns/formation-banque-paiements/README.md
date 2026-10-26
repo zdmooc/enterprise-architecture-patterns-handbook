@@ -1,6 +1,6 @@
-# Formation complète — 62 cours d'architecture appliqués aux paiements bancaires
+# Formation complète — 73 cours d'architecture appliqués aux paiements bancaires
 
-**62 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
+**73 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
 
 Référentiel : [Architecture d'entreprise](../README.md) · [Handbook de patterns](../../README.md).
 
@@ -25,7 +25,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 11 | [Architecture Governance / ADR](11-architecture-governance-adr.md) | Qui décide et sur quelles preuves ? | [11](../11-architecture-governance-adr/README.md) | À valider en session |
 | 12 | [Architecture Compliance / NFR](12-architecture-compliance-nfr.md) | Comment prouver la conformité aux exigences ? | [12](../12-architecture-compliance-nfr/README.md) | À étudier et valider |
 
-## Index — cours 13 à 62
+## Index — cours 13 à 73
 | N° | Cours | Domaine | Corrigé |
 |---:|---|---|---|
 | 13 | [Business Process Architecture et BPMN](13-business-process-bpmn.md) | Métier | C (corrigé dans le cours) |
@@ -78,13 +78,25 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 60 | [Facade (Java GoF)](60-facade.md) | Java / GoF structurel | Étudié, auto-évaluation à valider |
 | 61 | [Flyweight (Java GoF)](61-flyweight.md) | Java / GoF structurel | Étudié, auto-évaluation à valider |
 | 62 | [Proxy (Java GoF)](62-proxy.md) | Java / GoF structurel | B correct ; réponse A corrigée en session |
+| 63 | [Chain of Responsibility (GoF)](63-chain-of-responsibility.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
+| 64 | [Command (GoF)](64-command.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
+| 65 | [Interpreter (GoF)](65-interpreter.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
+| 66 | [Iterator (GoF)](66-iterator.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
+| 67 | [Mediator (GoF)](67-mediator.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
+| 68 | [Memento (GoF)](68-memento.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
+| 69 | [Observer (GoF)](69-observer.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
+| 70 | [State (GoF)](70-state.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
+| 71 | [Strategy (GoF)](71-strategy.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
+| 72 | [Template Method (GoF)](72-template-method.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
+| 73 | [Visitor (GoF)](73-visitor.md) | Java / GoF comportemental | Étudié ; quiz individuel à valider |
 
-**Portée des QCM :** outils d'entraînement pédagogique, pas une certification ni une preuve de conformité ou de production. Les cours 13–50 ont été consolidés en supports à partir de la progression étudiée; les exercices du dépôt sont des exercices de consolidation et peuvent différer de leur formulation orale initiale. Les cours 59–62 ont été présentés ensemble : seule la question transversale Proxy a reçu une réponse en session (A, incorrecte, corrigée B).
+**Portée des QCM :** outils d'entraînement pédagogique, pas une certification ni une preuve de conformité ou de production. Les cours 13–50 ont été consolidés en supports à partir de la progression étudiée; les exercices du dépôt sont des exercices de consolidation et peuvent différer de leur formulation orale initiale. Les cours 59–62 ont été présentés ensemble : seule la question transversale Proxy a reçu une réponse en session (A, incorrecte, corrigée B). Les cours 63–73 sont publiés avec leurs exercices théoriquement corrigés, non validés individuellement en session.
 
 ## Exercices
 - [Cahier des exercices 01–12](exercices-et-corriges/README.md)
 - [Cahier de révision et corrections 13–58](exercices-et-corriges/cours-13-58.md)
 - [Cahier de révision et corrections 59–62](exercices-et-corriges/cours-59-62.md)
+- [Cahier de révision et corrections 63–73](exercices-et-corriges/cours-63-73.md)
 
 ## Ressources complémentaires
 - [Architecture bancaire de référence](schemas/architecture-de-reference.md)
@@ -101,8 +113,8 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 4. Répondre au QCM, lire le corrigé et justifier les alternatives.
 5. Produire un livrable concret : schéma, contrat, ADR, tests ou trajectoire.
 
-## Suite prévue après le cours 62
-Cours 63–73 : patterns GoF comportementaux, puis patterns Java/JEE et Spring, intégration, données, sécurité, résilience, OpenShift et IA selon le programme pédagogique. **Les cours 63 et suivants ne sont pas encore publiés dans ce dossier.**
+## Bilan GoF et suite prévue après le cours 73
+Les 23 GoF sont désormais couverts par les cours 51–73 : 5 création, 7 structure, 11 comportement. La publication des fiches ne signifie pas validation individuelle des 11 exercices 63–73. Suite proposée : patterns Java/JEE et Spring, intégration, données, sécurité, résilience, OpenShift et IA.
 
 ## Glossaire
 - **AS-IS / TO-BE** : existant constaté / cible argumentée.
