@@ -1,6 +1,6 @@
-# Formation complète — 83 cours d'architecture appliqués aux paiements bancaires
+# Formation complète — 128 cours d'architecture appliqués aux paiements bancaires
 
-**83 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
+**128 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
 
 Référentiel : [Architecture d'entreprise](../README.md) · [Handbook de patterns](../../README.md).
 
@@ -25,7 +25,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 11 | [Architecture Governance / ADR](11-architecture-governance-adr.md) | Qui décide et sur quelles preuves ? | [11](../11-architecture-governance-adr/README.md) | À valider en session |
 | 12 | [Architecture Compliance / NFR](12-architecture-compliance-nfr.md) | Comment prouver la conformité aux exigences ? | [12](../12-architecture-compliance-nfr/README.md) | À étudier et valider |
 
-## Index — cours 13 à 83
+## Index — cours 13 à 128
 | N° | Cours | Domaine | Corrigé |
 |---:|---|---|---|
 | 13 | [Business Process Architecture et BPMN](13-business-process-bpmn.md) | Métier | C (corrigé dans le cours) |
@@ -99,6 +99,51 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 81 | [Exception Handling Spring](81-exception-handling.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
 | 82 | [Tests unitaires et d'intégration](82-spring-testing.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
 | 83 | [Configuration Spring Boot](83-spring-boot-configuration.md) | Java/JEE et Spring | Corrigé publié ; quiz individuel à valider |
+| 84 | [Request/Response](84-request-response.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 85 | [Messaging / Queue IBM MQ/JMS](85-messaging-queue.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 86 | [Publish/Subscribe](86-publish-subscribe.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 87 | [Event-Driven Architecture](87-event-driven-architecture.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 88 | [Event Streaming (Kafka)](88-event-streaming.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 89 | [API Gateway](89-api-gateway.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 90 | [Adapter / Anti-Corruption Layer](90-anti-corruption-layer-integration.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 91 | [Saga](91-saga-integration.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 92 | [Circuit Breaker](92-circuit-breaker-integration.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 93 | [Retry / Timeout / Idempotency](93-retry-timeout-idempotency.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 94 | [Transactional Outbox](94-transactional-outbox.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 95 | [Transactional Inbox](95-transactional-inbox.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 96 | [Content-Based Router](96-content-based-router.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 97 | [Splitter / Aggregator](97-splitter-aggregator.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 98 | [Claim Check](98-claim-check.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 99 | [Dead Letter Channel / Parking Lot](99-dead-letter-channel.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 100 | [Competing Consumers](100-competing-consumers.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 101 | [Event Schema Evolution](101-schema-evolution.md) | Intégration | Corrigé publié ; quiz individuel à valider |
+| 102 | [Data Ownership](102-data-ownership.md) | Données | Corrigé publié ; quiz individuel à valider |
+| 103 | [Data Warehouse](103-data-warehouse.md) | Données | Corrigé publié ; quiz individuel à valider |
+| 104 | [Data Lake](104-data-lake.md) | Données | Corrigé publié ; quiz individuel à valider |
+| 105 | [Lakehouse](105-lakehouse.md) | Données | Corrigé publié ; quiz individuel à valider |
+| 106 | [Data Mesh](106-data-mesh.md) | Données | Corrigé publié ; quiz individuel à valider |
+| 107 | [Data Fabric](107-data-fabric.md) | Données | Corrigé publié ; quiz individuel à valider |
+| 108 | [Change Data Capture](108-change-data-capture.md) | Données | Corrigé publié ; quiz individuel à valider |
+| 109 | [Data Vault](109-data-vault.md) | Données | Corrigé publié ; quiz individuel à valider |
+| 110 | [Medallion Architecture](110-medallion.md) | Données | Corrigé publié ; quiz individuel à valider |
+| 111 | [Data Product Contract](111-data-product-contract.md) | Données | Corrigé publié ; quiz individuel à valider |
+| 112 | [Master Data Management](112-master-data-management.md) | Données | Corrigé publié ; quiz individuel à valider |
+| 113 | [Data Lineage & Governance](113-data-lineage-governance.md) | Données | Corrigé publié ; quiz individuel à valider |
+| 114 | [Active / Passive](114-active-passive.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 115 | [Active / Active Partitioned](115-active-active-partitioned.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 116 | [Quorum / Consensus](116-quorum-consensus.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 117 | [Leader Election](117-leader-election.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 118 | [Fencing Token](118-fencing-token.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 119 | [Failure Detector](119-failure-detector.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 120 | [Backpressure](120-backpressure.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 121 | [Bulkhead](121-bulkhead.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 122 | [Load Shedding](122-load-shedding.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 123 | [Graceful Degradation](123-graceful-degradation.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 124 | [Replication & Consistency](124-replication-consistency.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 125 | [Backup / PITR](125-backup-pitr.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 126 | [Chaos Engineering](126-chaos-engineering.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 127 | [Disaster Recovery Runbook](127-disaster-recovery-runbook.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 128 | [Reconciliation / Unknown Outcome](128-reconciliation-unknown-outcome.md) | Résilience | Corrigé publié ; quiz individuel à valider |
 
 **Portée des QCM :** outils d'entraînement pédagogique, pas une certification ni une preuve de conformité ou de production. Les cours 13–50 ont été consolidés en supports à partir de la progression étudiée; les exercices du dépôt sont des exercices de consolidation et peuvent différer de leur formulation orale initiale. Les cours 59–62 ont été présentés ensemble : seule la question transversale Proxy a reçu une réponse en session (A, incorrecte, corrigée B). Les cours 63–73 sont publiés avec leurs exercices théoriquement corrigés, non validés individuellement en session. Les cours 74–83 sont désormais publiés de la même manière : théorie couverte et corrigés fournis, sans validation individuelle de leurs exercices.
 
@@ -108,6 +153,9 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 - [Cahier de révision et corrections 59–62](exercices-et-corriges/cours-59-62.md)
 - [Cahier de révision et corrections 63–73](exercices-et-corriges/cours-63-73.md)
 - [Cahier de révision et corrections Java/JEE et Spring 74–83](exercices-et-corriges/cours-74-83.md)
+- [Cahier Intégration 84–101](exercices-et-corriges/cours-84-101.md)
+- [Cahier Données 102–113](exercices-et-corriges/cours-102-113.md)
+- [Cahier Résilience 114–128](exercices-et-corriges/cours-114-128.md)
 
 ## Ressources complémentaires
 - [Architecture bancaire de référence](schemas/architecture-de-reference.md)
@@ -117,6 +165,9 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 - [Patterns applicatifs détaillés](../../11-application-software-patterns/README.md)
 - [GoF Java détaillés](../../19-java-design-patterns-gof/README.md)
 - [Schéma de synthèse Java / Spring et cas bancaire](schemas/spring-paiement-74-83.md)
+- [Architecture de synthèse Intégration 84–101](schemas/integration-84-101.md)
+- [Architecture de synthèse Données 102–113](schemas/donnees-102-113.md)
+- [Architecture de synthèse Résilience 114–128](schemas/resilience-114-128.md)
 
 ## Mode d'étude
 1. Lire le besoin, les règles et l'exemple bancaire.
@@ -125,8 +176,10 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 4. Répondre au QCM, lire le corrigé et justifier les alternatives.
 5. Produire un livrable concret : schéma, contrat, ADR, tests ou trajectoire.
 
-## Bilan GoF et Java/Spring — suite après le cours 83
-Les 23 GoF sont couverts par les cours 51–73 : 5 création, 7 structure, 11 comportement. La catégorie Java/JEE et Spring comprend 10 cours complémentaires 74–83. Les fiches théoriques et corrigés de ces 33 cours existent ; les exercices individuels 63–83 restent à valider selon les réponses réellement données. Suite du parcours : architecture d'intégration (IBM MQ, JMS, Kafka, Outbox, Saga), données, sécurité, résilience, OpenShift et IA.
+## Bilan et suite après le cours 128
+Le parcours comprend 128 leçons numérotées, dont 23 GoF (51–73), Java/JEE Spring (74–83), **18 cours Intégration (84–101), 12 cours Données (102–113) et 15 cours Résilience (114–128)**.
+
+Les 45 dernières fiches sont des **cours construits à partir des patterns déjà présents** dans le handbook ; elles ne changent pas le total des patterns référencés. Le contenu et les corrigés sont publiés, **pas les résultats individuels d'examen**. La suite possible : sécurité Zero Trust, Kubernetes/OpenShift, IA, Cloud, SRE, modernisation et architecture décisionnelle.
 
 ## Glossaire
 - **AS-IS / TO-BE** : existant constaté / cible argumentée.
