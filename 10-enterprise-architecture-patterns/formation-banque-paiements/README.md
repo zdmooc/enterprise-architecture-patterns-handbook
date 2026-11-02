@@ -1,6 +1,6 @@
-# Formation complète — 185 cours d'architecture appliqués aux paiements bancaires
+# Formation complète — 225 cours d'architecture appliqués aux paiements bancaires
 
-**185 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
+**225 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
 
 Référentiel : [Architecture d'entreprise](../README.md) · [Handbook de patterns](../../README.md).
 
@@ -25,7 +25,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 11 | [Architecture Governance / ADR](11-architecture-governance-adr.md) | Qui décide et sur quelles preuves ? | [11](../11-architecture-governance-adr/README.md) | À valider en session |
 | 12 | [Architecture Compliance / NFR](12-architecture-compliance-nfr.md) | Comment prouver la conformité aux exigences ? | [12](../12-architecture-compliance-nfr/README.md) | À étudier et valider |
 
-## Index — cours 13 à 185
+## Index — cours 13 à 225
 | N° | Cours | Domaine | Corrigé |
 |---:|---|---|---|
 | 13 | [Business Process Architecture et BPMN](13-business-process-bpmn.md) | Métier | C (corrigé dans le cours) |
@@ -201,6 +201,46 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 183 | [Model Fallback](183-model-fallback.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
 | 184 | [Continuous Evaluation](184-continuous-evaluation.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
 | 185 | [Event-Driven AI](185-event-driven-ai.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 186 | [Landing Zone](186-landing-zone.md) | Cloud hybride / Multicloud | Corrigé théorique ; évaluation individuelle à valider |
+| 187 | [Hub-and-Spoke](187-hub-spoke.md) | Cloud hybride / Multicloud | Corrigé théorique ; évaluation individuelle à valider |
+| 188 | [Transit Connectivity](188-transit-connectivity.md) | Cloud hybride / Multicloud | Corrigé théorique ; évaluation individuelle à valider |
+| 189 | [Private Connectivity](189-private-connectivity.md) | Cloud hybride / Multicloud | Corrigé théorique ; évaluation individuelle à valider |
+| 190 | [Multi-Account Governance](190-multi-account-governance.md) | Cloud hybride / Multicloud | Corrigé théorique ; évaluation individuelle à valider |
+| 191 | [Multi-Region Strategy](191-multi-region-strategy.md) | Cloud hybride / Multicloud | Corrigé théorique ; évaluation individuelle à valider |
+| 192 | [Hybrid Workload Placement](192-hybrid-workload-placement.md) | Cloud hybride / Multicloud | Corrigé théorique ; évaluation individuelle à valider |
+| 193 | [Cloud Bursting](193-cloud-bursting.md) | Cloud hybride / Multicloud | Corrigé théorique ; évaluation individuelle à valider |
+| 194 | [Infrastructure as Code](194-infrastructure-as-code.md) | Cloud hybride / Multicloud | Corrigé théorique ; évaluation individuelle à valider |
+| 195 | [Cloud Exit & Portability](195-cloud-exit-portability.md) | Cloud hybride / Multicloud | Corrigé théorique ; évaluation individuelle à valider |
+| 196 | [Caching Patterns](196-caching-patterns.md) | Performance / SRE | Corrigé théorique ; évaluation individuelle à valider |
+| 197 | [Load Balancing](197-load-balancing.md) | Performance / SRE | Corrigé théorique ; évaluation individuelle à valider |
+| 198 | [Sharding](198-sharding.md) | Performance / SRE | Corrigé théorique ; évaluation individuelle à valider |
+| 199 | [Connection Pooling](199-connection-pooling.md) | Performance / SRE | Corrigé théorique ; évaluation individuelle à valider |
+| 200 | [Async Offload](200-async-offload.md) | Performance / SRE | Corrigé théorique ; évaluation individuelle à valider |
+| 201 | [Rate Limiting](201-rate-limiting.md) | Performance / SRE | Corrigé théorique ; évaluation individuelle à valider |
+| 202 | [Latency Budget](202-latency-budget.md) | Performance / SRE | Corrigé théorique ; évaluation individuelle à valider |
+| 203 | [Golden Signals](203-golden-signals.md) | Performance / SRE | Corrigé théorique ; évaluation individuelle à valider |
+| 204 | [SLI / SLO / Error Budget](204-sli-slo-error-budget.md) | Performance / SRE | Corrigé théorique ; évaluation individuelle à valider |
+| 205 | [Capacity Planning](205-capacity-planning.md) | Performance / SRE | Corrigé théorique ; évaluation individuelle à valider |
+| 206 | [Rehost](206-rehost.md) | Modernisation Legacy | Corrigé théorique ; évaluation individuelle à valider |
+| 207 | [Replatform](207-replatform.md) | Modernisation Legacy | Corrigé théorique ; évaluation individuelle à valider |
+| 208 | [Refactor](208-refactor.md) | Modernisation Legacy | Corrigé théorique ; évaluation individuelle à valider |
+| 209 | [Replace](209-replace.md) | Modernisation Legacy | Corrigé théorique ; évaluation individuelle à valider |
+| 210 | [Retire](210-retire.md) | Modernisation Legacy | Corrigé théorique ; évaluation individuelle à valider |
+| 211 | [Retain](211-retain.md) | Modernisation Legacy | Corrigé théorique ; évaluation individuelle à valider |
+| 212 | [Strangler Fig Migration](212-strangler-fig-migration.md) | Modernisation Legacy | Corrigé théorique ; évaluation individuelle à valider |
+| 213 | [Parallel Run / Shadow](213-parallel-run-shadow.md) | Modernisation Legacy | Corrigé théorique ; évaluation individuelle à valider |
+| 214 | [Expand–Contract Database](214-expand-contract-db.md) | Modernisation Legacy | Corrigé théorique ; évaluation individuelle à valider |
+| 215 | [Cutover / Rollback](215-cutover-rollback.md) | Modernisation Legacy | Corrigé théorique ; évaluation individuelle à valider |
+| 216 | [Control Plane / Data Plane Separation](216-control-plane-data-plane.md) | Platform Engineering | Corrigé théorique ; évaluation individuelle à valider |
+| 217 | [Golden Path / Paved Road](217-golden-path.md) | Platform Engineering | Corrigé théorique ; évaluation individuelle à valider |
+| 218 | [Multi-Tenant Isolation / Noisy Neighbor](218-multi-tenant-isolation.md) | Platform Engineering | Corrigé théorique ; évaluation individuelle à valider |
+| 219 | [Policy as Code / Admission Guardrails](219-policy-as-code.md) | Platform Engineering | Corrigé théorique ; évaluation individuelle à valider |
+| 220 | [Cell-Based Architecture / Fault Containment](220-cell-based-architecture.md) | Platform Engineering | Corrigé théorique ; évaluation individuelle à valider |
+| 221 | [Decision Service Boundary](221-decision-service-boundary.md) | Architecture décisionnelle / ODM | Corrigé théorique ; évaluation individuelle à valider |
+| 222 | [Rule Engine Adapter](222-rule-engine-adapter.md) | Architecture décisionnelle / ODM | Corrigé théorique ; évaluation individuelle à valider |
+| 223 | [Rule Version Pinning / Promotion](223-rule-version-pinning.md) | Architecture décisionnelle / ODM | Corrigé théorique ; évaluation individuelle à valider |
+| 224 | [Shadow Decision Evaluation](224-shadow-decision-evaluation.md) | Architecture décisionnelle / ODM | Corrigé théorique ; évaluation individuelle à valider |
+| 225 | [Decision Audit & Human Review](225-decision-audit-human-review.md) | Architecture décisionnelle / ODM | Corrigé théorique ; évaluation individuelle à valider |
 
 **Portée des QCM :** outils d'entraînement pédagogique, pas une certification ni une preuve de conformité ou de production. Les cours 13–50 ont été consolidés en supports à partir de la progression étudiée; les exercices du dépôt sont des exercices de consolidation et peuvent différer de leur formulation orale initiale. Les cours 59–62 ont été présentés ensemble : seule la question transversale Proxy a reçu une réponse en session (A, incorrecte, corrigée B). Les cours 63–73 sont publiés avec leurs exercices théoriquement corrigés, non validés individuellement en session. Les cours 74–83 sont désormais publiés de la même manière : théorie couverte et corrigés fournis, sans validation individuelle de leurs exercices.
 
@@ -218,6 +258,11 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 - [Cahier 151–160 : Controllers, workloads, résilience et capacité](exercices-et-corriges/cours-151-160.md)
 - [Cahier 161–170 : Réseau, OpenShift, GitOps, migration et DR](exercices-et-corriges/cours-161-170.md)
 - [Cahier IA et agentique 171–185](exercices-et-corriges/cours-171-185.md)
+- [Cahier Cloud hybride / Multicloud 186–195](exercices-et-corriges/cours-186-195.md)
+- [Cahier Performance / SRE 196–205](exercices-et-corriges/cours-196-205.md)
+- [Cahier Modernisation Legacy 206–215](exercices-et-corriges/cours-206-215.md)
+- [Cahier Platform Engineering 216–220](exercices-et-corriges/cours-216-220.md)
+- [Cahier Architecture décisionnelle / ODM 221–225](exercices-et-corriges/cours-221-225.md)
 
 ## Ressources complémentaires
 - [Architecture bancaire de référence](schemas/architecture-de-reference.md)
@@ -236,6 +281,12 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 - [Matrice des 30 tests Kubernetes / OpenShift](schemas/matrice-tests-openshift-141-170.md)
 - [Architecture IA / agentique sur OpenShift 171–185](schemas/architecture-ia-openshift-171-185.md)
 - [Matrice de tests et preuves IA 171–185](schemas/matrice-tests-ia-171-185.md)
+- [HLD Cloud hybride / Multicloud 186–195](schemas/architecture-cloud-186-195.md)
+- [HLD Performance / SRE 196–205](schemas/architecture-sre-196-205.md)
+- [HLD Modernisation Legacy 206–215](schemas/architecture-modernisation-206-215.md)
+- [HLD Platform Engineering 216–220](schemas/architecture-platform-216-220.md)
+- [HLD Architecture décisionnelle / ODM 221–225](schemas/architecture-decisions-221-225.md)
+- [Matrice finale des 40 preuves](schemas/matrice-preuves-186-225.md)
 
 ## Mode d'étude
 1. Lire le besoin, les règles et l'exemple bancaire.
@@ -244,12 +295,14 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 4. Répondre au QCM, lire le corrigé et justifier les alternatives.
 5. Produire un livrable concret : schéma, contrat, ADR, tests ou trajectoire.
 
-## Bilan et suite après le cours 185
-Le programme comporte **185 cours numérotés** : architecture d'entreprise, métier, fonctionnelle et applicative ; GoF, Java/Spring, Intégration, Données, Résilience, Sécurité, Kubernetes/OpenShift et **15 cours d'architecture IA/agentique (171–185)**.
+## Bilan final — 225 cours publiés
+**Les 225 fiches de cours prévues sont publiées.** Le parcours couvre l'architecture métier, fonctionnelle, applicative, GoF, Java/Spring, intégration, données, résilience, Zero Trust, Kubernetes/OpenShift, architecture IA/agentique, Cloud hybride (186–195), Performance/SRE (196–205), Modernisation Legacy (206–215), Platform Engineering (216–220) et Décision / ODM (221–225).
 
-Les cours 171–185 approfondissent les 15 patterns déjà documentés dans le [catalogue IA](../../08-ai-architecture-patterns/README.md) : ils ne constituent pas 15 nouveaux patterns du catalogue de référence. Ces fiches contiennent des schémas, contrats, risques, tests et corrigés théoriques ; **aucun test de modèle réel, cluster ou évaluation individuelle n'est revendiqué**.
+**Attention au comptage** : 225 cours ne signifient pas 225 patterns distincts. Le référentiel de patterns existant reste à 180 éléments catalogués ; certaines leçons réinterprètent un pattern par domaine, d'autres enseignent des pratiques, techniques et décisions.
 
-Suite possible : cloud hybride/multicloud, performance et SRE, modernisation legacy, décision ODM/BRMS et Platform Engineering.
+**Statut exact** : supports, schémas, scénarios et corrigés théoriques publiés. Les questionnaires individuels, la preuve pratique sur CRC/Kind, les tests sur des produits sous licence, l'homologation et l'évaluation d'architecte senior restent à réaliser.
+
+**Prolongements recommandés** : examen transversal d'architecture, mise en pratique sur un laboratoire représentatif, corrections et validation d'un dossier HLD/LLD/ADR devant un comité.
 
 ## Glossaire
 - **AS-IS / TO-BE** : existant constaté / cible argumentée.
