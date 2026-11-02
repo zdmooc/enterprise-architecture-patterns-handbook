@@ -1,6 +1,6 @@
-# Formation complète — 140 cours d'architecture appliqués aux paiements bancaires
+# Formation complète — 170 cours d'architecture appliqués aux paiements bancaires
 
-**140 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
+**170 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
 
 Référentiel : [Architecture d'entreprise](../README.md) · [Handbook de patterns](../../README.md).
 
@@ -25,7 +25,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 11 | [Architecture Governance / ADR](11-architecture-governance-adr.md) | Qui décide et sur quelles preuves ? | [11](../11-architecture-governance-adr/README.md) | À valider en session |
 | 12 | [Architecture Compliance / NFR](12-architecture-compliance-nfr.md) | Comment prouver la conformité aux exigences ? | [12](../12-architecture-compliance-nfr/README.md) | À étudier et valider |
 
-## Index — cours 13 à 140
+## Index — cours 13 à 170
 | N° | Cours | Domaine | Corrigé |
 |---:|---|---|---|
 | 13 | [Business Process Architecture et BPMN](13-business-process-bpmn.md) | Métier | C (corrigé dans le cours) |
@@ -156,6 +156,36 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 138 | [Encryption at Rest / KMS](138-encryption-key-management.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
 | 139 | [Software Supply Chain](139-software-supply-chain.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
 | 140 | [Audit Trail / Segregation of Duties](140-audit-segregation-duties.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
+| 141 | [Multi-Stage Build](141-multi-stage-build.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 142 | [Immutable Image / Digest](142-immutable-image.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 143 | [Non-Root / Arbitrary UID](143-non-root-container.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 144 | [Externalized Configuration](144-externalized-configuration.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 145 | [Stateless Process](145-stateless-process.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 146 | [Init Container](146-init-container.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 147 | [Sidecar](147-sidecar.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 148 | [Ambassador](148-ambassador.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 149 | [Adapter Sidecar](149-adapter-sidecar.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 150 | [Deployment](150-deployment.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 151 | [StatefulSet](151-stateful-workload.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 152 | [Job / CronJob](152-job-cronjob.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 153 | [Operator / Reconciliation](153-operator-reconciliation.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 154 | [Health Probes](154-health-probes.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 155 | [Graceful Shutdown](155-graceful-shutdown.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 156 | [PodDisruptionBudget](156-pod-disruption-budget.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 157 | [HPA](157-horizontal-scaling.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 158 | [Queue-Based Scaling](158-queue-based-scaling.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 159 | [Topology Spread](159-topology-spread.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 160 | [Resource Governance](160-resource-governance.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 161 | [Service Discovery](161-service-discovery.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 162 | [OpenShift Route / TLS](162-openshift-route-tls.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 163 | [NetworkPolicy Default Deny](163-default-deny-network.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 164 | [SCC / Least Privilege](164-scc-least-privilege.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 165 | [Secrets Externalization](165-secrets-externalization.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 166 | [Rolling Update](166-rolling-update.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 167 | [Blue/Green / Canary](167-bluegreen-canary.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 168 | [GitOps Reconciliation](168-gitops-reconciliation.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 169 | [Strangler Fig / Migration Java/JEE](169-strangler-fig.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 170 | [Backup / DR / Fencing](170-disaster-recovery-fencing.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
 
 **Portée des QCM :** outils d'entraînement pédagogique, pas une certification ni une preuve de conformité ou de production. Les cours 13–50 ont été consolidés en supports à partir de la progression étudiée; les exercices du dépôt sont des exercices de consolidation et peuvent différer de leur formulation orale initiale. Les cours 59–62 ont été présentés ensemble : seule la question transversale Proxy a reçu une réponse en session (A, incorrecte, corrigée B). Les cours 63–73 sont publiés avec leurs exercices théoriquement corrigés, non validés individuellement en session. Les cours 74–83 sont désormais publiés de la même manière : théorie couverte et corrigés fournis, sans validation individuelle de leurs exercices.
 
@@ -169,6 +199,9 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 - [Cahier Données 102–113](exercices-et-corriges/cours-102-113.md)
 - [Cahier Résilience 114–128](exercices-et-corriges/cours-114-128.md)
 - [Cahier Sécurité et Zero Trust 129–140](exercices-et-corriges/cours-129-140.md)
+- [Cahier 141–150 : Images, conteneurs et design des Pods](exercices-et-corriges/cours-141-150.md)
+- [Cahier 151–160 : Controllers, workloads, résilience et capacité](exercices-et-corriges/cours-151-160.md)
+- [Cahier 161–170 : Réseau, OpenShift, GitOps, migration et DR](exercices-et-corriges/cours-161-170.md)
 
 ## Ressources complémentaires
 - [Architecture bancaire de référence](schemas/architecture-de-reference.md)
@@ -183,6 +216,8 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 - [Architecture de synthèse Résilience 114–128](schemas/resilience-114-128.md)
 - [Architecture de synthèse Zero Trust 129–140](schemas/zero-trust-129-140.md)
 - [Matrice exigences et preuves Zero Trust 129–140](schemas/matrice-preuves-zero-trust-129-140.md)
+- [Architecture bancaire OpenShift 141–170](schemas/architecture-openshift-141-170.md)
+- [Matrice des 30 tests Kubernetes / OpenShift](schemas/matrice-tests-openshift-141-170.md)
 
 ## Mode d'étude
 1. Lire le besoin, les règles et l'exemple bancaire.
@@ -191,12 +226,12 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 4. Répondre au QCM, lire le corrigé et justifier les alternatives.
 5. Produire un livrable concret : schéma, contrat, ADR, tests ou trajectoire.
 
-## Bilan et suite après le cours 140
-Le parcours comprend **140 cours** : 23 GoF (51–73), Java/JEE Spring (74–83), Intégration (84–101), Données (102–113), Résilience (114–128) et **12 cours de Sécurité Zero Trust (129–140)**.
+## Bilan et suite après le cours 170
+Le programme compte **170 cours** : architecture métier/fonctionnelle/applicative, 23 GoF (51–73), Java/JEE Spring (74–83), Intégration (84–101), Données (102–113), Résilience (114–128), Sécurité Zero Trust (129–140), **30 cours Docker/Kubernetes/OpenShift (141–170)**.
 
-Les fiches 129–140 approfondissent les 12 patterns déjà présents dans le handbook : elles ne sont pas 12 nouveaux patterns du catalogue. Chaque cours contient des diagrammes, un cas fictif, des tests négatifs et un corrigé théorique, **sans preuve runtime ni évaluation individuelle validée**.
+Les cours 141–170 consolident les 30 patterns techniques déjà documentés dans la famille [09 Kubernetes/OpenShift](../../09-containerization-kubernetes-openshift-patterns/README.md). Les 30 nouvelles leçons ne changent pas le total des patterns du catalogue. Les corrigés sont théoriques, **pas des réponses individuelles validées ni des preuves runtime**.
 
-Suite possible : conteneurisation Kubernetes/OpenShift, architecture IA, Cloud hybride, performance/SRE, modernisation et décision.
+Suite possible : architecture IA/agentique, cloud hybride, performance/SRE, modernisation, décision et Platform Engineering.
 
 ## Glossaire
 - **AS-IS / TO-BE** : existant constaté / cible argumentée.
