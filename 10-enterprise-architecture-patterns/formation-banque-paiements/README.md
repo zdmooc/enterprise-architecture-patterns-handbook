@@ -1,6 +1,6 @@
-# Formation complète — 128 cours d'architecture appliqués aux paiements bancaires
+# Formation complète — 140 cours d'architecture appliqués aux paiements bancaires
 
-**128 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
+**140 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
 
 Référentiel : [Architecture d'entreprise](../README.md) · [Handbook de patterns](../../README.md).
 
@@ -25,7 +25,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 11 | [Architecture Governance / ADR](11-architecture-governance-adr.md) | Qui décide et sur quelles preuves ? | [11](../11-architecture-governance-adr/README.md) | À valider en session |
 | 12 | [Architecture Compliance / NFR](12-architecture-compliance-nfr.md) | Comment prouver la conformité aux exigences ? | [12](../12-architecture-compliance-nfr/README.md) | À étudier et valider |
 
-## Index — cours 13 à 128
+## Index — cours 13 à 140
 | N° | Cours | Domaine | Corrigé |
 |---:|---|---|---|
 | 13 | [Business Process Architecture et BPMN](13-business-process-bpmn.md) | Métier | C (corrigé dans le cours) |
@@ -144,6 +144,18 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 126 | [Chaos Engineering](126-chaos-engineering.md) | Résilience | Corrigé publié ; quiz individuel à valider |
 | 127 | [Disaster Recovery Runbook](127-disaster-recovery-runbook.md) | Résilience | Corrigé publié ; quiz individuel à valider |
 | 128 | [Reconciliation / Unknown Outcome](128-reconciliation-unknown-outcome.md) | Résilience | Corrigé publié ; quiz individuel à valider |
+| 129 | [Zero Trust / Never Trust by Network](129-zero-trust.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
+| 130 | [PDP / PEP](130-policy-decision-enforcement.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
+| 131 | [Defense in Depth](131-defense-in-depth.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
+| 132 | [Identity Federation / OIDC](132-identity-federation.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
+| 133 | [Workload Identity](133-workload-identity.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
+| 134 | [RBAC / ABAC / BOLA](134-rbac-abac.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
+| 135 | [Secret Lifecycle](135-secret-lifecycle.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
+| 136 | [Mutual TLS / PKI](136-mutual-tls-pki.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
+| 137 | [Network Micro-Segmentation](137-network-microsegmentation.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
+| 138 | [Encryption at Rest / KMS](138-encryption-key-management.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
+| 139 | [Software Supply Chain](139-software-supply-chain.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
+| 140 | [Audit Trail / Segregation of Duties](140-audit-segregation-duties.md) | Sécurité et Zero Trust | Corrigé théorique ; quiz individuel à valider |
 
 **Portée des QCM :** outils d'entraînement pédagogique, pas une certification ni une preuve de conformité ou de production. Les cours 13–50 ont été consolidés en supports à partir de la progression étudiée; les exercices du dépôt sont des exercices de consolidation et peuvent différer de leur formulation orale initiale. Les cours 59–62 ont été présentés ensemble : seule la question transversale Proxy a reçu une réponse en session (A, incorrecte, corrigée B). Les cours 63–73 sont publiés avec leurs exercices théoriquement corrigés, non validés individuellement en session. Les cours 74–83 sont désormais publiés de la même manière : théorie couverte et corrigés fournis, sans validation individuelle de leurs exercices.
 
@@ -156,6 +168,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 - [Cahier Intégration 84–101](exercices-et-corriges/cours-84-101.md)
 - [Cahier Données 102–113](exercices-et-corriges/cours-102-113.md)
 - [Cahier Résilience 114–128](exercices-et-corriges/cours-114-128.md)
+- [Cahier Sécurité et Zero Trust 129–140](exercices-et-corriges/cours-129-140.md)
 
 ## Ressources complémentaires
 - [Architecture bancaire de référence](schemas/architecture-de-reference.md)
@@ -168,6 +181,8 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 - [Architecture de synthèse Intégration 84–101](schemas/integration-84-101.md)
 - [Architecture de synthèse Données 102–113](schemas/donnees-102-113.md)
 - [Architecture de synthèse Résilience 114–128](schemas/resilience-114-128.md)
+- [Architecture de synthèse Zero Trust 129–140](schemas/zero-trust-129-140.md)
+- [Matrice exigences et preuves Zero Trust 129–140](schemas/matrice-preuves-zero-trust-129-140.md)
 
 ## Mode d'étude
 1. Lire le besoin, les règles et l'exemple bancaire.
@@ -176,10 +191,12 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 4. Répondre au QCM, lire le corrigé et justifier les alternatives.
 5. Produire un livrable concret : schéma, contrat, ADR, tests ou trajectoire.
 
-## Bilan et suite après le cours 128
-Le parcours comprend 128 leçons numérotées, dont 23 GoF (51–73), Java/JEE Spring (74–83), **18 cours Intégration (84–101), 12 cours Données (102–113) et 15 cours Résilience (114–128)**.
+## Bilan et suite après le cours 140
+Le parcours comprend **140 cours** : 23 GoF (51–73), Java/JEE Spring (74–83), Intégration (84–101), Données (102–113), Résilience (114–128) et **12 cours de Sécurité Zero Trust (129–140)**.
 
-Les 45 dernières fiches sont des **cours construits à partir des patterns déjà présents** dans le handbook ; elles ne changent pas le total des patterns référencés. Le contenu et les corrigés sont publiés, **pas les résultats individuels d'examen**. La suite possible : sécurité Zero Trust, Kubernetes/OpenShift, IA, Cloud, SRE, modernisation et architecture décisionnelle.
+Les fiches 129–140 approfondissent les 12 patterns déjà présents dans le handbook : elles ne sont pas 12 nouveaux patterns du catalogue. Chaque cours contient des diagrammes, un cas fictif, des tests négatifs et un corrigé théorique, **sans preuve runtime ni évaluation individuelle validée**.
+
+Suite possible : conteneurisation Kubernetes/OpenShift, architecture IA, Cloud hybride, performance/SRE, modernisation et décision.
 
 ## Glossaire
 - **AS-IS / TO-BE** : existant constaté / cible argumentée.
