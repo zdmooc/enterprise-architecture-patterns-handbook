@@ -1,6 +1,6 @@
-# Formation complète — 170 cours d'architecture appliqués aux paiements bancaires
+# Formation complète — 185 cours d'architecture appliqués aux paiements bancaires
 
-**170 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
+**185 cours publiés avec exemple bancaire, décisions, risques, tests et exercice corrigé.** Parcours progressif : métier → fonctionnel → applicatif → design patterns Java.
 
 Référentiel : [Architecture d'entreprise](../README.md) · [Handbook de patterns](../../README.md).
 
@@ -25,7 +25,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 11 | [Architecture Governance / ADR](11-architecture-governance-adr.md) | Qui décide et sur quelles preuves ? | [11](../11-architecture-governance-adr/README.md) | À valider en session |
 | 12 | [Architecture Compliance / NFR](12-architecture-compliance-nfr.md) | Comment prouver la conformité aux exigences ? | [12](../12-architecture-compliance-nfr/README.md) | À étudier et valider |
 
-## Index — cours 13 à 170
+## Index — cours 13 à 185
 | N° | Cours | Domaine | Corrigé |
 |---:|---|---|---|
 | 13 | [Business Process Architecture et BPMN](13-business-process-bpmn.md) | Métier | C (corrigé dans le cours) |
@@ -186,6 +186,21 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 | 168 | [GitOps Reconciliation](168-gitops-reconciliation.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
 | 169 | [Strangler Fig / Migration Java/JEE](169-strangler-fig.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
 | 170 | [Backup / DR / Fencing](170-disaster-recovery-fencing.md) | Kubernetes / OpenShift | Corrigé théorique ; quiz individuel à valider |
+| 171 | [RAG — Retrieval-Augmented Generation](171-rag.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 172 | [Advanced RAG — Hybrid Search / Reranking](172-advanced-rag.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 173 | [Model Router](173-model-router.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 174 | [Semantic Cache](174-semantic-cache.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 175 | [ReAct / Tool Calling](175-react-tool-calling.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 176 | [Planner–Executor](176-planner-executor.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 177 | [Multi-Agent](177-multi-agent.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 178 | [Reflection / Evaluator](178-reflection-evaluator.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 179 | [Guardrails](179-guardrails.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 180 | [Human-in-the-Loop](180-human-in-the-loop.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 181 | [AI Gateway](181-ai-gateway.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 182 | [Model Serving](182-model-serving.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 183 | [Model Fallback](183-model-fallback.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 184 | [Continuous Evaluation](184-continuous-evaluation.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
+| 185 | [Event-Driven AI](185-event-driven-ai.md) | IA et agentique | Corrigé théorique ; évaluation individuelle à valider |
 
 **Portée des QCM :** outils d'entraînement pédagogique, pas une certification ni une preuve de conformité ou de production. Les cours 13–50 ont été consolidés en supports à partir de la progression étudiée; les exercices du dépôt sont des exercices de consolidation et peuvent différer de leur formulation orale initiale. Les cours 59–62 ont été présentés ensemble : seule la question transversale Proxy a reçu une réponse en session (A, incorrecte, corrigée B). Les cours 63–73 sont publiés avec leurs exercices théoriquement corrigés, non validés individuellement en session. Les cours 74–83 sont désormais publiés de la même manière : théorie couverte et corrigés fournis, sans validation individuelle de leurs exercices.
 
@@ -202,6 +217,7 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 - [Cahier 141–150 : Images, conteneurs et design des Pods](exercices-et-corriges/cours-141-150.md)
 - [Cahier 151–160 : Controllers, workloads, résilience et capacité](exercices-et-corriges/cours-151-160.md)
 - [Cahier 161–170 : Réseau, OpenShift, GitOps, migration et DR](exercices-et-corriges/cours-161-170.md)
+- [Cahier IA et agentique 171–185](exercices-et-corriges/cours-171-185.md)
 
 ## Ressources complémentaires
 - [Architecture bancaire de référence](schemas/architecture-de-reference.md)
@@ -218,6 +234,8 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 - [Matrice exigences et preuves Zero Trust 129–140](schemas/matrice-preuves-zero-trust-129-140.md)
 - [Architecture bancaire OpenShift 141–170](schemas/architecture-openshift-141-170.md)
 - [Matrice des 30 tests Kubernetes / OpenShift](schemas/matrice-tests-openshift-141-170.md)
+- [Architecture IA / agentique sur OpenShift 171–185](schemas/architecture-ia-openshift-171-185.md)
+- [Matrice de tests et preuves IA 171–185](schemas/matrice-tests-ia-171-185.md)
 
 ## Mode d'étude
 1. Lire le besoin, les règles et l'exemple bancaire.
@@ -226,12 +244,12 @@ Savoir partir de la stratégie et des capacités métier, expliquer le parcours 
 4. Répondre au QCM, lire le corrigé et justifier les alternatives.
 5. Produire un livrable concret : schéma, contrat, ADR, tests ou trajectoire.
 
-## Bilan et suite après le cours 170
-Le programme compte **170 cours** : architecture métier/fonctionnelle/applicative, 23 GoF (51–73), Java/JEE Spring (74–83), Intégration (84–101), Données (102–113), Résilience (114–128), Sécurité Zero Trust (129–140), **30 cours Docker/Kubernetes/OpenShift (141–170)**.
+## Bilan et suite après le cours 185
+Le programme comporte **185 cours numérotés** : architecture d'entreprise, métier, fonctionnelle et applicative ; GoF, Java/Spring, Intégration, Données, Résilience, Sécurité, Kubernetes/OpenShift et **15 cours d'architecture IA/agentique (171–185)**.
 
-Les cours 141–170 consolident les 30 patterns techniques déjà documentés dans la famille [09 Kubernetes/OpenShift](../../09-containerization-kubernetes-openshift-patterns/README.md). Les 30 nouvelles leçons ne changent pas le total des patterns du catalogue. Les corrigés sont théoriques, **pas des réponses individuelles validées ni des preuves runtime**.
+Les cours 171–185 approfondissent les 15 patterns déjà documentés dans le [catalogue IA](../../08-ai-architecture-patterns/README.md) : ils ne constituent pas 15 nouveaux patterns du catalogue de référence. Ces fiches contiennent des schémas, contrats, risques, tests et corrigés théoriques ; **aucun test de modèle réel, cluster ou évaluation individuelle n'est revendiqué**.
 
-Suite possible : architecture IA/agentique, cloud hybride, performance/SRE, modernisation, décision et Platform Engineering.
+Suite possible : cloud hybride/multicloud, performance et SRE, modernisation legacy, décision ODM/BRMS et Platform Engineering.
 
 ## Glossaire
 - **AS-IS / TO-BE** : existant constaté / cible argumentée.
